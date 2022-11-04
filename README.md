@@ -16,3 +16,5 @@ Ebenso werden keine aufwendigen Assets verwendet. Wenn möglich werden Simple Me
 
 
 Entwickelt wird mit der Godotengine 3.51 Stable unter Windows
+
+Bei weiteren voranschreiten der Godot 4 Beta Versionen wird auch hier die Konvertierung der Scripte "geprobt"
