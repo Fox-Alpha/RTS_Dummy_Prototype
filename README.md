@@ -6,6 +6,11 @@ Sandbox zum entwickeln verschiedenen Spielelemente wir zum Beispiel:
 Es geht nur um Prototypen, nicht um ein fertiges Spiel. 
 Ebenso werden keine aufwendigen Assets verwendet. Wenn möglich werden Simple Meshes verwendet.
 
+Am ende soll mindestens ein MVP "Minimum Viable PRototype" entstehen.
+Es wird keine Anleitungen oder Tutorials geben.
+
+Und auch nur ungeplante Downloads.
+
 
 - Steuerung
 - GameManager Logik
@@ -18,3 +23,12 @@ Ebenso werden keine aufwendigen Assets verwendet. Wenn möglich werden Simple Me
 Entwickelt wird mit der Godotengine 3.51 Stable unter Windows
 
 Bei weiteren voranschreiten der Godot 4 Beta Versionen wird auch hier die Konvertierung der Scripte "geprobt"
+
+Folgende Punkte sind mir am wichtigsten:
+> Strukturierung des Projektes
+> Kamera Steuerung wir aus den meisten RTS Spielen bekannt
+> Einheiten Steuern per Auswahl und dann Point'n Click zum 
+> Einheiten in Gebäuden herstellen und diese Managen
+> Die benötigte Game Logik aufbauen Stichwort Game Manager Scripte
+> Multiplayer Verbinden mit mind. 2 Clients. Vorgehen Spielerhosting aber Server hat Authorität
+  > Synchronisieren der Spieler
