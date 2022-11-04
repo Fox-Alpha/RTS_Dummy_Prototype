@@ -3,6 +3,9 @@ Game Prototype zum entwickeln der benötigten RTS Steuerung und Logic für ein G
 
 
 Sandbox zum entwickeln verschiedenen Spielelemente wir zum Beispiel:
+Es geht nur um Prototypen, nicht um ein fertiges Spiel. 
+Ebenso werden keine aufwendigen Assets verwendet. Wenn möglich werden Simple Meshes verwendet.
+
 
 - Steuerung
 - GameManager Logik
@@ -10,3 +13,6 @@ Sandbox zum entwickeln verschiedenen Spielelemente wir zum Beispiel:
 - Kamera verhalten
 - Object Verhalten
 - etc.
+
+
+Entwickelt wird mit der Godotengine 3.51 Stable unter Windows
