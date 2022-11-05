@@ -1,4 +1,9 @@
-# RTS_Dummy_Prototype
+# RTS_Dummy_Prototype Godot Beta 4.x
+Dieser Branch ist eine Vorbereitung für die Konvertierung in die Godot Version 4
+Stand 5.11.22, Aktuell ist die Beta 4 released
+
+
+
 Game Prototype zum entwickeln der benötigten RTS Steuerung und Logic für ein Game Projekt
 
 
