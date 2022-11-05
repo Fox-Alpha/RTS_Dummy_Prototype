@@ -28,7 +28,7 @@ func _enter_tree():
 	pass
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
 #		if is_selected:
 		pass
