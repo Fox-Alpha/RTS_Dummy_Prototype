@@ -4,18 +4,18 @@ class_name GameManager
 # ===========================
 # Dies ist der Hauptmanager der mit den anderen Managern kommuniziert
 # Es werden globale Ereignisse an den richtigen Manager weitergeleitet
-# 
+#
 # z.B. Tastatureingaben und Maussteuerung
-# 
+#
 # Speichern des laufenden Spiels (Autosave)
-# 
+#
 # Starten und Beenden eines Spiels
-# 
+#
 # Starten und Managen des Netzwerkmodus
-# 
+#
 # ===========================
 # get_class()
-# is_class() 
+# is_class()
 # is_CustomClass()
 # ===========================
 var _instance:GameManager :
@@ -86,8 +86,10 @@ func _select_object() -> void:
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
 #	var ray = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
 #	var rayArray = spaceSTate.intersect_ray(ray)
+
+# TOFIX: PhysicsRayQueryParameters3D erstellen und als Parameter nutzen
 	var rayArray = spaceSTate.intersect_ray(rayOrigin, rayEnd)
-	
+
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
@@ -111,7 +113,7 @@ func _select_object() -> void:
 func get_manager_instance(manager : String) -> UnitManager:
 	if Managers.has(manager):
 		return Managers[manager]
-	
+
 	return null
 
 
