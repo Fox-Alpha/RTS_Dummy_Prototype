@@ -14,10 +14,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Buildings/Baracks.gd"
 }, {
-"base": "Barracks",
+"base": "Reference",
 "class": "BarracksDummy",
 "language": "GDScript",
-"path": "res://Assets/Buildings/BaracksDummy.gd"
+"path": "res://assets/Buildings/BaracksDummy.gd"
 }, {
 "base": "Node",
 "class": "BuildingBase",
