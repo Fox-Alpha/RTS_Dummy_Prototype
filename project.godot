@@ -120,6 +120,10 @@ config/name="Charackter_Dummy_Proto"
 run/main_scene="res://Assets/Main.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
+
 [global]
 
 layer=false
