@@ -1,4 +1,4 @@
-class_name BarracksDummy
+ #class_name BarracksDummy
 extends Barracks
 
 
