@@ -1,7 +1,7 @@
 class_name UnitManager
 extends Node
 
-export(Array) var Units = []
+@export var Units: Array = []
 
 
 func _init():

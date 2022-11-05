@@ -1,4 +1,4 @@
-extends Spatial
+extends Node3D
 
 ########################
 # SIGNALS
@@ -12,39 +12,39 @@ signal camera_moved(new_location)
 # EXPORT PARAMS
 ########################
 # movement
-export (float, 0, 100, 0.5) var movement_speed = 20.0
+@export (float, 0, 100, 0.5) var movement_speed = 20.0
 # zoom
-export (float, 0, 100, 0.5) var min_zoom = 3.0
-export (float, 0, 100, 0.5) var max_zoom = 20.0
-export (float, 0, 100, 0.5) var zoom_speed = 20.0
-export (float, 0, 1, 0.05) var zoom_speed_damp = 0.8
+@export (float, 0, 100, 0.5) var min_zoom = 3.0
+@export (float, 0, 100, 0.5) var max_zoom = 20.0
+@export (float, 0, 100, 0.5) var zoom_speed = 20.0
+@export (float, 0, 1, 0.05) var zoom_speed_damp = 0.8
 # rotation
-export (int, 0, 90) var min_elevation_angle = 10 
-export (int, 0, 90) var max_elevation_angle = 80
-export (float, 0, 100, 0.5) var rotation_speed = 20.0
+@export (int, 0, 90) var min_elevation_angle = 10 
+@export (int, 0, 90) var max_elevation_angle = 80
+@export (float, 0, 100, 0.5) var rotation_speed = 20.0
 # pan
-export (float, 0, 10, 0.5) var pan_speed = 2.0
+@export (float, 0, 10, 0.5) var pan_speed = 2.0
 # flags
-export var allow_wasd_movement: bool = true
-export var allow_zoom: bool = true
-export var zoom_to_curser: bool = true
-export var allow_rotation: bool = true
-export var inverted_y: bool = false
-export var allow_pan: bool = true
+@export var allow_wasd_movement: bool = true
+@export var allow_zoom: bool = true
+@export var zoom_to_curser: bool = true
+@export var allow_rotation: bool = true
+@export var inverted_y: bool = false
+@export var allow_pan: bool = true
 
 
 ########################
 # PARAMS
 ########################
 # movement
-onready var tween = $Tween
+@onready var tween = $Tween
 var _lock_movement: bool = false
 # zoom
-onready var camera = $Elevation/Camera
+@onready var camera = $Elevation/Camera3D
 var zoom_direction = 0
 # rotation
-onready var elevation = $Elevation
-var is_rotating = false
+@onready var elevation = $Elevation
+var is_ignoring_rotation = false
 # pan
 var is_panning = false
 # click position
@@ -57,11 +57,11 @@ var _last_mouse_position = Vector2()
 # OVERRIDE FUNCTIONS
 ########################
 func _ready() -> void:
-#	if !is_connected("GameStateChange", self, "_on_GameStateChange"):
-#		if connect("GameStateChange", self, "_on_GameStateChange"):
+#	if !is_connected("GameStateChange",Callable(self,"_on_GameStateChange")):
+#		if connect("GameStateChange",Callable(self,"_on_GameStateChange")):
 #	camera_moved
-	self.connect("freeze_requested", self, "_freeze_camera")
-	self.connect("jump_requested", self, "_jump_to_position")
+	self.connect("freeze_requested",Callable(self,"_freeze_camera"))
+	self.connect("jump_requested",Callable(self,"_jump_to_position"))
 	
 
 
@@ -82,10 +82,10 @@ func _input(event: InputEvent) -> void:
 		zoom_direction = 1
 	# rotation
 	if event.is_action_pressed("camera_rotate"):
-		is_rotating = true
+		is_ignoring_rotation = true
 		_last_mouse_position = get_viewport().get_mouse_position()
 	if event.is_action_released("camera_rotate"):
-		is_rotating = false
+		is_ignoring_rotation = false
 	# pan
 	if event.is_action_pressed("camera_pan"):
 		is_panning = true
@@ -100,7 +100,7 @@ func _input(event: InputEvent) -> void:
 # MOVEMENT FUNCTIONS
 ##############################
 #func _select_object() -> void:
-#	var spaceSTate = get_world().direct_space_state
+#	var spaceSTate = get_world_3d().direct_space_state
 #	var mousePos = get_viewport().get_mouse_position()
 #	var rayOrigin = camera.project_ray_origin(mousePos)
 #	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
@@ -111,13 +111,13 @@ func _input(event: InputEvent) -> void:
 #	if rayArray.has("collider"):
 #		printt(rayArray)
 #		var collider = rayArray["collider"]
-#		if collider is KinematicBody:
+#		if collider is CharacterBody3D:
 ##			var c = collider.get_children()
-#			var NavAgent = collider.get_node("/root/Main/CharackterRoot/NavigationAgent")
+#			var NavAgent = collider.get_node("/root/Main/CharackterRoot/NavigationAgent3D")
 #			if NavAgent != null:
-#				if collider.get_parent_spatial().has_method("_select_unit") != false:
+#				if collider.get_parent_node_3d().has_method("_select_unit") != false:
 ##					selectedUnit = collider
-#					collider.get_parent_spatial()._select_unit(true)
+#					collider.get_parent_node_3d()._select_unit(true)
 #		elif collider.has_method("_select_unit"):
 #			collider.select_unit(false)
 
@@ -130,7 +130,7 @@ func _move(delta: float) -> void:
 
 
 func _rotate_and_elevate(delta: float) -> void:
-	if not allow_rotation or not is_rotating:
+	if not allow_rotation or not is_ignoring_rotation:
 		return
 	var mouse_speed = _get_mouse_speed()
 	_rotate(mouse_speed.x, delta)
@@ -156,12 +156,12 @@ func _zoom(delta: float) -> void:
 	if not allow_zoom or not zoom_direction:
 		return
 	var new_zoom = clamp(
-		camera.translation.z + zoom_direction * zoom_speed * delta,
+		camera.position.z + zoom_direction * zoom_speed * delta,
 		min_zoom,
 		max_zoom
 	)
 	var pointing_at = _get_ground_position()
-	camera.translation.z = new_zoom
+	camera.position.z = new_zoom
 	# pan if need to zoom to curser
 	if zoom_to_curser and pointing_at != null:
 		_realign_camera(pointing_at)
@@ -186,7 +186,7 @@ func _jump_to_position(locaiton: Vector3, duration: float) -> void:
 	_lock_movement = true
 	locaiton.y = 0
 	tween.interpolate_property(
-		self, "translation", translation, locaiton,
+		self, "position", position, locaiton,
 		duration, Tween.TRANS_SINE, Tween.EASE_OUT
 	)
 	tween.start()
@@ -217,8 +217,8 @@ func _realign_camera(point: Vector3) -> void:
 
 
 func _translate_position(v: Vector3) -> void:
-	translation += v
-	emit_signal("camera_moved", translation)
+	position += v
+	emit_signal("camera_moved", position)
 
 
 func _get_ground_position() -> Vector3:

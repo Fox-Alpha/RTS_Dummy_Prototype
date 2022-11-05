@@ -15,7 +15,7 @@ extends Node
 # ===========================
 
 
-export(Array) var Buildings = []
+@export var Buildings: Array = []
 
 func _ready():
 	pass

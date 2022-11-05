@@ -1,17 +1,17 @@
-extends Spatial
+extends Node3D
 
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-export var is_selected:bool = false
+@export var is_selected:bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-onready var UnitMesh = $Charackter/MeshBody
-onready var shader:ShaderMaterial
-onready var navagent:NavigationAgent = $"NavigationAgent"
-onready var navigation:Spatial = get_node("/root/Main/Navigation")
-onready var unitbase = get_node("%ObjectType")
+@onready var UnitMesh = $Charackter/MeshBody
+@onready var shader:ShaderMaterial
+@onready var navagent:NavigationAgent3D = $"NavigationAgent3D"
+@onready var navigation:Node3D = get_node("/root/Main/Node3D")
+@onready var unitbase = get_node("%ObjectType")
 
 
 # Called when the node enters the scene tree for the first time.
@@ -42,9 +42,9 @@ func _select_unit(selected:bool) -> void:
 	print_debug("UNit selected")
 	is_selected = selected
 	if is_selected:
-		shader.set_shader_param("strenght", 0.5)
+		shader.set_shader_parameter("strenght", 0.5)
 	else:
-		shader.set_shader_param("strenght", 0.0)
+		shader.set_shader_parameter("strenght", 0.0)
 
 
 func _SetAgentTarget(newAgentTarget:Vector3)-> void:

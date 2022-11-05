@@ -6,94 +6,94 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
+config_version=5
 
-_global_script_classes=[ {
+_global_script_classes=[{
 "base": "BuildingBase",
-"class": "Barracks",
-"language": "GDScript",
+"class": &"Barracks",
+"language": &"GDScript",
 "path": "res://scripts/Buildings/Baracks.gd"
 }, {
-"base": "Reference",
-"class": "BarracksDummy",
-"language": "GDScript",
+"base": "Barracks",
+"class": &"BarracksDummy",
+"language": &"GDScript",
 "path": "res://assets/Buildings/BaracksDummy.gd"
 }, {
 "base": "Node",
-"class": "BuildingBase",
-"language": "GDScript",
+"class": &"BuildingBase",
+"language": &"GDScript",
 "path": "res://scripts/BaseClasses/BuildingBase.gd"
 }, {
 "base": "Node",
-"class": "BuildingManager",
-"language": "GDScript",
+"class": &"BuildingManager",
+"language": &"GDScript",
 "path": "res://GameManager/BuildingManager.gd"
 }, {
 "base": "ManagerBase",
-"class": "GameManager",
-"language": "GDScript",
+"class": &"GameManager",
+"language": &"GDScript",
 "path": "res://GameManager/GameManager.gd"
 }, {
 "base": "Node",
-"class": "ManagerBase",
-"language": "GDScript",
+"class": &"ManagerBase",
+"language": &"GDScript",
 "path": "res://GameManager/ManagerBase.gd"
 }, {
 "base": "Node",
-"class": "NetworkManager",
-"language": "GDScript",
+"class": &"NetworkManager",
+"language": &"GDScript",
 "path": "res://Networking/NetworkManager.gd"
 }, {
 "base": "Node",
-"class": "ObjectManager",
-"language": "GDScript",
+"class": &"ObjectManager",
+"language": &"GDScript",
 "path": "res://GameManager/ObjectManager.gd"
 }, {
 "base": "Node",
-"class": "PlayerManager",
-"language": "GDScript",
+"class": &"PlayerManager",
+"language": &"GDScript",
 "path": "res://GameManager/PlayerManager.gd"
 }, {
 "base": "Node",
-"class": "ResourceManager",
-"language": "GDScript",
+"class": &"ResourceManager",
+"language": &"GDScript",
 "path": "res://GameManager/ResourceManager.gd"
 }, {
 "base": "Node",
-"class": "SavegameManager",
-"language": "GDScript",
+"class": &"SavegameManager",
+"language": &"GDScript",
 "path": "res://GameManager/SavegameManager.gd"
 }, {
 "base": "Node",
-"class": "SettingsManager",
-"language": "GDScript",
+"class": &"SettingsManager",
+"language": &"GDScript",
 "path": "res://GameManager/SettingsManager.gd"
 }, {
 "base": "UnitBase",
-"class": "SimpleUnit",
-"language": "GDScript",
+"class": &"SimpleUnit",
+"language": &"GDScript",
 "path": "res://scripts/UnitClass/SimpleUnit.gd"
 }, {
 "base": "Node",
-"class": "TechTreeManager",
-"language": "GDScript",
+"class": &"TechTreeManager",
+"language": &"GDScript",
 "path": "res://GameManager/TechTreeManager.gd"
 }, {
 "base": "Node",
-"class": "UIManager",
-"language": "GDScript",
+"class": &"UIManager",
+"language": &"GDScript",
 "path": "res://GameManager/UIManager.gd"
 }, {
 "base": "Node",
-"class": "UnitBase",
-"language": "GDScript",
+"class": &"UnitBase",
+"language": &"GDScript",
 "path": "res://scripts/BaseClasses/UnitBase.gd"
 }, {
 "base": "Node",
-"class": "UnitManager",
-"language": "GDScript",
+"class": &"UnitManager",
+"language": &"GDScript",
 "path": "res://GameManager/UnitManager.gd"
-} ]
+}]
 _global_script_class_icons={
 "Barracks": "",
 "BarracksDummy": "",
@@ -118,7 +118,12 @@ _global_script_class_icons={
 
 config/name="Charackter_Dummy_Proto"
 run/main_scene="res://Assets/Main.tscn"
+config/features=PackedStringArray("4.0")
 config/icon="res://icon.png"
+
+[dotnet]
+
+project/assembly_name="Charackter_Dummy_Proto"
 
 [global]
 
@@ -132,58 +137,58 @@ common/drop_mouse_on_gui_input_disabled=true
 
 MouseClickLeftButton={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"pressed":false,"double_click":false,"script":null)
+]
 }
 MouseWheelUp={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":4,"pressed":false,"double_click":false,"script":null)
+]
 }
 MouseWheelDown={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":5,"pressed":false,"double_click":false,"script":null)
+]
 }
 camera_forward={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":87,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
 }
 camera_backward={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":83,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
 }
 camera_left={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":65,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
 }
 camera_right={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":68,"unicode":0,"echo":false,"script":null)
- ]
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":0,"unicode":0,"echo":false,"script":null)
+]
 }
 camera_pan={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":2,"pressed":false,"double_click":false,"script":null)
+]
 }
 camera_zoom_in={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":4,"pressed":false,"double_click":false,"script":null)
+]
 }
 camera_zoom_out={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":5,"pressed":false,"double_click":false,"script":null)
+]
 }
 camera_rotate={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":3,"pressed":false,"doubleclick":false,"script":null)
- ]
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":3,"pressed":false,"double_click":false,"script":null)
+]
 }
 
 [layer_names]

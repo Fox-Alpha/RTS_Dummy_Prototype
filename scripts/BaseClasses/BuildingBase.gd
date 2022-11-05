@@ -1,13 +1,21 @@
 class_name BuildingBase
 extends Node
 
-export var _canselectbuilding : bool = true
-export var _buildingname : String = "EmptyName" setget set_building_name,get_building_name
-export var _buildingtype : String = "EmptyType" setget set_building_type,get_building_type
+@export var _canselectbuilding : bool = true
+@export var _buildingname : String = "EmptyName" :
+	get:
+		return _buildingname # TODOConverter40 Copy here content of get_building_name
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_building_name
+@export var _buildingtype : String = "EmptyType" :
+	get:
+		return _buildingtype # TODOConverter40 Copy here content of get_building_type
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_building_type
 
 
-onready var GM:GameManager = get_tree().get_root().get_node("Main/GameManager")
-onready var BuildingRootNode = owner
+@onready var GM:GameManager = get_tree().get_root().get_node("Main/GameManager")
+@onready var BuildingRootNode = owner
 
 
 func _ready():
@@ -27,7 +35,7 @@ func can_selected() -> bool:
 
 
 func set_building_name(value:String) -> void:
-	if value != _buildingname and not value.empty():
+	if value != _buildingname and not value.is_empty():
 		_buildingname = value
 
 
@@ -36,7 +44,7 @@ func get_building_name() -> String:
 
 
 func set_building_type(value:String) -> void:
-	if value != _buildingtype and not value.empty():
+	if value != _buildingtype and not value.is_empty():
 		_buildingtype = value
 
 

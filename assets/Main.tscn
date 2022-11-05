@@ -1,35 +1,35 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=20 format=3]
 
-[ext_resource path="res://Assets/Ground/Ground.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/CharackterDummy/Character.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Assets/Camera/RtsCameraController.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GameManager/GameManager.gd" type="Script" id=4]
-[ext_resource path="res://GameManager/UnitManager.gd" type="Script" id=5]
-[ext_resource path="res://GameManager/BuildingManager.gd" type="Script" id=6]
-[ext_resource path="res://GameManager/ResourceManager.gd" type="Script" id=7]
-[ext_resource path="res://Assets/Buildings/BaracksDummy.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Networking/NetworkManager.gd" type="Script" id=9]
-[ext_resource path="res://GameManager/TechTreeManager.gd" type="Script" id=10]
-[ext_resource path="res://GameManager/SavegameManager.gd" type="Script" id=11]
-[ext_resource path="res://GameManager/SettingsManager.gd" type="Script" id=12]
-[ext_resource path="res://GameManager/WorldManager.gd" type="Script" id=13]
-[ext_resource path="res://GameManager/PlayerManager.gd" type="Script" id=14]
-[ext_resource path="res://GameManager/ObjectManager.gd" type="Script" id=15]
-[ext_resource path="res://GameManager/UIManager.gd" type="Script" id=16]
+[ext_resource type="PackedScene" path="res://Assets/Ground/Ground.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://Assets/CharackterDummy/Character.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://assets/Camera/RtsCameraController.tscn" id="3"]
+[ext_resource type="Script" path="res://GameManager/GameManager.gd" id="4"]
+[ext_resource type="Script" path="res://GameManager/UnitManager.gd" id="5"]
+[ext_resource type="Script" path="res://GameManager/BuildingManager.gd" id="6"]
+[ext_resource type="Script" path="res://GameManager/ResourceManager.gd" id="7"]
+[ext_resource type="PackedScene" path="res://Assets/Buildings/BaracksDummy.tscn" id="8"]
+[ext_resource type="Script" path="res://Networking/NetworkManager.gd" id="9"]
+[ext_resource type="Script" path="res://GameManager/TechTreeManager.gd" id="10"]
+[ext_resource type="Script" path="res://GameManager/SavegameManager.gd" id="11"]
+[ext_resource type="Script" path="res://GameManager/SettingsManager.gd" id="12"]
+[ext_resource type="Script" path="res://GameManager/WorldManager.gd" id="13"]
+[ext_resource type="Script" path="res://GameManager/PlayerManager.gd" id="14"]
+[ext_resource type="Script" path="res://GameManager/ObjectManager.gd" id="15"]
+[ext_resource type="Script" path="res://GameManager/UIManager.gd" id="16"]
 
-[sub_resource type="ProceduralSky" id=1]
+[sub_resource type="Sky" id=1]
 
 [sub_resource type="Environment" id=2]
 background_mode = 2
 background_sky = SubResource( 1 )
 
 [sub_resource type="NavigationMesh" id=3]
-vertices = PoolVector3Array( -43.5, 0.02, -49.5, -49.5, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 49.5, 0.02, -49.5, 43.25, 0.02, -49.5, -37.25, 0.02, -49.5, -43.5, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 43.25, 0.02, -49.5, 37, 0.02, -49.5, -31, 0.02, -49.5, -37.25, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 37, 0.02, -49.5, 30.75, 0.02, -49.5, 49.5, 0.02, -38.5, 30.75, 0.02, -49.5, 24.75, 0.02, -49.5, -24.75, 0.02, -49.5, -31, 0.02, -49.5, -49.5, 0.02, -38.5, -49.5, 0.02, -16.25, -49.5, 0.02, -5, -19.5, 0.02, -5, -18.75, 0.02, -49.5, -24.75, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 24.75, 0.02, -49.5, 18.5, 0.02, -49.5, -49.5, 0.02, -16.25, -19.5, 0.02, -5, -18.25, 0.02, -5, -6.25, 0.02, -49.5, -12.5, 0.02, -49.5, -49.5, 0.02, -27.25, -18.75, 0.02, -49.5, -49.5, 0.02, -38.5, -49.5, 0.02, -27.25, -12.5, 0.02, -49.5, 49.5, 0.02, -27.25, 49.5, 0.02, -38.5, 18.5, 0.02, -49.5, 12.25, 0.02, -49.5, 49.5, 0.02, -27.25, 12.25, 0.02, -49.5, 6, 0.02, -49.5, 49.5, 0.02, -16.25, 6, 0.02, -49.5, 0, 0.02, -49.5, -18.25, 0.02, -5, 49.5, 0.02, -5, 49.5, 0.02, -16.25, 0, 0.02, -49.5, -6.25, 0.02, -49.5, -18.25, 0.02, -5, -49.5, 0.02, 5, -20, 0.02, 5, -23.25, 0.02, 3.25, -49.5, 0.02, 5, -23.25, 0.02, 3.25, -23.5, 0.02, 2, -23.5, 0.02, 2, -19.5, 0.02, -5, -49.5, 0.02, -5, -49.5, 0.02, 5, 13.75, 0.02, -4.75, 49.5, 0.02, -4.75, 49.5, 0.02, -5, -18.25, 0.02, -5, 49.5, 0.02, 5, 49.5, 0.02, 4.75, 11.75, 0.02, 4.75, -18.75, 0.02, 5, 8.75, 0.02, -4.25, 13.75, 0.02, -4.75, -18.25, 0.02, -5, -15, 0.02, -3.25, 11.75, 0.02, 4.75, 8.75, 0.02, 4.5, -18.75, 0.02, 5, 8.75, 0.02, -4.25, -15, 0.02, -3.25, -14.75, 0.02, -2.25, 8.75, 0.02, 4.5, 8.75, 0.02, -4.25, -14.75, 0.02, -2.25, -18.75, 0.02, 5, 14, 0.02, 4.25, 11.75, 0.02, 4.75, 49.5, 0.02, 4.75, 49.5, 0.02, -4.75, 13.75, 0.02, -4.75, 14, 0.02, 4.25, 49.5, 0.02, 4.75, -19, 4.02, -3.75, -22.25, 4.02, 2.25, -21.5, 4.02, 3, -19.25, 4.02, 3.75, -16, 4.02, -2.25, -17.75, 4.02, -3.5, 9.75, 4.02, -3.5, 9.75, 4.02, 3.75, 13, 4.02, 3.5, 13, 4.02, -3.75, -18, 0.02, -1.5, -17, 0.02, -1, -16.5, 0.02, -2, -18, 0.02, -1.5, -16.5, 0.02, -2, -17, 0.02, -2.75, -18.75, 0.02, -3.5, -19.25, 0.02, -1.25, -19.5, 0.02, 3.5, -18.75, 0.02, 2.25, -20, 0.02, 1.5, -21.25, 0.02, 2.75, -20, 0.02, 1.5, -20, 0.02, 0.25, -21.75, 0.02, 2, -21.25, 0.02, 2.75, -20, 0.02, 0.25, -19.25, 0.02, -1.25, -18.75, 0.02, -3.5, -21.75, 0.02, 2, 10, 0.02, -3.25, 10, 0.02, -1.5, 11.75, 0.02, -1.25, 12.75, 0.02, -3.5, 11.75, 0.02, -1.25, 11.75, 0.02, 1.5, 12.75, 0.02, 3.25, 12.75, 0.02, -3.5, 11.75, 0.02, 1.5, 10, 0.02, 1.75, 10, 0.02, 3.5, 12.75, 0.02, 3.25, 10, 2.02, -0.5, 10, 2.02, 0.75, 10.75, 2.02, 0.75, 10.75, 2.02, -0.5, -18.75, 2.02, 0.25, -18.75, 2.02, 1, -17.75, 2.02, 0.25, -18.5, 2.02, -0.25, 10, 0.02, -0.25, 10, 0.02, 0.5, 10.5, 0.02, 0.5, 10.5, 0.02, -0.25, -49.5, 0.02, 38.25, -49.5, 0.02, 49.5, -43.5, 0.02, 49.5, 43.25, 0.02, 49.5, 49.5, 0.02, 49.5, 49.5, 0.02, 38.25, -49.5, 0.02, 38.25, -43.5, 0.02, 49.5, -37.25, 0.02, 49.5, 37, 0.02, 49.5, 43.25, 0.02, 49.5, 49.5, 0.02, 38.25, -49.5, 0.02, 38.25, -37.25, 0.02, 49.5, -31, 0.02, 49.5, 30.75, 0.02, 49.5, 37, 0.02, 49.5, 49.5, 0.02, 38.25, -49.5, 0.02, 38.25, -31, 0.02, 49.5, -24.75, 0.02, 49.5, 24.75, 0.02, 49.5, 30.75, 0.02, 49.5, 49.5, 0.02, 38.25, -20, 0.02, 5, -49.5, 0.02, 5, -49.5, 0.02, 16, -18.75, 0.02, 5, -20, 0.02, 5, -49.5, 0.02, 16, -49.5, 0.02, 27.25, -12.5, 0.02, 49.5, -6.25, 0.02, 49.5, -49.5, 0.02, 38.25, -24.75, 0.02, 49.5, -18.75, 0.02, 49.5, 18.5, 0.02, 49.5, 24.75, 0.02, 49.5, 49.5, 0.02, 38.25, -18.75, 0.02, 5, -6.25, 0.02, 49.5, 0, 0.02, 49.5, -49.5, 0.02, 27.25, -49.5, 0.02, 38.25, -18.75, 0.02, 49.5, -12.5, 0.02, 49.5, 18.5, 0.02, 49.5, 49.5, 0.02, 38.25, 49.5, 0.02, 27.25, 12.25, 0.02, 49.5, -18.75, 0.02, 5, 0, 0.02, 49.5, 6, 0.02, 49.5, 49.5, 0.02, 16, 49.5, 0.02, 5, 6, 0.02, 49.5, 12.25, 0.02, 49.5, 49.5, 0.02, 27.25, 49.5, 0.02, 16 )
-polygons = [ PoolIntArray( 2, 1, 0 ), PoolIntArray( 5, 4, 3 ), PoolIntArray( 8, 7, 6 ), PoolIntArray( 11, 10, 9 ), PoolIntArray( 14, 13, 12 ), PoolIntArray( 17, 16, 15 ), PoolIntArray( 20, 19, 18 ), PoolIntArray( 23, 22, 21 ), PoolIntArray( 26, 25, 24 ), PoolIntArray( 29, 28, 27 ), PoolIntArray( 32, 31, 30 ), PoolIntArray( 34, 33, 35 ), PoolIntArray( 35, 33, 38 ), PoolIntArray( 35, 38, 37 ), PoolIntArray( 35, 37, 36 ), PoolIntArray( 39, 42, 40 ), PoolIntArray( 40, 42, 41 ), PoolIntArray( 45, 44, 46 ), PoolIntArray( 46, 44, 43 ), PoolIntArray( 48, 47, 49 ), PoolIntArray( 49, 47, 50 ), PoolIntArray( 52, 51, 53 ), PoolIntArray( 53, 51, 55 ), PoolIntArray( 53, 55, 54 ), PoolIntArray( 58, 57, 56 ), PoolIntArray( 61, 60, 59 ), PoolIntArray( 62, 64, 63 ), PoolIntArray( 68, 67, 65 ), PoolIntArray( 65, 67, 66 ), PoolIntArray( 70, 69, 71 ), PoolIntArray( 71, 69, 72 ), PoolIntArray( 74, 73, 75 ), PoolIntArray( 75, 73, 76 ), PoolIntArray( 80, 79, 77 ), PoolIntArray( 77, 79, 78 ), PoolIntArray( 83, 82, 81 ), PoolIntArray( 86, 85, 84 ), PoolIntArray( 88, 87, 89 ), PoolIntArray( 89, 87, 90 ), PoolIntArray( 93, 92, 91 ), PoolIntArray( 95, 94, 96 ), PoolIntArray( 96, 94, 97 ), PoolIntArray( 103, 102, 98 ), PoolIntArray( 98, 102, 101 ), PoolIntArray( 98, 101, 100 ), PoolIntArray( 98, 100, 99 ), PoolIntArray( 107, 106, 104 ), PoolIntArray( 104, 106, 105 ), PoolIntArray( 110, 109, 108 ), PoolIntArray( 112, 111, 113 ), PoolIntArray( 113, 111, 115 ), PoolIntArray( 113, 115, 114 ), PoolIntArray( 117, 116, 118 ), PoolIntArray( 118, 116, 119 ), PoolIntArray( 123, 122, 120 ), PoolIntArray( 120, 122, 121 ), PoolIntArray( 125, 124, 126 ), PoolIntArray( 126, 124, 127 ), PoolIntArray( 129, 128, 130 ), PoolIntArray( 130, 128, 131 ), PoolIntArray( 133, 132, 134 ), PoolIntArray( 134, 132, 135 ), PoolIntArray( 137, 136, 138 ), PoolIntArray( 138, 136, 139 ), PoolIntArray( 143, 142, 140 ), PoolIntArray( 140, 142, 141 ), PoolIntArray( 147, 146, 144 ), PoolIntArray( 144, 146, 145 ), PoolIntArray( 151, 150, 148 ), PoolIntArray( 148, 150, 149 ), PoolIntArray( 154, 153, 152 ), PoolIntArray( 157, 156, 155 ), PoolIntArray( 160, 159, 158 ), PoolIntArray( 163, 162, 161 ), PoolIntArray( 166, 165, 164 ), PoolIntArray( 169, 168, 167 ), PoolIntArray( 172, 171, 170 ), PoolIntArray( 173, 175, 174 ), PoolIntArray( 178, 177, 176 ), PoolIntArray( 180, 179, 181 ), PoolIntArray( 181, 179, 182 ), PoolIntArray( 182, 179, 183 ), PoolIntArray( 183, 179, 184 ), PoolIntArray( 187, 186, 185 ), PoolIntArray( 190, 189, 188 ), PoolIntArray( 193, 192, 191 ), PoolIntArray( 196, 195, 197 ), PoolIntArray( 197, 195, 194 ), PoolIntArray( 198, 201, 199 ), PoolIntArray( 199, 201, 200 ), PoolIntArray( 203, 202, 204 ), PoolIntArray( 204, 202, 205 ), PoolIntArray( 205, 202, 206 ), PoolIntArray( 208, 207, 209 ), PoolIntArray( 209, 207, 210 ) ]
+vertices = PackedVector3Array( -43.5, 0.02, -49.5, -49.5, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 49.5, 0.02, -49.5, 43.25, 0.02, -49.5, -37.25, 0.02, -49.5, -43.5, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 43.25, 0.02, -49.5, 37, 0.02, -49.5, -31, 0.02, -49.5, -37.25, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 37, 0.02, -49.5, 30.75, 0.02, -49.5, 49.5, 0.02, -38.5, 30.75, 0.02, -49.5, 24.75, 0.02, -49.5, -24.75, 0.02, -49.5, -31, 0.02, -49.5, -49.5, 0.02, -38.5, -49.5, 0.02, -16.25, -49.5, 0.02, -5, -19.5, 0.02, -5, -18.75, 0.02, -49.5, -24.75, 0.02, -49.5, -49.5, 0.02, -38.5, 49.5, 0.02, -38.5, 24.75, 0.02, -49.5, 18.5, 0.02, -49.5, -49.5, 0.02, -16.25, -19.5, 0.02, -5, -18.25, 0.02, -5, -6.25, 0.02, -49.5, -12.5, 0.02, -49.5, -49.5, 0.02, -27.25, -18.75, 0.02, -49.5, -49.5, 0.02, -38.5, -49.5, 0.02, -27.25, -12.5, 0.02, -49.5, 49.5, 0.02, -27.25, 49.5, 0.02, -38.5, 18.5, 0.02, -49.5, 12.25, 0.02, -49.5, 49.5, 0.02, -27.25, 12.25, 0.02, -49.5, 6, 0.02, -49.5, 49.5, 0.02, -16.25, 6, 0.02, -49.5, 0, 0.02, -49.5, -18.25, 0.02, -5, 49.5, 0.02, -5, 49.5, 0.02, -16.25, 0, 0.02, -49.5, -6.25, 0.02, -49.5, -18.25, 0.02, -5, -49.5, 0.02, 5, -20, 0.02, 5, -23.25, 0.02, 3.25, -49.5, 0.02, 5, -23.25, 0.02, 3.25, -23.5, 0.02, 2, -23.5, 0.02, 2, -19.5, 0.02, -5, -49.5, 0.02, -5, -49.5, 0.02, 5, 13.75, 0.02, -4.75, 49.5, 0.02, -4.75, 49.5, 0.02, -5, -18.25, 0.02, -5, 49.5, 0.02, 5, 49.5, 0.02, 4.75, 11.75, 0.02, 4.75, -18.75, 0.02, 5, 8.75, 0.02, -4.25, 13.75, 0.02, -4.75, -18.25, 0.02, -5, -15, 0.02, -3.25, 11.75, 0.02, 4.75, 8.75, 0.02, 4.5, -18.75, 0.02, 5, 8.75, 0.02, -4.25, -15, 0.02, -3.25, -14.75, 0.02, -2.25, 8.75, 0.02, 4.5, 8.75, 0.02, -4.25, -14.75, 0.02, -2.25, -18.75, 0.02, 5, 14, 0.02, 4.25, 11.75, 0.02, 4.75, 49.5, 0.02, 4.75, 49.5, 0.02, -4.75, 13.75, 0.02, -4.75, 14, 0.02, 4.25, 49.5, 0.02, 4.75, -19, 4.02, -3.75, -22.25, 4.02, 2.25, -21.5, 4.02, 3, -19.25, 4.02, 3.75, -16, 4.02, -2.25, -17.75, 4.02, -3.5, 9.75, 4.02, -3.5, 9.75, 4.02, 3.75, 13, 4.02, 3.5, 13, 4.02, -3.75, -18, 0.02, -1.5, -17, 0.02, -1, -16.5, 0.02, -2, -18, 0.02, -1.5, -16.5, 0.02, -2, -17, 0.02, -2.75, -18.75, 0.02, -3.5, -19.25, 0.02, -1.25, -19.5, 0.02, 3.5, -18.75, 0.02, 2.25, -20, 0.02, 1.5, -21.25, 0.02, 2.75, -20, 0.02, 1.5, -20, 0.02, 0.25, -21.75, 0.02, 2, -21.25, 0.02, 2.75, -20, 0.02, 0.25, -19.25, 0.02, -1.25, -18.75, 0.02, -3.5, -21.75, 0.02, 2, 10, 0.02, -3.25, 10, 0.02, -1.5, 11.75, 0.02, -1.25, 12.75, 0.02, -3.5, 11.75, 0.02, -1.25, 11.75, 0.02, 1.5, 12.75, 0.02, 3.25, 12.75, 0.02, -3.5, 11.75, 0.02, 1.5, 10, 0.02, 1.75, 10, 0.02, 3.5, 12.75, 0.02, 3.25, 10, 2.02, -0.5, 10, 2.02, 0.75, 10.75, 2.02, 0.75, 10.75, 2.02, -0.5, -18.75, 2.02, 0.25, -18.75, 2.02, 1, -17.75, 2.02, 0.25, -18.5, 2.02, -0.25, 10, 0.02, -0.25, 10, 0.02, 0.5, 10.5, 0.02, 0.5, 10.5, 0.02, -0.25, -49.5, 0.02, 38.25, -49.5, 0.02, 49.5, -43.5, 0.02, 49.5, 43.25, 0.02, 49.5, 49.5, 0.02, 49.5, 49.5, 0.02, 38.25, -49.5, 0.02, 38.25, -43.5, 0.02, 49.5, -37.25, 0.02, 49.5, 37, 0.02, 49.5, 43.25, 0.02, 49.5, 49.5, 0.02, 38.25, -49.5, 0.02, 38.25, -37.25, 0.02, 49.5, -31, 0.02, 49.5, 30.75, 0.02, 49.5, 37, 0.02, 49.5, 49.5, 0.02, 38.25, -49.5, 0.02, 38.25, -31, 0.02, 49.5, -24.75, 0.02, 49.5, 24.75, 0.02, 49.5, 30.75, 0.02, 49.5, 49.5, 0.02, 38.25, -20, 0.02, 5, -49.5, 0.02, 5, -49.5, 0.02, 16, -18.75, 0.02, 5, -20, 0.02, 5, -49.5, 0.02, 16, -49.5, 0.02, 27.25, -12.5, 0.02, 49.5, -6.25, 0.02, 49.5, -49.5, 0.02, 38.25, -24.75, 0.02, 49.5, -18.75, 0.02, 49.5, 18.5, 0.02, 49.5, 24.75, 0.02, 49.5, 49.5, 0.02, 38.25, -18.75, 0.02, 5, -6.25, 0.02, 49.5, 0, 0.02, 49.5, -49.5, 0.02, 27.25, -49.5, 0.02, 38.25, -18.75, 0.02, 49.5, -12.5, 0.02, 49.5, 18.5, 0.02, 49.5, 49.5, 0.02, 38.25, 49.5, 0.02, 27.25, 12.25, 0.02, 49.5, -18.75, 0.02, 5, 0, 0.02, 49.5, 6, 0.02, 49.5, 49.5, 0.02, 16, 49.5, 0.02, 5, 6, 0.02, 49.5, 12.25, 0.02, 49.5, 49.5, 0.02, 27.25, 49.5, 0.02, 16 )
+polygons = [ PackedInt32Array( 2, 1, 0 ), PackedInt32Array( 5, 4, 3 ), PackedInt32Array( 8, 7, 6 ), PackedInt32Array( 11, 10, 9 ), PackedInt32Array( 14, 13, 12 ), PackedInt32Array( 17, 16, 15 ), PackedInt32Array( 20, 19, 18 ), PackedInt32Array( 23, 22, 21 ), PackedInt32Array( 26, 25, 24 ), PackedInt32Array( 29, 28, 27 ), PackedInt32Array( 32, 31, 30 ), PackedInt32Array( 34, 33, 35 ), PackedInt32Array( 35, 33, 38 ), PackedInt32Array( 35, 38, 37 ), PackedInt32Array( 35, 37, 36 ), PackedInt32Array( 39, 42, 40 ), PackedInt32Array( 40, 42, 41 ), PackedInt32Array( 45, 44, 46 ), PackedInt32Array( 46, 44, 43 ), PackedInt32Array( 48, 47, 49 ), PackedInt32Array( 49, 47, 50 ), PackedInt32Array( 52, 51, 53 ), PackedInt32Array( 53, 51, 55 ), PackedInt32Array( 53, 55, 54 ), PackedInt32Array( 58, 57, 56 ), PackedInt32Array( 61, 60, 59 ), PackedInt32Array( 62, 64, 63 ), PackedInt32Array( 68, 67, 65 ), PackedInt32Array( 65, 67, 66 ), PackedInt32Array( 70, 69, 71 ), PackedInt32Array( 71, 69, 72 ), PackedInt32Array( 74, 73, 75 ), PackedInt32Array( 75, 73, 76 ), PackedInt32Array( 80, 79, 77 ), PackedInt32Array( 77, 79, 78 ), PackedInt32Array( 83, 82, 81 ), PackedInt32Array( 86, 85, 84 ), PackedInt32Array( 88, 87, 89 ), PackedInt32Array( 89, 87, 90 ), PackedInt32Array( 93, 92, 91 ), PackedInt32Array( 95, 94, 96 ), PackedInt32Array( 96, 94, 97 ), PackedInt32Array( 103, 102, 98 ), PackedInt32Array( 98, 102, 101 ), PackedInt32Array( 98, 101, 100 ), PackedInt32Array( 98, 100, 99 ), PackedInt32Array( 107, 106, 104 ), PackedInt32Array( 104, 106, 105 ), PackedInt32Array( 110, 109, 108 ), PackedInt32Array( 112, 111, 113 ), PackedInt32Array( 113, 111, 115 ), PackedInt32Array( 113, 115, 114 ), PackedInt32Array( 117, 116, 118 ), PackedInt32Array( 118, 116, 119 ), PackedInt32Array( 123, 122, 120 ), PackedInt32Array( 120, 122, 121 ), PackedInt32Array( 125, 124, 126 ), PackedInt32Array( 126, 124, 127 ), PackedInt32Array( 129, 128, 130 ), PackedInt32Array( 130, 128, 131 ), PackedInt32Array( 133, 132, 134 ), PackedInt32Array( 134, 132, 135 ), PackedInt32Array( 137, 136, 138 ), PackedInt32Array( 138, 136, 139 ), PackedInt32Array( 143, 142, 140 ), PackedInt32Array( 140, 142, 141 ), PackedInt32Array( 147, 146, 144 ), PackedInt32Array( 144, 146, 145 ), PackedInt32Array( 151, 150, 148 ), PackedInt32Array( 148, 150, 149 ), PackedInt32Array( 154, 153, 152 ), PackedInt32Array( 157, 156, 155 ), PackedInt32Array( 160, 159, 158 ), PackedInt32Array( 163, 162, 161 ), PackedInt32Array( 166, 165, 164 ), PackedInt32Array( 169, 168, 167 ), PackedInt32Array( 172, 171, 170 ), PackedInt32Array( 173, 175, 174 ), PackedInt32Array( 178, 177, 176 ), PackedInt32Array( 180, 179, 181 ), PackedInt32Array( 181, 179, 182 ), PackedInt32Array( 182, 179, 183 ), PackedInt32Array( 183, 179, 184 ), PackedInt32Array( 187, 186, 185 ), PackedInt32Array( 190, 189, 188 ), PackedInt32Array( 193, 192, 191 ), PackedInt32Array( 196, 195, 197 ), PackedInt32Array( 197, 195, 194 ), PackedInt32Array( 198, 201, 199 ), PackedInt32Array( 199, 201, 200 ), PackedInt32Array( 203, 202, 204 ), PackedInt32Array( 204, 202, 205 ), PackedInt32Array( 205, 202, 206 ), PackedInt32Array( 208, 207, 209 ), PackedInt32Array( 209, 207, 210 ) ]
 sample_partition_type = 1
 cell_height = 0.01
 
-[node name="Main" type="Spatial"]
+[node name="Main" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 2 )
@@ -71,33 +71,33 @@ script = ExtResource( 15 )
 script = ExtResource( 16 )
 
 [node name="RtsCameraController" parent="." instance=ExtResource( 3 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 
 [node name="Elevation" parent="RtsCameraController" index="0"]
-transform = Transform( 1, 0, 0, 0, 0.642788, 0.766045, 0, -0.766045, 0.642788, 0, 0, 0 )
+transform = Transform3D( 1, 0, 0, 0, 0.642788, 0.766045, 0, -0.766045, 0.642788, 0, 0, 0 )
 
-[node name="Players" type="Spatial" parent="."]
+[node name="Players" type="Node3D" parent="."]
 
-[node name="Units" type="Spatial" parent="Players"]
+[node name="Units" type="Node3D" parent="Players"]
 
 [node name="CharackterRoot" parent="Players/Units" instance=ExtResource( 2 )]
 
-[node name="World" type="Spatial" parent="."]
+[node name="World3D" type="Node3D" parent="."]
 
-[node name="WorldNavigation" type="NavigationMeshInstance" parent="World"]
+[node name="WorldNavigation" type="NavigationRegion3D" parent="World3D"]
 navmesh = SubResource( 3 )
 
-[node name="Ground" parent="World/WorldNavigation" instance=ExtResource( 1 )]
+[node name="Ground" parent="World3D/WorldNavigation" instance=ExtResource( 1 )]
 
-[node name="Buildings" type="Spatial" parent="World/WorldNavigation"]
+[node name="Buildings" type="Node3D" parent="World3D/WorldNavigation"]
 
-[node name="BuildingRoot" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
-transform = Transform( 0.476177, 0, 0.87935, 0, 1, 0, -0.87935, 0, 0.476177, -19.1377, 0, 0 )
+[node name="BuildingRoot" parent="World3D/WorldNavigation/Buildings" instance=ExtResource( 8 )]
+transform = Transform3D( 0.476177, 0, 0.87935, 0, 1, 0, -0.87935, 0, 0.476177, -19.1377, 0, 0 )
 
-[node name="BuildingRoot2" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
-transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00528829, 11.3738, 0, 0 )
+[node name="BuildingRoot2" parent="World3D/WorldNavigation/Buildings" instance=ExtResource( 8 )]
+transform = Transform3D( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00528829, 11.3738, 0, 0 )
 
 [editable path="RtsCameraController"]
 [editable path="Players/Units/CharackterRoot"]
-[editable path="World/WorldNavigation/Ground"]
-[editable path="World/WorldNavigation/Buildings/BuildingRoot"]
+[editable path="World3D/WorldNavigation/Ground"]
+[editable path="World3D/WorldNavigation/Buildings/BuildingRoot"]

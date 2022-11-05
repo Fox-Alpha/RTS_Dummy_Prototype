@@ -3,49 +3,49 @@
 [ext_resource path="res://Assets/Buildings/BaracksDummy.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Buildings/Baracks.gd" type="Script" id=2]
 
-[sub_resource type="ConvexPolygonShape" id=1]
-points = PoolVector3Array( -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1 )
+[sub_resource type="ConvexPolygonShape3D" id=1]
+points = PackedVector3Array( -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="StandardMaterial3D" id=4]
 albedo_color = Color( 0.6, 0.611765, 0.203922, 1 )
 
-[sub_resource type="CubeMesh" id=2]
+[sub_resource type="BoxMesh" id=2]
 material = SubResource( 4 )
 
-[sub_resource type="SpatialMaterial" id=5]
+[sub_resource type="StandardMaterial3D" id=5]
 albedo_color = Color( 0.454902, 0.0745098, 0.0745098, 1 )
 
-[sub_resource type="CubeMesh" id=3]
+[sub_resource type="BoxMesh" id=3]
 material = SubResource( 5 )
 
-[node name="BuildingRoot" type="Spatial"]
+[node name="BuildingRoot" type="Node3D"]
 script = ExtResource( 1 )
 
 [node name="ObjectType" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource( 2 )
 
-[node name="BaracksBody" type="StaticBody" parent="."]
+[node name="BaracksBody" type="StaticBody3D" parent="."]
 collision_layer = 2
 collision_mask = 4
 
-[node name="CollisionShape" type="CollisionShape" parent="BaracksBody"]
-transform = Transform( 4, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BaracksBody"]
+transform = Transform3D( 4, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
 shape = SubResource( 1 )
 
-[node name="MeshBuilding" type="MeshInstance" parent="BaracksBody"]
-transform = Transform( 4, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
+[node name="MeshBuilding" type="MeshInstance3D" parent="BaracksBody"]
+transform = Transform3D( 4, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
 mesh = SubResource( 2 )
 skeleton = NodePath("")
 
-[node name="MeshExit" type="MeshInstance" parent="BaracksBody/MeshBuilding"]
-transform = Transform( 0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0.6 )
+[node name="MeshExit" type="MeshInstance3D" parent="BaracksBody/MeshBuilding"]
+transform = Transform3D( 0.25, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.5, 0.6 )
 mesh = SubResource( 3 )
 
-[node name="UnitSpawnPosition3D" type="Position3D" parent="."]
+[node name="UnitSpawnPosition3D" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
 
-[node name="UnitRallyPosition3D" type="Position3D" parent="."]
+[node name="UnitRallyPosition3D" type="Marker3D" parent="."]
 unique_name_in_owner = true
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )
+transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3 )

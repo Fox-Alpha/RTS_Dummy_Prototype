@@ -18,14 +18,22 @@ class_name GameManager
 # is_class() 
 # is_CustomClass()
 # ===========================
-var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
+var _instance:GameManager :
+	get:
+		return _instance # TODOConverter40 Copy here content of get_gamemanager_instance
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_gamemanager_instance
 
-export var Managers : Dictionary = {}
+@export var Managers : Dictionary = {}
 
-export var selected_object = "" setget set_selectedobject, get_selectedobject
+@export var selected_object = "" :
+	get:
+		return selected_object # TODOConverter40 Copy here content of get_selectedobject
+	set(mod_value):
+		mod_value  # TODOConverter40 Copy here content of set_selectedobject
 
 
-onready var camera = get_viewport().get_camera()
+@onready var camera = get_viewport().get_camera_3d()
 
 
 func set_gamemanager_instance(_value):
@@ -72,7 +80,7 @@ func _input(_event) -> void:
 
 
 func _select_object() -> void:
-	var spaceSTate = get_tree().get_root().get_world().direct_space_state
+	var spaceSTate = get_tree().get_root().get_world_3d().direct_space_state
 	var mousePos = get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
@@ -83,20 +91,20 @@ func _select_object() -> void:
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
-		if collider.get_parent_spatial():
-			var colliderparent:Spatial = collider.get_parent_spatial()
-#		if collider is KinematicBody:
+		if collider.get_parent_node_3d():
+			var colliderparent:Node3D = collider.get_parent_node_3d()
+#		if collider is CharacterBody3D:
 ##			var c = collider.get_children()
-#			var NavAgent = collider.get_node("/root/Main/CharackterRoot/NavigationAgent")
+#			var NavAgent = collider.get_node("/root/Main/CharackterRoot/NavigationAgent3D")
 #			if NavAgent != null:
-#				if collider.get_parent_spatial().has_method("_select_unit") != false:
+#				if collider.get_parent_node_3d().has_method("_select_unit") != false:
 ##					selectedUnit = collider
-#					collider.get_parent_spatial()._select_unit(true)
+#					collider.get_parent_node_3d()._select_unit(true)
 #		el
 			if colliderparent.has_node("ObjectType"):
 				if colliderparent.get_node_or_null("%ObjectType").has_method("can_selected"):
 					if colliderparent.can_selected():
-						selected_object = colliderparent.get_parent_spatial()
+						selected_object = colliderparent.get_parent_node_3d()
 						selected_object.selectobject()
 
 # Von einem bestimmten Manager die aktuelle Instanz abholen
@@ -111,7 +119,7 @@ func get_manager_instance(manager : String) -> UnitManager:
 
 #set_selectedobject, get_selectedobject
 func set_selectedobject(value) -> void:
-	if value != value.empty():
+	if value != value.is_empty():
 		selected_object = value
 
 

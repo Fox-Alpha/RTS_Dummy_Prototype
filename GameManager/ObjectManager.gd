@@ -13,8 +13,8 @@ signal objectunselected
 # ===========================
 func _init():
 	print("ObjectManager Created")
-	connect("objectselected", self, "_on_select_object")
-	connect("objectunselected", self, "_on_unselect_object")
+	connect("objectselected",Callable(self,"_on_select_object"))
+	connect("objectunselected",Callable(self,"_on_unselect_object"))
 	pass
 
 
