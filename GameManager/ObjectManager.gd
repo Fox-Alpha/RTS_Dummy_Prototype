@@ -13,8 +13,12 @@ signal objectunselected
 # ===========================
 func _init():
 	print("ObjectManager Created")
-	connect("objectselected", self, "_on_select_object")
-	connect("objectunselected", self, "_on_unselect_object")
+	if !is_connected("objectselected", self, "_on_select_object"):
+		var conn = connect("objectselected", self, "_on_select_object")
+		assert(conn, "Connect von Signal objectselected gescheitert")
+	if !is_connected("objectunselected", self, "_on_unselect_object"):
+		var conn = connect("objectunselected", self, "_on_unselect_object")
+		assert(conn, "Connect von Signal objectunselected gescheitert")
 	pass
 
 
@@ -32,12 +36,12 @@ func _exit_tree():
 # ===========================
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
-#	selected_object = null
+# TODO: ObjectTyp ermitteln, Selektiertes aktives Objekt Selection aufheben, Selection in Object deaktivieren
 	pass
 
 # Signal ein Objekt selektieren
 func _on_select_object(_selectedobject) -> void:
-	
+# TODO: ObjectTyp ermitteln, aktives selectiertes Object setzen, Selection in Object aktivieren
 	pass
 # ===========================
 # ===========================
