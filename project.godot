@@ -14,11 +14,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Buildings/Baracks.gd"
 }, {
-"base": "Reference",
-"class": "BarracksDummy",
-"language": "GDScript",
-"path": "res://assets/Buildings/BaracksDummy.gd"
-}, {
 "base": "Node",
 "class": "BuildingBase",
 "language": "GDScript",
@@ -29,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GameManager/BuildingManager.gd"
 }, {
-"base": "ManagerBase",
+"base": "Node",
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://GameManager/GameManager.gd"
@@ -96,7 +91,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Barracks": "",
-"BarracksDummy": "",
 "BuildingBase": "",
 "BuildingManager": "",
 "GameManager": "",
@@ -116,7 +110,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Charackter_Dummy_Proto"
+config/name="RTS_Dummy_Prototype"
 run/main_scene="res://Assets/Main.tscn"
 config/icon="res://icon.png"
 
