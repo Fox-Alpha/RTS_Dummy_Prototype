@@ -1,14 +1,20 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://d0uabm04vat20"]
 
-[ext_resource path="res://Assets/Camera3D/RtsCameraController.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://assets/Camera/RtsCameraController.gd" id="1_j6ibd"]
 
 [node name="RtsCameraController" type="Node3D"]
-script = ExtResource( 1 )
+script = ExtResource("1_j6ibd")
 
 [node name="Elevation" type="Node3D" parent="."]
-transform = Transform3D( 1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0 )
+transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Elevation"]
-transform = Transform3D( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10 )
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
 
 [node name="Tween" type="Tween" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+editor_description = ""
+script = null

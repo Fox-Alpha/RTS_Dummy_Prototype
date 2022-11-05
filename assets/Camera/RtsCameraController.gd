@@ -19,7 +19,7 @@ signal camera_moved(new_location)
 @export (float, 0, 100, 0.5) var zoom_speed = 20.0
 @export (float, 0, 1, 0.05) var zoom_speed_damp = 0.8
 # rotation
-@export (int, 0, 90) var min_elevation_angle = 10 
+@export (int, 0, 90) var min_elevation_angle = 10
 @export (int, 0, 90) var max_elevation_angle = 80
 @export (float, 0, 100, 0.5) var rotation_speed = 20.0
 # pan
@@ -62,7 +62,7 @@ func _ready() -> void:
 #	camera_moved
 	self.connect("freeze_requested",Callable(self,"_freeze_camera"))
 	self.connect("jump_requested",Callable(self,"_jump_to_position"))
-	
+
 
 
 func _process(delta: float) -> void:
