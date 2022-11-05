@@ -18,7 +18,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 func _ready():
 	shader = UnitMesh.mesh.material.next_pass
 	var UN = unitbase.GM.get_manager_instance("UnitManager")
-	if UN != null: 
+	if UN != null:
 		UN.register_unit_inManager(self)	# TODO: Registrer der Unit korrigieren
 	else:
 		print_debug("Charackter -> Unit Registration Failed!")
@@ -28,7 +28,7 @@ func _enter_tree():
 	pass
 
 
-func _input(event):
+func _input(_event):
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
 #		if is_selected:
 		pass
