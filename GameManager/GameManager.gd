@@ -97,7 +97,9 @@ func _navigate_object() -> void:
 					var om = get_manager_instance("ObjectManager")
 					if is_instance_valid(om):
 						print_debug(om)
-#						var so = om.selected_object
+						var so = om.selected_object
+						if is_instance_valid(so):
+							so.SetAgentTarget(mousePos)
 					
 
 
