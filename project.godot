@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/Buildings/Baracks.gd"
 }, {
+"base": "Barracks",
+"class": "BarracksDummy",
+"language": "GDScript",
+"path": "res://assets/Buildings/BaracksDummy.gd"
+}, {
 "base": "Node",
 "class": "BuildingBase",
 "language": "GDScript",
@@ -24,7 +29,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://GameManager/BuildingManager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "GameManager",
 "language": "GDScript",
 "path": "res://GameManager/GameManager.gd"
@@ -32,14 +37,14 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "ManagerBase",
 "language": "GDScript",
-"path": "res://GameManager/ManagerBase.gd"
+"path": "res://scripts/BaseClasses/ManagerBase.gd"
 }, {
 "base": "Node",
 "class": "NetworkManager",
 "language": "GDScript",
 "path": "res://Networking/NetworkManager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "ObjectManager",
 "language": "GDScript",
 "path": "res://GameManager/ObjectManager.gd"
@@ -91,6 +96,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Barracks": "",
+"BarracksDummy": "",
 "BuildingBase": "",
 "BuildingManager": "",
 "GameManager": "",
