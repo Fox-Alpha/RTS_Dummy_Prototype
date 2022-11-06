@@ -120,6 +120,10 @@ config/name="RTS_Dummy_Prototype"
 run/main_scene="res://Assets/Main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Signalbus="*res://globals/signalbus.gd"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
