@@ -15,7 +15,7 @@ func select_object(selected:bool) -> void:
 	print_debug("BuildingRoot::select_object() -> Building selected: %s" % selected)
 	is_selected = selected
 	if is_selected:
-		shader.set_shader_param("strenght", 0.5)
+		shader.set_shader_param("strenght", 1.0)
 	else:
 		shader.set_shader_param("strenght", 0.0)
 
