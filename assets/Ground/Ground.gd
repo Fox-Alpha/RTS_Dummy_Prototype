@@ -13,3 +13,9 @@ func can_selected() -> bool:
 	return _canselectbuilding
 
 
+func get_objecttype_node() -> Node:
+	return _ObjectTypeNode
+
+
+func get_objecttype():
+	return _ObjectTypeNode._ObjectType
