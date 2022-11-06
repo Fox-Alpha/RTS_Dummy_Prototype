@@ -3,16 +3,18 @@ extends Spatial
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
-export var is_selected:bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-export var _canselectbuilding : bool = true
 
 onready var UnitMesh = $Charackter/MeshBody
 onready var shader:ShaderMaterial
 onready var navagent:NavigationAgent = $"NavigationAgent"
 #onready var navigation:Spatial = get_node("/root/Main/Navigation")
 onready var unitbase = get_node("%ObjectType")
+
+export var is_selected:bool = false
+export var _canselectbuilding : bool = true
 onready var _ObjectTypeNode = get_node("%ObjectType")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -39,7 +41,7 @@ func _input(_event):
 func can_selected() -> bool:
 	return _canselectbuilding
 
-func _select_unit(selected:bool) -> void:
+func select_object(selected:bool) -> void:
 	print_debug("UNit selected")
 	is_selected = selected
 	if is_selected:
@@ -63,3 +65,9 @@ func get_objecttype_node() -> Node:
 
 func get_objecttype():
 	return _ObjectTypeNode._ObjectType
+
+
+func _set_objecttype(_value):
+	pass
+
+
