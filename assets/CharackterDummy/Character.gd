@@ -5,14 +5,14 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 export var is_selected:bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+export var _canselectbuilding : bool = true
 
 onready var UnitMesh = $Charackter/MeshBody
 onready var shader:ShaderMaterial
 onready var navagent:NavigationAgent = $"NavigationAgent"
-onready var navigation:Spatial = get_node("/root/Main/Navigation")
+#onready var navigation:Spatial = get_node("/root/Main/Navigation")
 onready var unitbase = get_node("%ObjectType")
-
+onready var _ObjectTypeNode = get_node("%ObjectType")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,7 +36,8 @@ func _input(_event):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
-
+func can_selected() -> bool:
+	return _canselectbuilding
 
 func _select_unit(selected:bool) -> void:
 	print_debug("UNit selected")
@@ -54,3 +55,11 @@ func _SetAgentTarget(newAgentTarget:Vector3)-> void:
 
 func _on_NavigationAgent_velocity_computed(_safe_velocity):
 	pass # Replace with function body.
+
+
+func get_objecttype_node() -> Node:
+	return _ObjectTypeNode
+
+
+func get_objecttype():
+	return _ObjectTypeNode._ObjectType
