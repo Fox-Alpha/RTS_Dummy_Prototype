@@ -19,9 +19,17 @@ extends Node
 
 
 func _init():
-	print("WorldManager Created")
+	print("WorldManager::_init() -> Created")
 	pass
 
 
-func _ready():
+#func _ready():
+#	pass
+
+
+func _enter_tree():
+	pass
+
+
+func _exit_tree():
 	pass
