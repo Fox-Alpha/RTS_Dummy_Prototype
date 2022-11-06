@@ -11,16 +11,10 @@ extends ManagerBase
 var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
 
 var selected_object setget set_selectedobject, get_selectedobject
-var selected_object_type = OBJECT_TYPE_ENUM.TYPE_UNDEFINED
+var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
 
-enum OBJECT_TYPE_ENUM{
-	TYPE_UNDEFINED,
-	TYPE_BUILDING,
-	TYPE_UNIT,
-	TYPE_RESOURCE,
-	TYPE_GROUND
-}
+
 
 # ===========================
 func _init():
@@ -87,15 +81,15 @@ func _on_select_object(_selectedobject) -> void:
 	var objtype = _selectedobject.get_objecttype()
 	
 	match objtype:
-		OBJECT_TYPE_ENUM.TYPE_BUILDING:
+		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			print_debug("Object Type is BUILDING")
-		OBJECT_TYPE_ENUM.TYPE_UNIT:
+		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 			print_debug("Object Type is UNIT")
-		OBJECT_TYPE_ENUM.TYPE_RESOURCE:
+		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
 			print_debug("Object Type is RESOURCE")
-		OBJECT_TYPE_ENUM.TYPE_GROUND:
+		Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
 			print_debug("Object Type is GROUND")
-		OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
+		Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
 			print_debug("Object Type is UNDEFINED")
 	
 	if !selected_object != null or selected_object != _selectedobject:
