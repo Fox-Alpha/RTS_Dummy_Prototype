@@ -21,13 +21,13 @@ func _ready():
 	pass
 
 func _init():
-	print("BuildingManager Created")
-	pass
+	print("BuildingManager::_init() -> Created")
+#	pass
 
 
-func _enter_tree():
-	pass
+# func _enter_tree():
+#	pass
 
 
-func _exit_tree():
-	pass
+# func _exit_tree():
+#	pass
