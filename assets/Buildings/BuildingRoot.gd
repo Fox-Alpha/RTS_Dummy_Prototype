@@ -11,8 +11,8 @@ onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
 export var is_selected:bool = false 
 
 
-func select_building(selected:bool) -> void:
-	print_debug("Building selected")
+func select_object(selected:bool) -> void:
+	print_debug("BuildingRoot::select_object() -> Building selected: %s" % selected)
 	is_selected = selected
 	if is_selected:
 		shader.set_shader_param("strenght", 0.5)
