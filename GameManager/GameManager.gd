@@ -18,9 +18,6 @@ class_name GameManager
 # is_class() 
 # is_CustomClass()
 # ===========================
-signal objectselected
-signal objectunselected
-
 var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
 export var Managers : Dictionary = {}
@@ -92,7 +89,7 @@ func _select_object() -> void:
 
 		if is_instance_valid(colliderparent):
 			if colliderparent.call("can_selected"):
-				.emit_signal("objectselected", colliderparent)
+				Signalbus.emit_signal("objectselected", colliderparent)
 
 #			if colliderparent.has_node("ObjectType"):
 #				var objType = colliderparent.get_node_or_null("%ObjectType")

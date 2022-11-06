@@ -12,9 +12,6 @@ var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
 
 var selected_object setget set_selectedobject, get_selectedobject
 
-#signal objectselected
-#signal objectunselected
-
 
 enum OBJECT_TYPE_ENUM{
 	TYPE_UNDEFINED,
@@ -62,12 +59,12 @@ func _get_gamemanagerinstance():
 # Signals
 # ===========================
 func init_signals() -> void:
-	if not GMInstance.is_connected("objectselected", self, "_on_select_object"):
-		var sig = GMInstance.connect("objectselected", self, "_on_select_object")
+	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
+		var sig = Signalbus.connect("objectselected", self, "_on_select_object")
 		print_debug(sig)
 		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
-	if not GMInstance.is_connected("objectunselected", self, "_on_unselect_object"):
-		var sig = GMInstance.connect("objectunselected", self, "_on_unselect_object")
+	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
+		var sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 		print_debug(sig)
 		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 #	pass
@@ -98,7 +95,7 @@ func _on_select_object(_selectedobject) -> void:
 			print_debug("Object Type is UNDEFINED")
 	
 	if !selected_object != null or selected_object != _selectedobject:
-			GMInstance.emit_signal("objectunselected")
+			Signalbus.emit_signal("objectunselected")
 	
 	selected_object = _selectedobject
 	selected_object.select_building(true)
