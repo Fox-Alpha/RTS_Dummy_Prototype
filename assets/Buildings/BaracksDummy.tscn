@@ -8,15 +8,18 @@
 points = PoolVector3Array( -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1 )
 
 [sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/strenght = null
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=7]
+resource_local_to_scene = true
 next_pass = SubResource( 6 )
 albedo_color = Color( 0.6, 0.611765, 0.203922, 1 )
 
-[sub_resource type="CubeMesh" id=2]
-material = SubResource( 4 )
+[sub_resource type="CubeMesh" id=8]
+resource_local_to_scene = true
+material = SubResource( 7 )
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_color = Color( 0.454902, 0.0745098, 0.0745098, 1 )
@@ -41,7 +44,7 @@ shape = SubResource( 1 )
 
 [node name="MeshBuilding" type="MeshInstance" parent="BaracksBody"]
 transform = Transform( 4, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 8 )
 skeleton = NodePath("")
 
 [node name="MeshExit" type="MeshInstance" parent="BaracksBody/MeshBuilding"]

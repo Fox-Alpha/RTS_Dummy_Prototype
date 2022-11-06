@@ -98,7 +98,7 @@ func _on_select_object(_selectedobject) -> void:
 			print_debug("Object Type is UNDEFINED")
 	
 	if !selected_object != null or selected_object != _selectedobject:
-			emit_signal("objectunselected")
+			GMInstance.emit_signal("objectunselected")
 	
 	selected_object = _selectedobject
 	selected_object.select_building(true)
