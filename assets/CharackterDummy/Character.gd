@@ -50,7 +50,7 @@ func select_object(selected:bool) -> void:
 		shader.set_shader_param("strenght", 0.0)
 
 
-func _SetAgentTarget(newAgentTarget:Vector3)-> void:
+func SetAgentTarget(newAgentTarget:Vector3)-> void:
 	print_debug("SetAgentTarget: %s" % newAgentTarget)
 	navagent.set_target_location(newAgentTarget)
 
