@@ -11,13 +11,15 @@ extends ManagerBase
 var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
 
 var selected_object setget set_selectedobject, get_selectedobject
+var selected_object_type = OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
 
 enum OBJECT_TYPE_ENUM{
 	TYPE_UNDEFINED,
 	TYPE_BUILDING,
 	TYPE_UNIT,
-	TYPE_RESOURCE
+	TYPE_RESOURCE,
+	TYPE_GROUND
 }
 
 # ===========================
@@ -74,7 +76,7 @@ func init_signals() -> void:
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
 	if selected_object != null:
-		selected_object.select_building(false)
+		selected_object.select_object(false)
 # TODO: ObjectTyp ermitteln, Selektiertes aktives Objekt Selection aufheben, Selection in Object deaktivieren
 	pass
 
@@ -91,6 +93,8 @@ func _on_select_object(_selectedobject) -> void:
 			print_debug("Object Type is UNIT")
 		OBJECT_TYPE_ENUM.TYPE_RESOURCE:
 			print_debug("Object Type is RESOURCE")
+		OBJECT_TYPE_ENUM.TYPE_GROUND:
+			print_debug("Object Type is GROUND")
 		OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
 			print_debug("Object Type is UNDEFINED")
 	
@@ -98,9 +102,9 @@ func _on_select_object(_selectedobject) -> void:
 			Signalbus.emit_signal("objectunselected")
 	
 	selected_object = _selectedobject
-	selected_object.select_building(true)
-#	if objtype != null:
-#		objtype.
+	selected_object.select_object(true)
+	selected_object_type = objtype
+
 # TODO: ObjectTyp ermitteln, aktives selectiertes Object setzen, Selection in Object aktivieren
 	pass
 # ===========================
