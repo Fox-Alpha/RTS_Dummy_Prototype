@@ -7,7 +7,7 @@ export var UnitType : String = "EmptyUnitType" setget set_unit_type,get_unit_typ
 
 export var _canselectunit : bool = true
 
-onready var GM:GameManager = get_tree().get_root().get_node("Main/GameManager")
+onready var GM = get_tree().get_root().get_node("Main/GameManager")
 onready var UnitRootNode = owner
 
 
