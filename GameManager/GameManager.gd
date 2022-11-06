@@ -90,6 +90,8 @@ func _select_object() -> void:
 		if is_instance_valid(colliderparent):
 			if colliderparent.call("can_selected"):
 				Signalbus.emit_signal("objectselected", colliderparent)
+			else:
+				Signalbus.emit_signal("objectunselected")
 
 #			if colliderparent.has_node("ObjectType"):
 #				var objType = colliderparent.get_node_or_null("%ObjectType")
