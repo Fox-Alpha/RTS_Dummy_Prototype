@@ -60,12 +60,13 @@ func _ready() -> void:
 #	if !is_connected("GameStateChange", self, "_on_GameStateChange"):
 #		if connect("GameStateChange", self, "_on_GameStateChange"):
 #	camera_moved
-	if !is_connected("freeze_requested", self, "_freeze_camera"):
-		var conn = self.connect("freeze_requested", self, "_freeze_camera")
-		assert(conn, "Connect von Signal freeze_request gescheitert")
-	if !is_connected("jump_requested", self, "_jump_to_position"):
-		var conn = self.connect("jump_requested", self, "_jump_to_position")
-		assert(conn, "Connect von Signal jump_request gescheitert")
+#	if !is_connected("freeze_requested", self, "_freeze_camera"):
+#		var conn = self.connect("freeze_requested", self, "_freeze_camera")
+#		assert(conn, "Connect von Signal freeze_request gescheitert")
+#	if !is_connected("jump_requested", self, "_jump_to_position"):
+#		var conn = self.connect("jump_requested", self, "_jump_to_position")
+#		assert(conn, "Connect von Signal jump_request gescheitert")
+	pass
 	
 
 
