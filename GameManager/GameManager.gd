@@ -18,14 +18,13 @@ class_name GameManager
 # is_class() 
 # is_CustomClass()
 # ===========================
+signal objectselected
+signal objectunselected
+
 var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
 export var Managers : Dictionary = {}
-
-export var selected_object = "" setget set_selectedobject, get_selectedobject
-
-
-onready var camera = get_viewport().get_camera()
+onready var camera = .get_viewport().get_camera()
 
 
 func set_gamemanager_instance(_value):
@@ -44,23 +43,29 @@ func _init():
 
 
 func _ready():
-	print("GameManager _ready()")
+	print("GameManager::_ready() -> Created")
+	
 #	_instance = GameManager.new()
-	var manager = get_children()
+	var manager = .get_children()
 
 	if manager.size() > 0:
 		for m in manager:
-			Managers[m.name] = m.get_script().new()
-#
-#		print_debug("Manager Dict: %s" % Managers)
+			var managerinstance = m #.get_script().new()
+			if managerinstance != null:
+				Managers[m.name] = managerinstance
+#				print_debug(managerinstance.get_script_method_list())
+
+				if managerinstance.has_method("init_signals"):
+					managerinstance.GMInstance = self #.get_script()
+					managerinstance.init_signals()
 
 
-func _enter_tree():
-	pass
+# func _enter_tree():
+#	pass
 
 
-func _exit_tree():
-	pass
+# func _exit_tree():
+# 	pass
 
 
 func _input(_event) -> void:
@@ -72,8 +77,8 @@ func _input(_event) -> void:
 
 
 func _select_object() -> void:
-	var spaceSTate = get_tree().get_root().get_world().direct_space_state
-	var mousePos = get_viewport().get_mouse_position()
+	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
+	var mousePos = .get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
 #	var ray = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
@@ -83,8 +88,16 @@ func _select_object() -> void:
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
-		if collider.get_parent_spatial():
-			var colliderparent:Spatial = collider.get_parent_spatial()
+		var colliderparent:Spatial = collider.get_parent_spatial()
+
+		if is_instance_valid(colliderparent):
+			if colliderparent.call("can_selected"):
+				.emit_signal("objectselected", colliderparent)
+
+#			if colliderparent.has_node("ObjectType"):
+#				var objType = colliderparent.get_node_or_null("%ObjectType")
+#				if objType.has_method("can_selected"):
+#					if objType.can_selected():
 #		if collider is KinematicBody:
 ##			var c = collider.get_children()
 #			var NavAgent = collider.get_node("/root/Main/CharackterRoot/NavigationAgent")
@@ -93,27 +106,12 @@ func _select_object() -> void:
 ##					selectedUnit = collider
 #					collider.get_parent_spatial()._select_unit(true)
 #		el
-			if colliderparent.has_node("ObjectType"):
-				if colliderparent.get_node_or_null("%ObjectType").has_method("can_selected"):
-					if colliderparent.can_selected():
-						selected_object = colliderparent.get_parent_spatial()
-						selected_object.selectobject()
+
+
 
 # Von einem bestimmten Manager die aktuelle Instanz abholen
 func get_manager_instance(manager : String) -> UnitManager:
 	if Managers.has(manager):
 		return Managers[manager]
-	
 	return null
 
-
-
-
-#set_selectedobject, get_selectedobject
-func set_selectedobject(value) -> void:
-	if value != value.empty():
-		selected_object = value
-
-
-func get_selectedobject():
-	return selected_object
