@@ -1,0 +1,13 @@
+extends Node
+
+
+enum OBJECT_TYPE_ENUM{
+	TYPE_UNDEFINED,
+	TYPE_BUILDING,
+	TYPE_UNIT,
+	TYPE_RESOURCE,
+	TYPE_GROUND
+}
+
+#func _ready():
+#	pass
