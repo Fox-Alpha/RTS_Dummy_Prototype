@@ -67,19 +67,49 @@ func _ready():
 
 func _input(_event) -> void:
 	# Mousevent Left and Right Button here
-	# Wenn Collision hat "canSelected", dann per Type an Manager weiterleiten
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
 		_select_object()
+	if Input.is_action_just_pressed("MouseClickRightButton", true):
+#		_select_object()
+#		print_debug("Rechtsklick")
+		_navigate_object()
+		pass
 	pass
 
 
+func _navigate_object() -> void:
+	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
+	var mousePos = .get_viewport().get_mouse_position()
+	var rayOrigin = camera.project_ray_origin(mousePos)
+	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
+	var rayArray = spaceSTate.intersect_ray(rayOrigin, rayEnd)
+
+	if rayArray.has("collider"):
+		printt(rayArray)
+		var collider = rayArray["collider"]
+		var colliderparent:Spatial = collider.get_parent_spatial()
+
+		if is_instance_valid(colliderparent):
+			if colliderparent.has_method("get_objecttype"):
+				var objType = colliderparent.call("get_objecttype")
+				print_debug("_navigate_object(): ", objType)
+				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
+					var om = get_manager_instance("ObjectManager")
+					if is_instance_valid(om):
+						print_debug(om)
+#						var so = om.selected_object
+					
+
+
+
+	pass
+
+# Wenn Collision hat "canSelected", dann per Type an Manager weiterleiten
 func _select_object() -> void:
 	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
 	var mousePos = .get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
-#	var ray = PhysicsRayQueryParameters3D.create(rayOrigin, rayEnd)
-#	var rayArray = spaceSTate.intersect_ray(ray)
 	var rayArray = spaceSTate.intersect_ray(rayOrigin, rayEnd)
 	
 	if rayArray.has("collider"):
