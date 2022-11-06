@@ -10,8 +10,10 @@ class_name ManagerBase
 # 
 # ===========================
 
+
+
 func _init():
-	print("ManagerBase Created")
+	print("ManagerBase _init")
 	pass
 
 
