@@ -22,8 +22,9 @@ func _init():
 
 
 func register_unit_inManager(unit) -> bool:
-	if !Units.has(unit):
-		Units.append([unit])
-	# Sicherstellen das es sich um den Klassentypen Unit handelt
-	print_debug("Neue Unit hat sich Registriert %s: " % unit.unitbase.get_unit_name())
-	return true
+	pass
+#	if !Units.has(unit):
+#		Units.append([unit])
+#	# Sicherstellen das es sich um den Klassentypen Unit handelt
+#	print_debug("Neue Unit hat sich Registriert %s: " % unit.unitbase.get_unit_name())
+#	return true
