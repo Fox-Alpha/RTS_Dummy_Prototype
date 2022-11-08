@@ -1,7 +1,7 @@
 extends Spatial
 
 
-export var _canselectbuilding : bool = false
+export var _canselectground : bool = false
 onready var _ObjectTypeNode = get_node("%ObjectType")
 
 
@@ -10,7 +10,7 @@ func _ready():
 
 
 func can_selected() -> bool:
-	return _canselectbuilding
+	return _canselectground
 
 
 func get_objecttype_node() -> Node:
