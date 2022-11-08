@@ -7,8 +7,8 @@ extends ManagerBase
 # Hier wird ermittelt welches Objekt eine AKtion ausführt
 # und leitet diese weiter
 # ===========================
-
-var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
+# GMInstance aus Globals abrufen sobald verfügbar
+# var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
 
 var selected_object setget set_selectedobject, get_selectedobject
 var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
@@ -28,16 +28,16 @@ func _init():
 	pass
 
 
-func set_gamemanagerinstance(value) -> void: 
-#	print_debug(value)
-	if value != null: 
-		GMInstance = value
-	pass
+# func set_gamemanagerinstance(value) -> void: 
+	# print_debug(value)
+	# if value != null: 
+		# GMInstance = value
+	# pass
 
 
-func _get_gamemanagerinstance():
-	return GMInstance
-	pass
+# func _get_gamemanagerinstance():
+	# return GMInstance
+	# pass
 
 
 # func _ready():

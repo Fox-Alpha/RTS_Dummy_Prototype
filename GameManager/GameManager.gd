@@ -18,21 +18,26 @@ class_name GameManager
 # is_class() 
 # is_CustomClass()
 # ===========================
-var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
+# TODO: GameManager Instanz per GLOBALS zur Verfügung stellen
+# ====: setget erstellen
+# ====: im _ready Globale Instanz setzen
+# ====: Somit ist gewährleistet das immer die gleiche Instanz verwendet wird und es nur eine gibt.
+# ====: Evtl. ein eigenes Autoload erstellen ?
+# var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
 
-func set_gamemanager_instance(_value):
-#	if value != null && _instance == null:
-#		_instance = value
-	pass
+# func set_gamemanager_instance(_value):
+	# if value != null && _instance == null:
+		# _instance = value
+	# pass
 
 
-func get_gamemanager_instance():
-#	return _instance
-	pass
+# func get_gamemanager_instance():
+	# return _instance
+	# pass
 
 
 func _init():
