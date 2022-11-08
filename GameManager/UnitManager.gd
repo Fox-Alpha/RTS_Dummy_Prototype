@@ -21,7 +21,7 @@ func _init():
 #	pass
 
 
-func register_unit_inManager(unit) -> bool:
+func register_unit_inManager(unit) -> void:
 	pass
 #	if !Units.has(unit):
 #		Units.append([unit])
