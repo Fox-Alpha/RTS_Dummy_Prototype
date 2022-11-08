@@ -2,14 +2,13 @@ class_name UnitBase
 extends Node
 
 
-export var UnitName : String = "EmptyUnitName" setget set_unit_name,get_unit_name
-export var UnitType : String = "EmptyUnitType" setget set_unit_type,get_unit_type
+export var UnitName : String = "EmptyUnitName" setget set_unit_name, get_unit_name
+export var UnitType : String = "EmptyUnitType" setget set_unit_type, get_unit_type
 export var _canselectunit : bool = true
 
 var _ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
 onready var GM = Globals.get_gamemanager_instance()
-#get_tree().get_root().get_node("Main/GameManager")
 onready var UnitRootNode = owner
 
 
@@ -27,6 +26,16 @@ func _exit_tree():
 
 func can_selected() -> bool:
 	return _canselectunit
+
+
+func _set_objecttype(value):
+	_ObjectType = value
+	pass
+
+
+func get_objecttype():
+	return _ObjectType
+	pass
 
 
 func set_unit_name(value:String) -> void:
