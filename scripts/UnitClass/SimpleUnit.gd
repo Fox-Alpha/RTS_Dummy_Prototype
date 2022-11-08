@@ -2,7 +2,7 @@ class_name SimpleUnit
 extends UnitBase
 
 
-export var _ObjectType:int = 2 
+var _ObjectType : Globals.OBJECT_TYPE_ENUM = 2 
 # setget _set_objecttype, get_objecttype
 
 

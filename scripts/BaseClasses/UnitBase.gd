@@ -4,8 +4,9 @@ extends Node
 
 export var UnitName : String = "EmptyUnitName" setget set_unit_name,get_unit_name
 export var UnitType : String = "EmptyUnitType" setget set_unit_type,get_unit_type
-
 export var _canselectunit : bool = true
+
+var _ObjectType : Globals.OBJECT_TYPE_ENUM
 
 onready var GM = get_tree().get_root().get_node("Main/GameManager")
 onready var UnitRootNode = owner
