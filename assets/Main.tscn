@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Assets/Ground/Ground.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Assets/CharackterDummy/Character.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Camera/RtsCameraController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GameManager/GameManager.gd" type="Script" id=4]
 [ext_resource path="res://GameManager/UnitManager.gd" type="Script" id=5]
@@ -93,10 +92,6 @@ transform = Transform( 1, 0, 0, 0, 0.642788, 0.766045, 0, -0.766045, 0.642788, 0
 
 [node name="Players" type="Spatial" parent="."]
 
-[node name="Units" type="Spatial" parent="Players"]
-
-[node name="CharackterRoot" parent="Players/Units" instance=ExtResource( 2 )]
-
 [node name="World" type="Spatial" parent="."]
 
 [node name="WorldNavigation" type="NavigationMeshInstance" parent="World"]
@@ -115,7 +110,8 @@ mesh = SubResource( 6 )
 [node name="BuildingRoot2" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
 transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00528829, 11.3738, 0, 0 )
 
+[node name="Units" type="Spatial" parent="World/WorldNavigation"]
+
 [editable path="RtsCameraController"]
-[editable path="Players/Units/CharackterRoot"]
 [editable path="World/WorldNavigation/Ground"]
 [editable path="World/WorldNavigation/Buildings/BuildingRoot"]
