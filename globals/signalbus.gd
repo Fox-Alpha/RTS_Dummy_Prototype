@@ -2,7 +2,7 @@ extends Node
 
 
 # GameManager
-signal 
+signal setgamemanagerinstance(GMInstance)
 
 # ObjectManager
 signal objectselected

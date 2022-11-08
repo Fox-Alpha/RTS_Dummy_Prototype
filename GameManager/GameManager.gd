@@ -58,8 +58,10 @@ func _ready():
 #				print_debug(managerinstance.get_script_method_list())
 
 				if managerinstance.has_method("init_signals"):
-					managerinstance.GMInstance = self #.get_script()
+#					managerinstance.GMInstance = self #.get_script()
 					managerinstance.init_signals()
+	
+	Signalbus.emit_signal("setgamemanagerinstance", self)
 
 
 # func _enter_tree():
