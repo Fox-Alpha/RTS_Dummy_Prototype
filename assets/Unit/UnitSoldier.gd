@@ -16,3 +16,8 @@ func _ready():
 
 func _on_NavigationAgent_velocity_computed(safe_velocity: Vector3) -> void:
 	pass # Replace with function body.
+
+
+func SetAgentTarget(newAgentTarget:Vector3)-> void:
+	print_debug("SetAgentTarget: %s" % newAgentTarget)
+	_NavAgentNode.set_target_location(newAgentTarget)
