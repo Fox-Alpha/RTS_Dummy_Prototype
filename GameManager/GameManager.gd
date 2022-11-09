@@ -19,25 +19,10 @@ class_name GameManager
 # is_CustomClass()
 # ===========================
 # TODO: GameManager Instanz per GLOBALS zur Verfügung stellen
-# ====: setget erstellen
-# ====: im _ready Globale Instanz setzen
-# ====: Somit ist gewährleistet das immer die gleiche Instanz verwendet wird und es nur eine gibt.
 # ====: Evtl. ein eigenes Autoload erstellen ?
-# var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
-
-
-# func set_gamemanager_instance(_value):
-	# if value != null && _instance == null:
-		# _instance = value
-	# pass
-
-
-# func get_gamemanager_instance():
-	# return _instance
-	# pass
 
 
 func _init():
@@ -46,19 +31,15 @@ func _init():
 
 func _ready():
 	print("GameManager::_ready() -> Created")
-
-#	_instance = GameManager.new()
 	var manager = .get_children()
 
 	if manager.size() > 0:
 		for m in manager:
-			var managerinstance = m #.get_script().new()
+			var managerinstance = m 
 			if managerinstance != null:
 				Managers[m.name] = managerinstance
-#				print_debug(managerinstance.get_script_method_list())
 
 				if managerinstance.has_method("init_signals"):
-#					managerinstance.GMInstance = self #.get_script()
 					managerinstance.init_signals()
 
 	Signalbus.emit_signal("setgamemanagerinstance", self)
@@ -122,24 +103,10 @@ func _select_object() -> void:
 		var colliderparent:Spatial = collider.get_parent_spatial()
 
 		if is_instance_valid(colliderparent):
-			if colliderparent.call("can_selected"):
+			if colliderparent.call("can_objectselected"):
 				Signalbus.emit_signal("objectselected", colliderparent)
 			else:
 				Signalbus.emit_signal("objectunselected")
-
-#			if colliderparent.has_node("ObjectType"):
-#				var objType = colliderparent.get_node_or_null("%ObjectType")
-#				if objType.has_method("can_selected"):
-#					if objType.can_selected():
-#		if collider is KinematicBody:
-##			var c = collider.get_children()
-#			var NavAgent = collider.get_node("/root/Main/CharackterRoot/NavigationAgent")
-#			if NavAgent != null:
-#				if collider.get_parent_spatial().has_method("_select_unit") != false:
-##					selectedUnit = collider
-#					collider.get_parent_spatial()._select_unit(true)
-#		el
-
 
 
 # Von einem bestimmten Manager die aktuelle Instanz abholen
