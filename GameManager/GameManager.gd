@@ -89,7 +89,7 @@ func _navigate_object() -> void:
 						print_debug(om)
 						var so = om.selected_object
 						if is_instance_valid(so):
-							so.SetAgentTarget(Vector3(0.0, 0.0, 0.0))
+							so.SetAgentTarget(rayArray["position"])
 
 
 
