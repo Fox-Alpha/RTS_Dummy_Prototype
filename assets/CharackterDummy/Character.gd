@@ -20,7 +20,7 @@ onready var _ObjectTypeNode = get_node("%ObjectType")
 func _ready():
 	shader = UnitMesh.mesh.material.next_pass
 	var UN = unitbase.GM.get_manager_instance("UnitManager")
-	if UN != null: 
+	if UN != null:
 		UN.register_unit_inManager(self)	# TODO: Registrer der Unit korrigieren
 	else:
 		print_debug("Charackter -> Unit Registration Failed!")
