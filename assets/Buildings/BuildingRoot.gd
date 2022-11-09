@@ -20,7 +20,7 @@ func select_object(selected:bool) -> void:
 		shader.set_shader_param("strenght", 0.0)
 
 
-func can_selected() -> bool:
+func can_objectselected() -> bool:
 	return _canselectbuilding
 
 
