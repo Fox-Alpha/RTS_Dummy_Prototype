@@ -12,9 +12,9 @@ enum OBJECT_TYPE_ENUM{
 var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
 func _ready():
-	if !Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance"):
+	if !Signalbus.is_connected("setgamemanagerinstance", self, "set_gamemanager_instance"):
 		var sig = Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance")
-		assert(sig, "GLOBALS::_ready() - > Connect con set_gamemanager_instance fehlgeschlagen")
+		assert(sig == OK, "GLOBALS::_ready() - > Connect con set_gamemanager_instance fehlgeschlagen")
 #	pass
 
 
