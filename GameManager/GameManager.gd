@@ -4,18 +4,18 @@ class_name GameManager
 # ===========================
 # Dies ist der Hauptmanager der mit den anderen Managern kommuniziert
 # Es werden globale Ereignisse an den richtigen Manager weitergeleitet
-# 
+#
 # z.B. Tastatureingaben und Maussteuerung
-# 
+#
 # Speichern des laufenden Spiels (Autosave)
-# 
+#
 # Starten und Beenden eines Spiels
-# 
+#
 # Starten und Managen des Netzwerkmodus
-# 
+#
 # ===========================
 # get_class()
-# is_class() 
+# is_class()
 # is_CustomClass()
 # ===========================
 # TODO: GameManager Instanz per GLOBALS zur Verfügung stellen
@@ -46,7 +46,7 @@ func _init():
 
 func _ready():
 	print("GameManager::_ready() -> Created")
-	
+
 #	_instance = GameManager.new()
 	var manager = .get_children()
 
@@ -60,7 +60,7 @@ func _ready():
 				if managerinstance.has_method("init_signals"):
 #					managerinstance.GMInstance = self #.get_script()
 					managerinstance.init_signals()
-	
+
 	Signalbus.emit_signal("setgamemanagerinstance", self)
 
 
@@ -77,19 +77,21 @@ func _input(_event) -> void:
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
 		_select_object()
 	if Input.is_action_just_pressed("MouseClickRightButton", true):
-#		_select_object()
-#		print_debug("Rechtsklick")
 		_navigate_object()
-		pass
-	pass
 
 
-func _navigate_object() -> void:
+func _get_collider_at_mouse_position():
 	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
 	var mousePos = .get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
 	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
 	var rayArray = spaceSTate.intersect_ray(rayOrigin, rayEnd)
+
+	return rayArray
+
+
+func _navigate_object() -> void:
+	var rayArray = _get_collider_at_mouse_position()
 
 	if rayArray.has("collider"):
 		printt(rayArray)
@@ -107,20 +109,13 @@ func _navigate_object() -> void:
 						var so = om.selected_object
 						if is_instance_valid(so):
 							so.SetAgentTarget(mousePos)
-					
 
 
-
-	pass
 
 # Wenn Collision hat "canSelected", dann per Type an Manager weiterleiten
 func _select_object() -> void:
-	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
-	var mousePos = .get_viewport().get_mouse_position()
-	var rayOrigin = camera.project_ray_origin(mousePos)
-	var rayEnd = rayOrigin + camera.project_ray_normal(mousePos) * 2000
-	var rayArray = spaceSTate.intersect_ray(rayOrigin, rayEnd)
-	
+	var rayArray = _get_collider_at_mouse_position()
+
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
