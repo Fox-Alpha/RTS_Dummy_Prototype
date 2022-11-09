@@ -1,6 +1,8 @@
 class_name BuildingBase
 extends Node
 
+# TODO: Rechtsklick soll Rallypoint setzen
+
 export var _buildingname : String = "EmptyName" setget set_building_name,get_building_name
 export var _buildingtype : String = "EmptyType" setget set_building_type,get_building_type
 export var _ObjectType:int = 1 setget _set_objecttype, get_objecttype
