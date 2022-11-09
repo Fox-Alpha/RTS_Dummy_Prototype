@@ -106,7 +106,8 @@ func _on_select_object(_selectedobject) -> void:
 # ===========================
 #set_selectedobject, get_selectedobject
 func set_selectedobject(value) -> void:
-	if value != value.empty():
+#	if value != value.empty():
+	if value.is_instance_valid():
 		selected_object = value
 
 
