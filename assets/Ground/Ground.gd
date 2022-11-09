@@ -9,7 +9,7 @@ func _ready():
 	pass
 
 
-func can_selected() -> bool:
+func can_objectselected() -> bool:
 	return _canselectground
 
 
