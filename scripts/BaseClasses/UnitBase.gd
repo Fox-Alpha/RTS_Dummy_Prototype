@@ -4,7 +4,9 @@ extends Node
 
 export var UnitName : String = "EmptyUnitName" setget set_unit_name, get_unit_name
 export var UnitType : String = "EmptyUnitType" setget set_unit_type, get_unit_type
+
 export var _canselectunit : bool = true
+export var _canmoveunit : bool = true
 
 var _ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
@@ -26,6 +28,10 @@ func _exit_tree():
 
 func can_selected() -> bool:
 	return _canselectunit
+
+
+func can_moved() -> bool:
+	return _canmoveunit
 
 
 func _set_objecttype(value):
