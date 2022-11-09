@@ -7,7 +7,6 @@
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 3 )
-shader_param/strenght = 0.0
 
 [sub_resource type="SpatialMaterial" id=1]
 next_pass = SubResource( 10 )
@@ -45,6 +44,7 @@ unique_name_in_owner = true
 script = ExtResource( 2 )
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
+unique_name_in_owner = true
 avoidance_enabled = true
 
 [node name="Unit" type="KinematicBody" parent="."]
