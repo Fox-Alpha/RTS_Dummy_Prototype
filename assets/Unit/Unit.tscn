@@ -87,4 +87,7 @@ layers = 2
 axis = 1
 texture = ExtResource( 1 )
 
+[connection signal="navigation_finished" from="NavigationAgent" to="." method="_on_NavigationAgent_navigation_finished"]
+[connection signal="path_changed" from="NavigationAgent" to="." method="_on_NavigationAgent_path_changed"]
+[connection signal="target_reached" from="NavigationAgent" to="." method="_on_NavigationAgent_target_reached"]
 [connection signal="velocity_computed" from="NavigationAgent" to="." method="_on_NavigationAgent_velocity_computed"]
