@@ -2,13 +2,11 @@ extends Spatial
 
 
 export var _canselectbuilding : bool = true
+export var is_selected:bool = false 
 
 onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var BuildingMesh = $BaracksBody/MeshBuilding
-
 onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
-
-export var is_selected:bool = false 
 
 
 func select_object(selected:bool) -> void:
@@ -19,6 +17,10 @@ func select_object(selected:bool) -> void:
 	else:
 		shader.set_shader_param("strenght", 0.0)
 
+
+func SetBuildingRallypoint(newpos : Vector3):
+	_ObjectTypeNode.set_building_rallypoint(newpos)
+#	pass
 
 func can_objectselected() -> bool:
 	return _canselectbuilding
@@ -33,8 +35,9 @@ func get_objecttype():
 
 
 # Called when the node enters the scene tree for the first time.
-# func _ready():
-# 	shader = BuildingMesh.mesh.material.next_pass
+func _ready():
+#	if get_objecttype_node()._buildingcanspawnunits:
+	shader = BuildingMesh.mesh.material.next_pass
 #	pass # Replace with function body.
 
 
