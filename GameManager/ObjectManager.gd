@@ -7,8 +7,7 @@ extends ManagerBase
 # Hier wird ermittelt welches Objekt eine AKtion ausführt
 # und leitet diese weiter
 # ===========================
-# GMInstance aus Globals abrufen sobald verfügbar
-# var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
+var GM:Node
 
 var selected_object setget set_selectedobject, get_selectedobject
 var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
@@ -18,8 +17,8 @@ func _init():
 	print("ObjectManager::_init() -> Created")
 
 
-# func _ready():
-# 	pass
+func _ready():
+	pass
 
 
 #func _enter_tree():
@@ -54,16 +53,31 @@ func _on_unselect_object() -> void:
 		selected_object.select_object(false)
 		selected_object = null
 		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
+		
+		# TODO: UI Ausblenden falls vorhanden, Building, Unit
 
 
 # Signal ein Objekt selektieren
 func _on_select_object(_selectedobject) -> void:
-	print_debug("Signal selectobject emitted: ", _selectedobject)
+	print_debug("Signal selectobject received: ", _selectedobject)
 	var objtype = _selectedobject.get_objecttype()
 
+	if is_instance_valid(selected_object):
+		if selected_object != _selectedobject:
+			Signalbus.emit_signal("objectunselected")
+
+	selected_object = _selectedobject
+	selected_object.select_object(true)
+	selected_object_type = objtype
+	
+	print_debug("MM::_on_select_object() ->  Signal objectselected received")
 	match objtype:
 		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			print_debug("Object Type is BUILDING")
+			# TODO: UI Anzeigen
+			var uim = GM.get_manager_instance("UIManager")
+			if is_instance_valid(uim):
+				uim.show_ui_building(_selectedobject.GetBuildingUIName(), true)
 		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 			print_debug("Object Type is UNIT")
 		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
@@ -73,21 +87,20 @@ func _on_select_object(_selectedobject) -> void:
 		Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
 			print_debug("Object Type is UNDEFINED")
 
-	if !selected_object != null or selected_object != _selectedobject:
-			Signalbus.emit_signal("objectunselected")
-
-	selected_object = _selectedobject
-	selected_object.select_object(true)
-	selected_object_type = objtype
 # ===========================
 
 # ===========================
 func set_selectedobject(value) -> void:
 #	if value != value.empty():
-	if value.is_instance_valid():
+	if is_instance_valid(value):
 		selected_object = value
 
 
 func get_selectedobject():
-	return selected_object
+#	return selected_object
+	pass
 # ===========================
+
+
+func SetGameManagerInstance():
+	GM = Globals.get_gamemanager_instance()
