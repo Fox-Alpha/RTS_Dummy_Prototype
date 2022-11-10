@@ -11,6 +11,8 @@ enum OBJECT_TYPE_ENUM{
 # Globale GameManager Instanz
 var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
+onready var _WorldNavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
+
 func _ready():
 	if !Signalbus.is_connected("setgamemanagerinstance", self, "set_gamemanager_instance"):
 		var sig = Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance")

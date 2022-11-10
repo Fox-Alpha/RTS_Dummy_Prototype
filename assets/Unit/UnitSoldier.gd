@@ -8,7 +8,7 @@ export (float, 0, 100, 0.5) var movement_speed = 5.0
 onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var _NavAgentNode = get_node_or_null("%NavigationAgent")
 onready var _NavMapNode = get_tree().get_root().get_node("./Main/World/WorldNavigation")
-onready var _NavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
+#onready var _NavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
 onready var UnitMesh = $MeshBody
 onready var shader:ShaderMaterial = UnitMesh.mesh.material.next_pass
 onready var NavPoint = preload("res://assets/helper/NavPoint.tscn")
@@ -64,13 +64,13 @@ func _on_NavigationAgent_path_changed():
 
 #	DONE: Dummy für Nav Punkte erstellen
 	if path.size() > 0:
-		if _NavPointNodeParent.get_child_count() > 0:
-			for c in _NavPointNodeParent.get_children():
+		if Globals._WorldNavPointNodeParent.get_child_count() > 0:
+			for c in Globals._WorldNavPointNodeParent.get_children():
 				c.queue_free()
 		for p in path:
 			var nav = NavPoint.instance()
 			nav.translate(p)
-			_NavPointNodeParent.add_child(nav)
+			Globals._WorldNavPointNodeParent.add_child(nav)
 
 
 func _on_NavigationAgent_target_reached():
