@@ -40,6 +40,7 @@ func _physics_process(_delta):
 
 
 func _on_NavigationAgent_velocity_computed(_safe_velocity: Vector3) -> void:
+# warning-ignore:unused_variable
 	var mas = move_and_slide(_safe_velocity, Vector3.UP)
 
 
