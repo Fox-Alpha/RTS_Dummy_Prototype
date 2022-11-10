@@ -18,6 +18,9 @@ func select_object(selected:bool) -> void:
 		shader.set_shader_param("strenght", 0.0)
 
 
+func GetBuildingUIName(ui:String):
+	_ObjectTypeNode.get_building_uiname(ui)
+
 func SetBuildingRallypoint(newpos : Vector3):
 	_ObjectTypeNode.set_building_rallypoint(newpos)
 #	pass
