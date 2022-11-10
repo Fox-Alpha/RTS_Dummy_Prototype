@@ -92,6 +92,10 @@ func _navigate_object() -> void:
 						if is_instance_valid(so):
 							so.SetAgentTarget(getmouseposin3d())
 
+				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+#					TODO: Bei Buildings das passende UI einblenden
+					pass
+
 
 
 # Wenn Collision hat "canSelected", dann per Type an Manager weiterleiten
