@@ -3,7 +3,9 @@ extends Spatial
 ########################
 # SIGNALS
 ########################
+# warning-ignore:unused_signal
 signal freeze_requested
+# warning-ignore:unused_signal
 signal jump_requested(location, duration)
 signal camera_moved(new_location)
 
