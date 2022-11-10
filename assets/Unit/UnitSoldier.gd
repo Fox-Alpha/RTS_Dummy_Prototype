@@ -22,13 +22,19 @@ func _ready():
 		_ObjectTypeNode._canmoveunit = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if _NavAgentNode.is_navigation_finished():
 		return
 
 	var targetpos = _NavAgentNode.get_next_location()
 	var direction = global_transform.origin.direction_to(targetpos)
 	var velocity = direction * movement_speed # _NavAgentNode.max_speed
+	
+#	look_at(global_transform.origin, -targetpos)	
+	#_from_position
+	
+	var lookdir = atan2(velocity.x, velocity.z)
+	rotation.y = lookdir
 
 	_NavAgentNode.set_velocity(velocity)
 
@@ -75,6 +81,13 @@ func _on_NavigationAgent_path_changed():
 
 func _on_NavigationAgent_target_reached():
 	print_debug("_on_NavigationAgent_target_reached()")
+	var path = _NavAgentNode.get_nav_path()
+
+#	DONE: Dummy für Nav Punkte erstellen
+	if path.size() > 0:
+		if Globals._WorldNavPointNodeParent.get_child_count() > 0:
+			for c in Globals._WorldNavPointNodeParent.get_children():
+				c.queue_free()
 
 
 func _on_NavigationAgent_navigation_finished():

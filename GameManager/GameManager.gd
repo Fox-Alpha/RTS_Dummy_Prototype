@@ -52,6 +52,7 @@ func _input(_event) -> void:
 	# Mousevent Left and Right Button here
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
 		_select_object()
+	# TODO: Ignorieren wenn die SHIFT Taste mitgedrückt wird. Soll die Kamera beegen
 	if Input.is_action_just_pressed("MouseClickRightButton", true):
 		_navigate_object()
 
@@ -89,8 +90,10 @@ func _navigate_object() -> void:
 					var om = get_manager_instance("ObjectManager")
 					if is_instance_valid(om):
 						var so = om.selected_object
-						if is_instance_valid(so):
+						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 							so.SetAgentTarget(getmouseposin3d())
+						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+							so.SetBuildingRallypoint(getmouseposin3d())
 
 				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 #					TODO: Bei Buildings das passende UI einblenden
@@ -119,6 +122,7 @@ func _select_object() -> void:
 				Signalbus.emit_signal("objectselected", collider)
 			else:
 				Signalbus.emit_signal("objectunselected")
+				
 
 
 # Von einem bestimmten Manager die aktuelle Instanz abholen

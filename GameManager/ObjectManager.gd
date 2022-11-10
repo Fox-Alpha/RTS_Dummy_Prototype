@@ -52,6 +52,8 @@ func init_signals() -> void:
 func _on_unselect_object() -> void:
 	if selected_object != null:
 		selected_object.select_object(false)
+		selected_object = null
+		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
 
 # Signal ein Objekt selektieren

@@ -6,32 +6,62 @@ extends Node
 export var _buildingname : String = "EmptyName" setget set_building_name,get_building_name
 export var _buildingtype : String = "EmptyType" setget set_building_type,get_building_type
 export var _ObjectType:int = 1 setget _set_objecttype, get_objecttype
+export var _buildingcanspawnunits : bool = false
 
 
 onready var GM = Globals.get_gamemanager_instance()
 onready var BuildingRootNode = get_parent()
+onready var _ObjectTypeNode = get_node("%ObjectType")
+
+onready var UnitSpawnNode = .get_node_or_null("%UnitSpawnPosition3D")
+onready var UnitRallypointNode = .get_node_or_null("%UnitRallyPosition3D")
+
+var UnitSpawnPos : Vector3 setget set_building_spawnpoint, get_building_spawnpoint
+var UnitRallyPos : Vector3 setget set_building_rallypoint, get_building_rallypoint
+
+#
 
 
 func _ready():
-	pass
+	if _buildingcanspawnunits:
+		if is_instance_valid(UnitSpawnNode) and is_instance_valid(UnitRallypointNode):
+			UnitSpawnPos = .get_node("%UnitSpawnPosition3D").get_global_translation()
+			UnitRallyPos = .get_node("%UnitRallyPosition3D").get_global_translation()
+#	pass
 
 
-func _enter_tree():
-	pass
+#func _enter_tree():
+#	pass
 
 
-func _exit_tree():
-	pass
+#func _exit_tree():
+#	pass
 
 
 func _set_objecttype(value):
 	_ObjectType = value
-	pass
 
 
 func get_objecttype():
 	return _ObjectType
-	pass
+
+
+func set_building_spawnpoint(value):
+	UnitSpawnPos = value
+
+
+func get_building_spawnpoint():
+	return UnitSpawnPos
+
+
+func set_building_rallypoint(newrallypoint):
+	UnitRallyPos = newrallypoint
+	if is_instance_valid(UnitRallypointNode):
+		UnitRallypointNode.set_global_translation(UnitRallyPos)
+
+
+func get_building_rallypoint() -> Vector3:
+	return UnitRallyPos
 
 
 func set_building_name(value:String) -> void:
