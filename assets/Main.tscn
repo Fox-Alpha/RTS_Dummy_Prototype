@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/Ground/Ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/Unit/Unit.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://GameManager/ObjectManager.gd" type="Script" id=15]
 [ext_resource path="res://GameManager/UIManager.gd" type="Script" id=16]
 [ext_resource path="res://assets/Buildings/building_selected.gdshader" type="Shader" id=17]
+[ext_resource path="res://ui/UI_Barracks.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ProceduralSky" id=1]
 
@@ -118,6 +119,11 @@ transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.0052882
 movement_speed = 25.0
 
 [node name="NavPoints" type="Spatial" parent="World"]
+
+[node name="UI" type="Spatial" parent="."]
+
+[node name="UI_Barracks" parent="UI" instance=ExtResource( 18 )]
+visible = false
 
 [editable path="RtsCameraController"]
 [editable path="World/WorldNavigation/Ground"]
