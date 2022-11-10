@@ -24,6 +24,8 @@ class_name GameManager
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
+const GROUND_PLANE = Plane(Vector3.UP, 0)
+
 
 func _init():
 	pass
@@ -35,7 +37,7 @@ func _ready():
 
 	if manager.size() > 0:
 		for m in manager:
-			var managerinstance = m 
+			var managerinstance = m
 			if managerinstance != null:
 				Managers[m.name] = managerinstance
 
@@ -71,8 +73,18 @@ func _get_collider_at_mouse_position():
 	return rayArray
 
 
+func getmouseposin3d():
+	var position2D = get_viewport().get_mouse_position()
+#	var dropPlane  = Plane(Vector3(0, 0, 10), 0)
+	var position3D = GROUND_PLANE.intersects_ray(camera.project_ray_origin(position2D),camera.project_ray_normal(position2D))
+	print("getmouseposin3d(): ", position3D)
+
+	return position3D
+
 func _navigate_object() -> void:
 	var rayArray = _get_collider_at_mouse_position()
+
+	getmouseposin3d()
 
 	if rayArray.has("collider"):
 		printt(rayArray)
@@ -89,7 +101,8 @@ func _navigate_object() -> void:
 						print_debug(om)
 						var so = om.selected_object
 						if is_instance_valid(so):
-							so.SetAgentTarget(rayArray["position"])
+#							so.SetAgentTarget(rayArray.position)
+							so.SetAgentTarget(getmouseposin3d())
 
 
 
@@ -100,11 +113,14 @@ func _select_object() -> void:
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
-		var colliderparent:Spatial = collider.get_parent_spatial()
+#		var colliderparent:Spatial = collider.get_parent_spatial()
+#
+#		if is_instance_valid(colliderparent):
+#			if colliderparent.call("can_objectselected"):
 
-		if is_instance_valid(colliderparent):
-			if colliderparent.call("can_objectselected"):
-				Signalbus.emit_signal("objectselected", colliderparent)
+		if is_instance_valid(collider):
+			if collider.call("can_objectselected"):
+				Signalbus.emit_signal("objectselected", collider)
 			else:
 				Signalbus.emit_signal("objectunselected")
 

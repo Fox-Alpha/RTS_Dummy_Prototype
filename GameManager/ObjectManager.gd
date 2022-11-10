@@ -28,9 +28,9 @@ func _init():
 	pass
 
 
-# func set_gamemanagerinstance(value) -> void: 
+# func set_gamemanagerinstance(value) -> void:
 	# print_debug(value)
-	# if value != null: 
+	# if value != null:
 		# GMInstance = value
 	# pass
 
@@ -79,7 +79,7 @@ func _on_unselect_object() -> void:
 func _on_select_object(_selectedobject) -> void:
 	print_debug("Signal selectobject emitted: ", _selectedobject)
 	var objtype = _selectedobject.get_objecttype()
-	
+
 	match objtype:
 		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			print_debug("Object Type is BUILDING")
@@ -91,10 +91,10 @@ func _on_select_object(_selectedobject) -> void:
 			print_debug("Object Type is GROUND")
 		Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
 			print_debug("Object Type is UNDEFINED")
-	
+
 	if !selected_object != null or selected_object != _selectedobject:
 			Signalbus.emit_signal("objectunselected")
-	
+
 	selected_object = _selectedobject
 	selected_object.select_object(true)
 	selected_object_type = objtype
