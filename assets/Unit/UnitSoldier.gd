@@ -22,7 +22,7 @@ func _ready():
 		_ObjectTypeNode._canmoveunit = false
 
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if _NavAgentNode.is_navigation_finished():
 		return
 
