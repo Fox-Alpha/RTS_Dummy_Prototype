@@ -102,6 +102,14 @@ func _select_object() -> void:
 		printt(rayArray)
 		var collider = rayArray["collider"]
 
+#		FIXME: Collider abfrage
+#		Wenn Collider == KinematicBody, dann könnte es eine Unit sein
+#		Wenn es ein StaticBody, dann könnte es der Ground sein
+#		Es könnte aber auch ein Building sein
+#		Ground und Building haben noch eine Spatial Node als Root
+
+		if !collider.has_method("get_objecttype"):
+				collider = collider.get_parent_spatial()
 		if is_instance_valid(collider):
 			if collider.call("can_objectselected"):
 				Signalbus.emit_signal("objectselected", collider)
