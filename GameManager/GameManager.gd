@@ -89,7 +89,7 @@ func _navigate_object() -> void:
 					var om = get_manager_instance("ObjectManager")
 					if is_instance_valid(om):
 						var so = om.selected_object
-						if is_instance_valid(so):
+						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 							so.SetAgentTarget(getmouseposin3d())
 
 				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
@@ -119,6 +119,7 @@ func _select_object() -> void:
 				Signalbus.emit_signal("objectselected", collider)
 			else:
 				Signalbus.emit_signal("objectunselected")
+				
 
 
 # Von einem bestimmten Manager die aktuelle Instanz abholen
