@@ -5,7 +5,8 @@ extends BuildingBase
 func _ready():
 	_buildingtype = "BuildingArmyBarrack"
 	_buildingname = "Army Barrack"
-	pass
+	_buildinguiname = "UI_Barracks"
+#	pass
 
 
 
