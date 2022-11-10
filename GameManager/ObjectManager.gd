@@ -52,6 +52,7 @@ func init_signals() -> void:
 func _on_unselect_object() -> void:
 	if selected_object != null:
 		selected_object.select_object(false)
+		selected_object = null
 
 
 # Signal ein Objekt selektieren
