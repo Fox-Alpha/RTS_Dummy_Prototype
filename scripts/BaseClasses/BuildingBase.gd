@@ -9,8 +9,6 @@ export var _ObjectType:int = 1 setget _set_objecttype, get_objecttype
 
 
 onready var GM = Globals.get_gamemanager_instance()
-#onready var GM = .get_tree().get_root().get_node("Main/GameManager")
-#var GMInstance setget set_gamemanagerinstance, _get_gamemanagerinstance
 onready var BuildingRootNode = get_parent()
 
 

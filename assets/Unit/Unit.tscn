@@ -67,6 +67,7 @@ skeleton = NodePath("../..")
 
 [node name="NavigationAgent" type="NavigationAgent" parent="."]
 unique_name_in_owner = true
+avoidance_enabled = true
 
 [node name="Collision" type="CollisionShape" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.54, 0 )

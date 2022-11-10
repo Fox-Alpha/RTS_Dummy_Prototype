@@ -13,13 +13,6 @@ class_name GameManager
 #
 # Starten und Managen des Netzwerkmodus
 #
-# ===========================
-# get_class()
-# is_class()
-# is_CustomClass()
-# ===========================
-# TODO: GameManager Instanz per GLOBALS zur Verfügung stellen
-# ====: Evtl. ein eigenes Autoload erstellen ?
 
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
@@ -75,15 +68,12 @@ func _get_collider_at_mouse_position():
 
 func getmouseposin3d():
 	var position2D = get_viewport().get_mouse_position()
-#	var dropPlane  = Plane(Vector3(0, 0, 10), 0)
 	var position3D = GROUND_PLANE.intersects_ray(camera.project_ray_origin(position2D),camera.project_ray_normal(position2D))
-	print("getmouseposin3d(): ", position3D)
 
 	return position3D
 
 func _navigate_object() -> void:
 	var rayArray = _get_collider_at_mouse_position()
-
 	getmouseposin3d()
 
 	if rayArray.has("collider"):
@@ -94,14 +84,12 @@ func _navigate_object() -> void:
 		if is_instance_valid(colliderparent):
 			if colliderparent.has_method("get_objecttype"):
 				var objType = colliderparent.call("get_objecttype")
-				print_debug("_navigate_object(): ", objType)
+
 				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
 					var om = get_manager_instance("ObjectManager")
 					if is_instance_valid(om):
-						print_debug(om)
 						var so = om.selected_object
 						if is_instance_valid(so):
-#							so.SetAgentTarget(rayArray.position)
 							so.SetAgentTarget(getmouseposin3d())
 
 
@@ -113,10 +101,6 @@ func _select_object() -> void:
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
-#		var colliderparent:Spatial = collider.get_parent_spatial()
-#
-#		if is_instance_valid(colliderparent):
-#			if colliderparent.call("can_objectselected"):
 
 		if is_instance_valid(collider):
 			if collider.call("can_objectselected"):

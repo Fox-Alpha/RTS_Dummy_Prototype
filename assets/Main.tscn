@@ -115,7 +115,7 @@ transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.0052882
 [node name="Units" type="Spatial" parent="World"]
 
 [node name="UnitRoot" parent="World/Units" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+movement_speed = 25.0
 
 [node name="NavPoints" type="Spatial" parent="World"]
 

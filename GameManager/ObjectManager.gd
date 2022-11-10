@@ -12,32 +12,10 @@ extends ManagerBase
 
 var selected_object setget set_selectedobject, get_selectedobject
 var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
-
-
-
-
 # ===========================
+
 func _init():
 	print("ObjectManager::_init() -> Created")
-#	if !is_connected("objectselected", self, "_on_select_object"):
-#		var conn = connect("objectselected", self, "_on_select_object")
-#		assert(conn, "Connect von Signal objectselected gescheitert")
-#	if !is_connected("objectunselected", self, "_on_unselect_object"):
-#		var conn = connect("objectunselected", self, "_on_unselect_object")
-#		assert(conn, "Connect von Signal objectunselected gescheitert")
-	pass
-
-
-# func set_gamemanagerinstance(value) -> void:
-	# print_debug(value)
-	# if value != null:
-		# GMInstance = value
-	# pass
-
-
-# func _get_gamemanagerinstance():
-	# return GMInstance
-	# pass
 
 
 # func _ready():
@@ -55,24 +33,25 @@ func _init():
 # Signals
 # ===========================
 func init_signals() -> void:
+	# Object selektieren
 	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
 		var sig = Signalbus.connect("objectselected", self, "_on_select_object")
-		print_debug(sig)
 		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
+
+	# Objecte Selektion aufheben
 	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
 		var sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
-		print_debug(sig)
 		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 #	pass
 
 
 # ===========================
+#Signal Methoden
+# ===========================
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
 	if selected_object != null:
 		selected_object.select_object(false)
-# TODO: ObjectTyp ermitteln, Selektiertes aktives Objekt Selection aufheben, Selection in Object deaktivieren
-	pass
 
 
 # Signal ein Objekt selektieren
@@ -98,13 +77,9 @@ func _on_select_object(_selectedobject) -> void:
 	selected_object = _selectedobject
 	selected_object.select_object(true)
 	selected_object_type = objtype
-
-# TODO: ObjectTyp ermitteln, aktives selectiertes Object setzen, Selection in Object aktivieren
-	pass
 # ===========================
 
 # ===========================
-#set_selectedobject, get_selectedobject
 func set_selectedobject(value) -> void:
 #	if value != value.empty():
 	if value.is_instance_valid():
@@ -113,5 +88,4 @@ func set_selectedobject(value) -> void:
 
 func get_selectedobject():
 	return selected_object
-
 # ===========================
