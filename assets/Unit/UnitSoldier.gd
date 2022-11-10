@@ -29,6 +29,12 @@ func _physics_process(delta):
 	var targetpos = _NavAgentNode.get_next_location()
 	var direction = global_transform.origin.direction_to(targetpos)
 	var velocity = direction * movement_speed # _NavAgentNode.max_speed
+	
+#	look_at(global_transform.origin, -targetpos)	
+	#_from_position
+	
+	var lookdir = atan2(velocity.x, velocity.z)
+	rotation.y = lookdir
 
 	_NavAgentNode.set_velocity(velocity)
 
