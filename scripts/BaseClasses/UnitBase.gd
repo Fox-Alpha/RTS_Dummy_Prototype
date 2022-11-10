@@ -10,7 +10,8 @@ export var _canmoveunit : bool = true
 
 var _ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
-onready var GM = Globals.get_gamemanager_instance()
+#onready var GM = Globals.get_gamemanager_instance()
+
 onready var UnitRootNode = owner
 
 
