@@ -131,6 +131,11 @@ config/icon="res://icon.png"
 Signalbus="*res://globals/signalbus.gd"
 Globals="*res://globals/globals.gd"
 
+[display]
+
+window/size/width=1280
+window/size/height=720
+
 [editor_plugins]
 
 enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg" )
@@ -213,6 +218,10 @@ camera_rotate={
 3d_physics/layer_3="Buildings"
 3d_physics/layer_4="Resource"
 3d_physics/layer_5="Enviroment"
+
+[node]
+
+name_num_separator=2
 
 [physics]
 
