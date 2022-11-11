@@ -11,7 +11,7 @@ onready var _NavMapNode = get_tree().get_root().get_node("./Main/World/WorldNavi
 #onready var _NavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
 onready var UnitMesh = $MeshBody
 onready var shader:ShaderMaterial = UnitMesh.mesh.material.next_pass
-onready var NavPoint = preload("res://assets/helper/NavPoint.tscn")
+onready var NavPoint = preload("res://assets/helper/navpoint.tscn")
 
 
 func _ready():
