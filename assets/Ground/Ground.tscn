@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://addons/kenney_prototype_textures/green/texture_01.png" type="Texture" id=1]
-[ext_resource path="res://assets/Ground/Ground.gd" type="Script" id=2]
-[ext_resource path="res://assets/Ground/ObjectTypeGround.gd" type="Script" id=3]
+[ext_resource path="res://assets/ground/ground.gd" type="Script" id=2]
+[ext_resource path="res://assets/ground/objecttypeground.gd" type="Script" id=3]
 
 [sub_resource type="SpatialMaterial" id=5]
 albedo_texture = ExtResource( 1 )

@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Assets/Buildings/BuildingRoot.gd" type="Script" id=1]
-[ext_resource path="res://scripts/Buildings/Baracks.gd" type="Script" id=2]
-[ext_resource path="res://assets/Buildings/building_selected.gdshader" type="Shader" id=3]
-[ext_resource path="res://assets/helper/NavPoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/buildings/buildingroot.gd" type="Script" id=1]
+[ext_resource path="res://scripts/buildings/baracks.gd" type="Script" id=2]
+[ext_resource path="res://assets/buildings/building_selected.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/helper/navpoint.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ConvexPolygonShape" id=1]
 points = PoolVector3Array( -1, -1, -1, 1, 1, 1, 1, -1, 1, 1, 1, -1, -1, 1, 1, 1, -1, -1, -1, -1, 1, -1, 1, -1 )
