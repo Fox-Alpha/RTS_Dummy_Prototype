@@ -49,10 +49,16 @@ func init_signals() -> void:
 # ===========================
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
-	if selected_object != null:
-		selected_object.select_object(false)
-		selected_object = null
-		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
+	if is_instance_valid(selected_object):
+
+			var uim = GM.get_manager_instance("UIManager")
+			if is_instance_valid(uim):
+				if selected_object.GetBuildingHasUI():
+					uim.show_ui_building(selected_object.GetBuildingUIName(), false)
+					
+			selected_object.select_object(false)
+			selected_object = null
+			selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 		
 		# TODO: UI Ausblenden falls vorhanden, Building, Unit
 
@@ -77,7 +83,8 @@ func _on_select_object(_selectedobject) -> void:
 			# TODO: UI Anzeigen
 			var uim = GM.get_manager_instance("UIManager")
 			if is_instance_valid(uim):
-				uim.show_ui_building(_selectedobject.GetBuildingUIName(), true)
+				if _selectedobject.GetBuildingHasUI():
+					uim.show_ui_building(_selectedobject.GetBuildingUIName(), true)
 		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 			print_debug("Object Type is UNIT")
 		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
