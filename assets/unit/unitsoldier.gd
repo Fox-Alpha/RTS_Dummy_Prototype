@@ -77,6 +77,7 @@ func _on_NavigationAgent_path_changed():
 		for p in path:
 			var nav = NavPoint.instance()
 			nav.translate(p)
+			nav.scale_object_local(Vector3(0.5, 0.5, 0.5))
 			Globals._WorldNavPointNodeParent.add_child(nav)
 
 
