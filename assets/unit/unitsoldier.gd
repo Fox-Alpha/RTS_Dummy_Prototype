@@ -43,7 +43,7 @@ func _physics_process(_delta):
 	if _NavAgentNode.avoidance_enabled:
 		_NavAgentNode.set_velocity(velocity)
 	else:
-		move_and_slide(velocity, Vector3.UP)
+		var _mas = move_and_slide(velocity, Vector3.UP)
 	
 
 
