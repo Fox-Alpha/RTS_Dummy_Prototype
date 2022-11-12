@@ -1,9 +1,11 @@
 class_name SavegameManager
-extends Node
+extends ManagerBase
 
 
-func _init():
-	print("SavegameManager::_init() -> Created")
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
 #	pass
 
 
@@ -17,4 +19,4 @@ func _init():
 
 #func _exit_tree():
 #	pass
-
+# ===========================

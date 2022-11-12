@@ -1,11 +1,13 @@
 class_name UnitManager
-extends Node
+extends ManagerBase
 
 export(Array) var Units = []
 
 
-func _init():
-	print("UnitManager::_init() -> Created")
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
 #	pass
 
 
@@ -19,6 +21,7 @@ func _init():
 
 #func _exit_tree():
 #	pass
+# ===========================
 
 
 func register_unit_inManager(_unit) -> void:
@@ -28,3 +31,9 @@ func register_unit_inManager(_unit) -> void:
 #	# Sicherstellen das es sich um den Klassentypen Unit handelt
 #	print_debug("Neue Unit hat sich Registriert %s: " % unit.unitbase.get_unit_name())
 #	return true
+
+
+
+
+
+

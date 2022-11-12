@@ -2,8 +2,10 @@ class_name TechTreeManager
 extends Node
 
 
-func _init():
-	print("TechTreeManager::_init() -> Created")
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
 #	pass
 
 
@@ -17,4 +19,4 @@ func _init():
 
 #func _exit_tree():
 #	pass
-
+# ===========================

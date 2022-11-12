@@ -1,9 +1,12 @@
 class_name SettingsManager
-extends Node
+extends ManagerBase
 
 
-func _init():
-	print("SettingsManager::_init() -> Created")
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
+#	print("SettingsManager::_init() -> Created")
 #	pass
 
 
@@ -17,3 +20,4 @@ func _init():
 
 # func _exit_tree():
 # 	pass
+# ===========================
