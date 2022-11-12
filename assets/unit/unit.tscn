@@ -8,7 +8,7 @@
 [sub_resource type="ShaderMaterial" id=14]
 resource_local_to_scene = true
 shader = ExtResource( 3 )
-shader_param/strenght = null
+shader_param/strenght = 0.0
 
 [sub_resource type="SpatialMaterial" id=13]
 resource_local_to_scene = true
