@@ -13,7 +13,7 @@ extends Node
 # 
 # 
 # ===========================
-
+var GM:Node
 
 export(Array) var Buildings = []
 
@@ -31,3 +31,7 @@ func _init():
 
 # func _exit_tree():
 #	pass
+
+
+func SetGameManagerInstance():
+	GM = Globals.get_gamemanager_instance()

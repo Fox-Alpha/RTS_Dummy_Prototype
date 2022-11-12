@@ -26,6 +26,7 @@ func _init():
 
 func _ready():
 	print("GameManager::_ready() -> Created")
+	# TODO: is_instance_valid
 	var manager = .get_children()
 
 	if manager.size() > 0:
@@ -109,7 +110,7 @@ func _select_object() -> void:
 		printt(rayArray)
 		var collider = rayArray["collider"]
 
-#		FIXME: Collider abfrage
+#		DONE: Collider abfrage
 #		Wenn Collider == KinematicBody, dann könnte es eine Unit sein
 #		Wenn es ein StaticBody, dann könnte es der Ground sein
 #		Es könnte aber auch ein Building sein
@@ -119,6 +120,7 @@ func _select_object() -> void:
 				collider = collider.get_parent_spatial()
 		if is_instance_valid(collider):
 			if collider.call("can_objectselected"):
+				print_debug("GM::_select_object() ->  Signal objectselected emitted")
 				Signalbus.emit_signal("objectselected", collider)
 			else:
 				Signalbus.emit_signal("objectunselected")
@@ -131,3 +133,9 @@ func get_manager_instance(manager : String) -> UnitManager:
 		return Managers[manager]
 	return null
 
+
+func BroadCastGM():
+	if Managers.size() > 0:
+		for m in Managers:
+			if Managers[m].has_method("SetGameManagerInstance"):
+				Managers[m].SetGameManagerInstance()
