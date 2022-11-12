@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/baseclasses/buildingbase.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "BuildingManager",
 "language": "GDScript",
 "path": "res://gamemanager/buildingmanager.gd"
@@ -39,7 +39,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/baseclasses/managerbase.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "NetworkManager",
 "language": "GDScript",
 "path": "res://gamemanager/networkmanager.gd"
@@ -49,22 +49,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gamemanager/objectmanager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "PlayerManager",
 "language": "GDScript",
 "path": "res://gamemanager/playermanager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "ResourceManager",
 "language": "GDScript",
 "path": "res://gamemanager/resourcemanager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "SavegameManager",
 "language": "GDScript",
 "path": "res://gamemanager/savegamemanager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "SettingsManager",
 "language": "GDScript",
 "path": "res://gamemanager/settingsmanager.gd"
@@ -79,7 +79,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gamemanager/techtreemanager.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "UIManager",
 "language": "GDScript",
 "path": "res://gamemanager/uimanager.gd"
@@ -94,10 +94,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/baseclasses/unitbase.gd"
 }, {
-"base": "Node",
+"base": "ManagerBase",
 "class": "UnitManager",
 "language": "GDScript",
 "path": "res://gamemanager/unitmanager.gd"
+}, {
+"base": "ManagerBase",
+"class": "WorldManager",
+"language": "GDScript",
+"path": "res://gamemanager/worldmanager.gd"
 } ]
 _global_script_class_icons={
 "Barracks": "",
@@ -117,7 +122,8 @@ _global_script_class_icons={
 "UIManager": "",
 "Unit": "",
 "UnitBase": "",
-"UnitManager": ""
+"UnitManager": "",
+"WorldManager": ""
 }
 
 [application]
