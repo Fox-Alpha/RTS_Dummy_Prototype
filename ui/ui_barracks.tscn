@@ -59,15 +59,15 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 columns = 4
 
-[node name="ButtRedUnit_3" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
+[node name="ButtRedUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
 margin_right = 56.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_3"]
-self_modulate = Color( 0.0784314, 0.713726, 0.0862745, 1 )
+[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit"]
+self_modulate = Color( 0.972549, 0.109804, 0.0470588, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -15.0
@@ -79,16 +79,17 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_3"]
+[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -14.0
-text = "GREEN"
+text = "red"
 align = 1
+uppercase = true
 max_lines_visible = 1
 
-[node name="ButtRedUnit_4" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
+[node name="ButtGreenUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
 margin_left = 60.0
 margin_right = 116.0
@@ -96,7 +97,7 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_4"]
+[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit"]
 self_modulate = Color( 0.0784314, 0.713726, 0.0862745, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -109,7 +110,7 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_4"]
+[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -118,7 +119,7 @@ text = "GREEN"
 align = 1
 max_lines_visible = 1
 
-[node name="ButtRedUnit_5" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
+[node name="ButtYellowUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
 margin_left = 120.0
 margin_right = 176.0
@@ -126,8 +127,8 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_5"]
-self_modulate = Color( 0.0784314, 0.713726, 0.0862745, 1 )
+[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtYellowUnit"]
+self_modulate = Color( 0.756863, 0.796078, 0.172549, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -15.0
@@ -139,16 +140,17 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_5"]
+[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtYellowUnit"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -14.0
-text = "GREEN"
+text = "Yellow"
 align = 1
+uppercase = true
 max_lines_visible = 1
 
-[node name="ButtRedUnit_6" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
+[node name="ButtBlueUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
 margin_left = 180.0
 margin_right = 236.0
@@ -156,8 +158,8 @@ margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
 
-[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_6"]
-self_modulate = Color( 0.0784314, 0.713726, 0.0862745, 1 )
+[node name="TextureButton" type="TextureButton" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtBlueUnit"]
+self_modulate = Color( 0.0588235, 0.192157, 0.815686, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_bottom = -15.0
@@ -169,13 +171,14 @@ texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
 
-[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit_6"]
+[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtBlueUnit"]
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -14.0
-text = "GREEN"
+text = "blue"
 align = 1
+uppercase = true
 max_lines_visible = 1
 
 [node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
