@@ -5,16 +5,19 @@
 [ext_resource path="res://assets/unit/unit_selected.gdshader" type="Shader" id=3]
 [ext_resource path="res://assets/unit/unitsoldier.gd" type="Script" id=4]
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/strenght = null
 
-[sub_resource type="SpatialMaterial" id=1]
-next_pass = SubResource( 10 )
+[sub_resource type="SpatialMaterial" id=13]
+resource_local_to_scene = true
+next_pass = SubResource( 14 )
 albedo_color = Color( 0.0941176, 0.235294, 0.886275, 1 )
 
-[sub_resource type="CapsuleMesh" id=2]
-material = SubResource( 1 )
+[sub_resource type="CapsuleMesh" id=12]
+resource_local_to_scene = true
+material = SubResource( 13 )
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0, 0, 0, 1 )
@@ -44,7 +47,7 @@ movement_speed = 25.0
 
 [node name="MeshBody" type="MeshInstance" parent="."]
 transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 1.54, 0 )
-mesh = SubResource( 2 )
+mesh = SubResource( 12 )
 
 [node name="MeshHair" type="MeshInstance" parent="MeshBody"]
 transform = Transform( 0.1, 0, 0, 0, 0.1, -0.433013, 0, 0.173205, 0.25, 0, 0.308046, 1.27351 )
