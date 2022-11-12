@@ -1,7 +1,5 @@
 [gd_scene load_steps=25 format=2]
 
-[gd_scene load_steps=24 format=2]
-
 [ext_resource path="res://assets/ground/ground.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/unit/unit.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/camera/rtscameracontroller.tscn" type="PackedScene" id=3]
@@ -19,6 +17,7 @@
 [ext_resource path="res://gamemanager/gamemanager.gd" type="Script" id=15]
 [ext_resource path="res://gamemanager/unitmanager.gd" type="Script" id=16]
 [ext_resource path="res://assets/buildings/building_selected.gdshader" type="Shader" id=17]
+[ext_resource path="res://ui/ui_barracks.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ProceduralSky" id=1]
 
