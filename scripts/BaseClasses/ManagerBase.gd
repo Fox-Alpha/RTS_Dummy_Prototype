@@ -3,11 +3,11 @@ class_name ManagerBase
 
 # ===========================
 # Bas Klasse von der alle Managerklassen abgeleitet werden
-# 
+#
 # Nur gemeinsame Eigenschaften und Funktionen
-# 
-# 
-# 
+#
+#
+#
 # ===========================
 
 

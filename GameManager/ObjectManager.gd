@@ -36,12 +36,12 @@ func init_signals() -> void:
 	# Object selektieren
 	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
 		var sig = Signalbus.connect("objectselected", self, "_on_select_object")
-		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
 
 	# Objecte Selektion aufheben
 	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
 		var sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
-		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 #	pass
 
 

@@ -16,7 +16,7 @@ onready var _WorldNavPointNodeParent = get_tree().get_root().get_node("./Main/Wo
 func _ready():
 	if !Signalbus.is_connected("setgamemanagerinstance", self, "set_gamemanager_instance"):
 		var sig = Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance")
-		assert(sig == OK, "GLOBALS::_ready() - > Connect con set_gamemanager_instance fehlgeschlagen")
+#		assert(sig == OK, "GLOBALS::_ready() - > Connect con set_gamemanager_instance fehlgeschlagen")
 #	pass
 
 

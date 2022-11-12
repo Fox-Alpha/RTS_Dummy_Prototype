@@ -1,9 +1,9 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
-[ext_resource path="res://assets/Unit/ObjectTypeUnit.gd" type="Script" id=2]
-[ext_resource path="res://assets/Unit/unit_selected.gdshader" type="Shader" id=3]
-[ext_resource path="res://assets/Unit/UnitSoldier.gd" type="Script" id=4]
+[ext_resource path="res://assets/unit/objecttypeunit.gd" type="Script" id=2]
+[ext_resource path="res://assets/unit/unit_selected.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/unit/unitsoldier.gd" type="Script" id=4]
 
 [sub_resource type="ShaderMaterial" id=10]
 shader = ExtResource( 3 )
