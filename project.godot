@@ -12,92 +12,92 @@ _global_script_classes=[ {
 "base": "BuildingBase",
 "class": "Barracks",
 "language": "GDScript",
-"path": "res://scripts/Buildings/Baracks.gd"
+"path": "res://scripts/buildings/baracks.gd"
 }, {
 "base": "Barracks",
 "class": "BarracksDummy",
 "language": "GDScript",
-"path": "res://assets/Buildings/BaracksDummy.gd"
+"path": "res://assets/buildings/baracksdummy.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "BuildingBase",
 "language": "GDScript",
-"path": "res://scripts/BaseClasses/BuildingBase.gd"
+"path": "res://scripts/baseclasses/buildingbase.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "BuildingManager",
 "language": "GDScript",
-"path": "res://GameManager/BuildingManager.gd"
+"path": "res://gamemanager/buildingmanager.gd"
 }, {
 "base": "ManagerBase",
 "class": "GameManager",
 "language": "GDScript",
-"path": "res://GameManager/GameManager.gd"
+"path": "res://gamemanager/gamemanager.gd"
 }, {
 "base": "Node",
 "class": "ManagerBase",
 "language": "GDScript",
-"path": "res://scripts/BaseClasses/ManagerBase.gd"
+"path": "res://scripts/baseclasses/managerbase.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "NetworkManager",
 "language": "GDScript",
-"path": "res://Networking/NetworkManager.gd"
+"path": "res://gamemanager/networkmanager.gd"
 }, {
-"base": "ManagerBase",
+"base": "Reference",
 "class": "ObjectManager",
 "language": "GDScript",
-"path": "res://GameManager/ObjectManager.gd"
+"path": "res://gamemanager/objectmanager.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "PlayerManager",
 "language": "GDScript",
-"path": "res://GameManager/PlayerManager.gd"
+"path": "res://gamemanager/playermanager.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "ResourceManager",
 "language": "GDScript",
-"path": "res://GameManager/ResourceManager.gd"
+"path": "res://gamemanager/resourcemanager.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "SavegameManager",
 "language": "GDScript",
-"path": "res://GameManager/SavegameManager.gd"
+"path": "res://gamemanager/savegamemanager.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "SettingsManager",
 "language": "GDScript",
-"path": "res://GameManager/SettingsManager.gd"
+"path": "res://gamemanager/settingsmanager.gd"
 }, {
 "base": "UnitBase",
 "class": "SimpleUnit",
 "language": "GDScript",
-"path": "res://scripts/UnitClass/SimpleUnit.gd"
+"path": "res://scripts/unitclass/simpleunit.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "TechTreeManager",
 "language": "GDScript",
-"path": "res://GameManager/TechTreeManager.gd"
+"path": "res://gamemanager/techtreemanager.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "UIManager",
 "language": "GDScript",
-"path": "res://GameManager/UIManager.gd"
+"path": "res://gamemanager/uimanager.gd"
 }, {
 "base": "UnitBase",
 "class": "Unit",
 "language": "GDScript",
-"path": "res://assets/Unit/ObjectTypeUnit.gd"
+"path": "res://assets/unit/objecttypeunit.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "UnitBase",
 "language": "GDScript",
-"path": "res://scripts/BaseClasses/UnitBase.gd"
+"path": "res://scripts/baseclasses/unitbase.gd"
 }, {
-"base": "Node",
+"base": "Reference",
 "class": "UnitManager",
 "language": "GDScript",
-"path": "res://GameManager/UnitManager.gd"
+"path": "res://gamemanager/unitmanager.gd"
 } ]
 _global_script_class_icons={
 "Barracks": "",
@@ -123,13 +123,18 @@ _global_script_class_icons={
 [application]
 
 config/name="RTS_Dummy_Prototype"
-run/main_scene="res://Assets/Main.tscn"
+run/main_scene="res://assets/main.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 Signalbus="*res://globals/signalbus.gd"
 Globals="*res://globals/globals.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
 
 [editor_plugins]
 
@@ -213,6 +218,10 @@ camera_rotate={
 3d_physics/layer_3="Buildings"
 3d_physics/layer_4="Resource"
 3d_physics/layer_5="Enviroment"
+
+[node]
+
+name_num_separator=2
 
 [physics]
 

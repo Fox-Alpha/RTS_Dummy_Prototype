@@ -124,7 +124,7 @@ func _select_object() -> void:
 				Signalbus.emit_signal("objectselected", collider)
 			else:
 				Signalbus.emit_signal("objectunselected")
-				
+
 
 
 # Von einem bestimmten Manager die aktuelle Instanz abholen

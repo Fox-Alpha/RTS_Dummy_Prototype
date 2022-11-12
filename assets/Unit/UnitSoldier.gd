@@ -11,7 +11,7 @@ onready var _NavMapNode = get_tree().get_root().get_node("./Main/World/WorldNavi
 #onready var _NavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
 onready var UnitMesh = $MeshBody
 onready var shader:ShaderMaterial = UnitMesh.mesh.material.next_pass
-onready var NavPoint = preload("res://assets/helper/NavPoint.tscn")
+onready var NavPoint = preload("res://assets/helper/navpoint.tscn")
 
 
 func _ready():
@@ -29,10 +29,10 @@ func _physics_process(_delta):
 	var targetpos = _NavAgentNode.get_next_location()
 	var direction = global_transform.origin.direction_to(targetpos)
 	var velocity = direction * movement_speed # _NavAgentNode.max_speed
-	
-#	look_at(global_transform.origin, -targetpos)	
+
+#	look_at(global_transform.origin, -targetpos)
 	#_from_position
-	
+
 	var lookdir = atan2(velocity.x, velocity.z)
 	rotation.y = lookdir
 
