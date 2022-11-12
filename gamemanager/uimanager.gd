@@ -1,13 +1,14 @@
 class_name UIManager
-extends Node
+extends ManagerBase
 
 export var UserInterfaces : Dictionary = {}
-var GM : Node
 
 onready var UINode : Node = get_tree().get_root().get_node_or_null("./Main/UI")
 
-func _init():
-	print("UIManager::_init() -> Created")
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
 #	pass
 
 
@@ -19,7 +20,6 @@ func _ready():
 			for ui in uinodes:
 				if is_instance_valid(ui):
 					UserInterfaces[ui.name] = ui
-#	pass
 
 
 #func _enter_tree():
@@ -28,8 +28,12 @@ func _ready():
 
 #func _exit_tree():
 #	pass
+# ===========================
 
-########################
+
+# ===========================
+#  public Methoden
+# ===========================
 func show_ui_building(building : String, showui:bool) -> void:
 	if !building.empty():
 		var b = get_ui_instance(building)
@@ -42,7 +46,4 @@ func get_ui_instance(ui : String) -> Control:
 	if UserInterfaces.has(ui):
 		return UserInterfaces[ui]
 	return null
-
-
-func SetGameManagerInstance():
-	GM = Globals.get_gamemanager_instance()
+# ===========================
