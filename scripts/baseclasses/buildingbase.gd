@@ -6,8 +6,9 @@ extends Node
 export var _buildingname : String = "EmptyName" setget set_building_name,get_building_name
 export var _buildingtype : String = "EmptyType" setget set_building_type,get_building_type
 export var _buildinguiname : String = "EmptyUI" setget set_building_uiname,get_building_uiname
-export var _ObjectType:int = 1 setget _set_objecttype, get_objecttype
+export var _ObjectType:int = Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING setget _set_objecttype, get_objecttype
 export var _buildingcanspawnunits : bool = false
+export var _buildinghasui : bool = false
 
 
 #onready var GM = Globals.get_gamemanager_instance()
@@ -90,6 +91,6 @@ func set_building_uiname(value:String):
 #	pass
 
 
-func get_building_uiname():
+func get_building_uiname() -> String:
 	return _buildinguiname
 #	pass
