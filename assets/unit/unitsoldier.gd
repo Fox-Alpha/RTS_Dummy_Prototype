@@ -20,6 +20,7 @@ func _ready():
 	_ObjectTypeNode.UnitName = "Basic Soldier"
 	if _NavAgentNode == null:
 		_ObjectTypeNode._canmoveunit = false
+	_NavAgentNode.set_target_location(global_transform.origin)
 
 
 func _physics_process(_delta):
@@ -36,7 +37,11 @@ func _physics_process(_delta):
 	var lookdir = atan2(velocity.x, velocity.z)
 	rotation.y = lookdir
 
-	_NavAgentNode.set_velocity(velocity)
+	if _NavAgentNode.avoidance_enabled:
+		_NavAgentNode.set_velocity(velocity)
+	else:
+		move_and_slide(velocity, Vector3.UP)
+	
 
 
 func _on_NavigationAgent_velocity_computed(_safe_velocity: Vector3) -> void:
