@@ -13,19 +13,21 @@ class_name GameManager
 #
 # Starten und Managen des Netzwerkmodus
 #
-
+# ===========================
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
 const GROUND_PLANE = Plane(Vector3.UP, 0)
 
-
-func _init():
-	pass
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
+#	pass
 
 
 func _ready():
-	print("GameManager::_ready() -> Created")
+#	print("GameManager::_ready() -> Created")
 	# TODO: is_instance_valid
 	var manager = .get_children()
 
@@ -56,8 +58,12 @@ func _input(_event) -> void:
 	# TODO: Ignorieren wenn die SHIFT Taste mitgedrückt wird. Soll die Kamera beegen
 	if Input.is_action_just_pressed("MouseClickRightButton", true):
 		_navigate_object()
+# ===========================
 
 
+# ===========================
+# Helper Methoden
+# ===========================
 func _get_collider_at_mouse_position():
 	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
 	var mousePos = .get_viewport().get_mouse_position()
@@ -74,6 +80,10 @@ func getmouseposin3d():
 
 	return position3D
 
+
+# ===========================
+# Lokale Methoden
+# ===========================
 func _navigate_object() -> void:
 	var rayArray = _get_collider_at_mouse_position()
 	getmouseposin3d()
@@ -126,14 +136,17 @@ func _select_object() -> void:
 				Signalbus.emit_signal("objectunselected")
 
 
-
+# ===========================
+# public Methoden
+# ===========================
 # Von einem bestimmten Manager die aktuelle Instanz abholen
+# TODO: Pascal_Case
 func get_manager_instance(manager : String) -> UnitManager:
 	if Managers.has(manager):
 		return Managers[manager]
 	return null
 
-
+# TODO: Umbenennen und Pascal_Case
 func BroadCastGM():
 	if Managers.size() > 0:
 		for m in Managers:
