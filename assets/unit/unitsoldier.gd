@@ -18,9 +18,9 @@ func _ready():
 	_ObjectTypeNode._ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNIT
 	_ObjectTypeNode.UnitType = "UnitSoldierBase"
 	_ObjectTypeNode.UnitName = "Basic Soldier"
-	if _NavAgentNode == null:
+	if is_instance_valid(_NavAgentNode):
 		_ObjectTypeNode._canmoveunit = false
-	_NavAgentNode.set_target_location(global_transform.origin)
+		_NavAgentNode.set_target_location(global_transform.origin)
 
 
 func _physics_process(_delta):
