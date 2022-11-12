@@ -1,5 +1,5 @@
 class_name BuildingManager
-extends Node
+extends ManagerBase
 
 # ===========================
 # Dieser Manager ist dafür verantwortlich das Aktionen an und von einem 
@@ -7,21 +7,18 @@ extends Node
 # 
 # Bauen von Gebäuden
 # Behandeln der notwendigen Resourcen
-# 
-# 
-# 
-# 
-# 
 # ===========================
-var GM:Node
 
-export(Array) var Buildings = []
+export var Buildings : Dictionary = {}
 
-func _ready():
-	pass
+# ===========================
+# Build-in Methoden
+# ===========================
+#func _ready():
+#	pass
 
-func _init():
-	print("BuildingManager::_init() -> Created")
+
+#func _init():
 #	pass
 
 
@@ -31,7 +28,8 @@ func _init():
 
 # func _exit_tree():
 #	pass
+# ===========================
 
 
-func SetGameManagerInstance():
-	GM = Globals.get_gamemanager_instance()
+
+

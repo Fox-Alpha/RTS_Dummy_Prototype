@@ -1,24 +1,27 @@
 class_name ObjectManager
 extends ManagerBase
-#extends Node
 
 # ===========================
 # Manager der als Proxy zwischen interagierbaren Objekten steht
 # Hier wird ermittelt welches Objekt eine AKtion ausführt
 # und leitet diese weiter
 # ===========================
-var GM:Node
+#var GM:Node
 
 var selected_object setget set_selectedobject, get_selectedobject
 var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 # ===========================
 
-func _init():
-	print("ObjectManager::_init() -> Created")
+
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
+#	pass
 
 
-func _ready():
-	pass
+#func _ready():
+#	pass
 
 
 #func _enter_tree():
@@ -27,6 +30,8 @@ func _ready():
 
 #func _exit_tree():
 #	pass
+# ===========================
+
 
 # ===========================
 # Signals
@@ -98,6 +103,8 @@ func _on_select_object(_selectedobject) -> void:
 # ===========================
 
 # ===========================
+# Getter & Setter Methoden
+# ===========================
 func set_selectedobject(value) -> void:
 #	if value != value.empty():
 	if is_instance_valid(value):
@@ -109,6 +116,3 @@ func get_selectedobject():
 	pass
 # ===========================
 
-
-func SetGameManagerInstance():
-	GM = Globals.get_gamemanager_instance()
