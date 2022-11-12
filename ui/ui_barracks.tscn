@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://ui/ui_barracks.gd" type="Script" id=2]
 
 [node name="UI_Barracks" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -3.0
 margin_bottom = -3.0
+script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_left = 1.0
@@ -200,3 +202,8 @@ margin_top = 10.0
 margin_right = 40.0
 margin_bottom = 14.0
 text = "Foo Bar"
+
+[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 2 ]]
+[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtYellowUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 3 ]]
+[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtBlueUnit/TextureButton" to="." method="_on_TextureButton_color_pressed" binds= [ Color( 0.0588235, 0.192157, 0.815686, 1 ) ]]
