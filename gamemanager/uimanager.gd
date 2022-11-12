@@ -32,8 +32,10 @@ func _ready():
 ########################
 func show_ui_building(building : String, showui:bool) -> void:
 	if !building.empty():
-		get_ui_instance(building).visible = showui
-		pass
+		var b = get_ui_instance(building)
+		if (b) != null:
+			b.visible = showui
+#		pass
 
 
 func get_ui_instance(ui : String) -> Control:
