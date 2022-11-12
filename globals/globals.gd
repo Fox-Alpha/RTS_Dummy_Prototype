@@ -15,11 +15,11 @@ onready var _WorldNavPointNodeParent = get_tree().get_root().get_node("./Main/Wo
 
 func _ready():
 	if !Signalbus.is_connected("setgamemanagerinstance", self, "set_gamemanager_instance"):
-		var sig = Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance")
+		var _sig = Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance")
 
 	if !Signalbus.is_connected("game_manager_is_ready", self, "on_game_manager_is_ready"):
-		var sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
-		assert(sig == OK, "GLOBALS::_ready() - > Connect on_game_manager_is_ready fehlgeschlagen")
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
+#		assert(sig == OK, "GLOBALS::_ready() - > Connect on_game_manager_is_ready fehlgeschlagen")
 #	pass
 
 func on_game_manager_is_ready():
