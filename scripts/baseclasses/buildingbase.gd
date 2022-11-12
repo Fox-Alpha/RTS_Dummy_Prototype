@@ -1,5 +1,5 @@
-class_name BuildingBase
 extends Node
+class_name BuildingBase
 
 # TODO: Rechtsklick soll Rallypoint setzen
 

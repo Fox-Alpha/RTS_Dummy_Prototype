@@ -1,5 +1,5 @@
-class_name Barracks
 extends BuildingBase
+class_name Barracks
 
 
 func _ready():
