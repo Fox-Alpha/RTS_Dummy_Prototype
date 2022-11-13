@@ -1,53 +1,89 @@
 extends Spatial
 
 
-export var _canselectbuilding : bool = true
-export var is_selected:bool = false 
+# var _canselectbuilding : bool = true
+# var is_selected:bool = false 
 
 onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var BuildingMesh = $BaracksBody/MeshBuilding
 onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
 
 
+# ===========================
+# Build-In Methoden
+# ===========================
+#func _init():
+#	pass
+
+
+func _ready():
+	shader = BuildingMesh.mesh.material.next_pass
+
+
+#func _enter_tree():
+#	pass
+
+
+#func _exit_tree():
+#	pass
+
+# ===========================
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+# ===========================
+
+
 func select_object(selected:bool) -> void:
 	print_debug("BuildingRoot::select_object() -> Building selected: %s" % selected)
-	is_selected = selected
-	if is_selected:
+	_ObjectTypeNode.building_is_selected = selected
+	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
 	else:
 		shader.set_shader_param("strenght", 0.0)
 
 
+func GetObjectProperties() -> Dictionary:
+	return _ObjectTypeNode.ObjectTypeProperties
+
+func get_objecttype() -> int:
+	return _ObjectTypeNode.BuildingObjectType
+
+func GetObjectName() -> String:
+	return _ObjectTypeNode.BuildingName
+
+
+func GetObjectTypeName() -> String:
+	return _ObjectTypeNode.BuildingTypeName
+
+
+# func GetBuildingCanSelect() -> bool:
+func can_objectselected() -> bool:
+	var b = _ObjectTypeNode.BuildingCanSelect
+	return b
+
+
 func GetObjectHasUI() -> bool:
-	return _ObjectTypeNode._buildinghasui
+	return _ObjectTypeNode.BuildingHasUI
 
 
 func GetObjectUIName() -> String:
-	return _ObjectTypeNode.get_building_uiname()
-
-func SetBuildingRallypoint(newpos : Vector3):
-	_ObjectTypeNode.set_building_rallypoint(newpos)
-#	pass
-
-func can_objectselected() -> bool:
-	return _canselectbuilding
+	return _ObjectTypeNode.BuildingUiName
 
 
-func get_objecttype_node() -> Node:
-	return _ObjectTypeNode
+func GetObjectCanSpawnUnits() -> bool:
+	return _ObjectTypeNode.BuildingCanSpawnUnits
 
 
-func get_objecttype():
-	return _ObjectTypeNode._ObjectType
+func GetBuildingSpawnPos() -> Vector3:
+	return _ObjectTypeNode.UnitSpawnPos
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-#	if get_objecttype_node()._buildingcanspawnunits:
-	shader = BuildingMesh.mesh.material.next_pass
-#	pass # Replace with function body.
+func GetBuildingRallyPos() -> Vector3:
+	return _ObjectTypeNode.UnitRallyPos
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func SetBuildingRallyPoint(pos:Vector3):
+	_ObjectTypeNode.UnitRallyPos = pos
+
+#####
