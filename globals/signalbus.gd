@@ -14,3 +14,4 @@ signal objectselected
 signal objectunselected
 
 signal newobject_instantiated(newtype)
+
