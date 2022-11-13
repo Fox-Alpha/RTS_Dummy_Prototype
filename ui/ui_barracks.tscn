@@ -53,17 +53,18 @@ anchor_bottom = 1.0
 size_flags_vertical = 0
 
 [node name="GridContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
-margin_right = 236.0
-margin_bottom = 264.0
+margin_left = 12.0
+margin_right = 224.0
+margin_bottom = 50.0
 grow_horizontal = 2
 rect_min_size = Vector2( 5, 5 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_horizontal = 4
+size_flags_vertical = 4
 columns = 4
 
 [node name="ButtRedUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
-margin_right = 56.0
+margin_right = 50.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -93,8 +94,8 @@ max_lines_visible = 1
 
 [node name="ButtGreenUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
-margin_left = 60.0
-margin_right = 116.0
+margin_left = 54.0
+margin_right = 104.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -123,8 +124,8 @@ max_lines_visible = 1
 
 [node name="ButtYellowUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
-margin_left = 120.0
-margin_right = 176.0
+margin_left = 108.0
+margin_right = 158.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -154,8 +155,8 @@ max_lines_visible = 1
 
 [node name="ButtBlueUnit" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer"]
 self_modulate = Color( 0.0666667, 0.701961, 0.898039, 1 )
-margin_left = 180.0
-margin_right = 236.0
+margin_left = 162.0
+margin_right = 212.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 50, 50 )
 size_flags_horizontal = 3
@@ -184,11 +185,35 @@ uppercase = true
 max_lines_visible = 1
 
 [node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
-margin_top = 268.0
+margin_top = 54.0
 margin_right = 236.0
-margin_bottom = 282.0
+margin_bottom = 68.0
 text = "Test Test 123"
 align = 1
+
+[node name="TextureProgress" type="TextureProgress" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
+unique_name_in_owner = true
+margin_left = 18.0
+margin_top = 72.0
+margin_right = 218.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 200, 64 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+max_value = 10.0
+texture_progress = ExtResource( 1 )
+fill_mode = 4
+tint_under = Color( 0.0666667, 0.701961, 0.898039, 1 )
+tint_over = Color( 0.0784314, 0.713726, 0.0862745, 1 )
+tint_progress = Color( 0.509804, 0.490196, 0.490196, 0.501961 )
+radial_initial_angle = 270.0
+radial_fill_degrees = 180.0
+radial_center_offset = Vector2( 0, 32 )
+nine_patch_stretch = true
+stretch_margin_left = 3
+stretch_margin_top = 3
+stretch_margin_right = 3
+stretch_margin_bottom = 3
 
 [node name="Panel2" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer"]
 margin_top = 304.0
@@ -203,7 +228,10 @@ margin_right = 40.0
 margin_bottom = 14.0
 text = "Foo Bar"
 
+[node name="CooldownTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtYellowUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 3 ]]
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtBlueUnit/TextureButton" to="." method="_on_TextureButton_color_pressed" binds= [ Color( 0.0588235, 0.192157, 0.815686, 1 ) ]]
+[connection signal="timeout" from="CooldownTimer" to="." method="_on_Timer_timeout"]
