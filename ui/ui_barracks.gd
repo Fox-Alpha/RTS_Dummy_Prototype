@@ -59,7 +59,7 @@ func _on_Timer_timeout():
 	if pb.value == pb.max_value:
 		.get_node("CooldownTimer").stop()
 		# -> SignalNeues Object erstellen
-		emit_signal("Instantiatenewobject", selection)
+		emit_signal("newobject_instantiated", selection)
 		# -> Angabe von Auswahl
 		# -> OM: Ermitteln des selktierten Typs (Building)
 		# -> OM: an selectedobject: Instanziere neus Object von Typ [AUswahl]
