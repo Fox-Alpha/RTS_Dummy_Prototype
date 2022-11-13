@@ -55,16 +55,15 @@ func init_signals() -> void:
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
 	if is_instance_valid(selected_object):
-
-			var uim = GM.get_manager_instance("UIManager")
-			if selected_object.has_method("GetObjectHasUI"):
-				if is_instance_valid(uim):
-					if selected_object.call("GetObjectHasUI"):
-						uim.show_ui_building(selected_object.GetObjectUIName(), false)
+		var uim = GM.get_manager_instance("UIManager")
+		if selected_object.has_method("GetObjectHasUI"):
+			if is_instance_valid(uim):
+				if selected_object.call("GetObjectHasUI"):
+					uim.show_ui_building(selected_object.GetObjectUIName(), false)
 					
-			selected_object.select_object(false)
-			selected_object = null
-			selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
+		selected_object.select_object(false)
+		selected_object = null
+		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 		
 		# TODO: UI Ausblenden falls vorhanden, Building, Unit
 
@@ -116,3 +115,7 @@ func get_selectedobject():
 	pass
 # ===========================
 
+
+func BuildNewObject(newType:int):
+	print_debug("OM: Neuen Typ erstellen: ", newType)
+	pass
