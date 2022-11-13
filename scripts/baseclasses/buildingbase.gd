@@ -79,8 +79,11 @@ func _Set_ObjectTypeProperty(property, value) -> void:
 
 
 func _Get_ObjectTypeProperty(property:String):
+	var prop
 	if ObjectTypeProperties.has(property):
-		return ObjectTypeProperties[property]
+		prop = ObjectTypeProperties[property]
+	return prop
+	
 
 
 # Abfrage des gesamten Property Dictionary
@@ -123,7 +126,7 @@ func _set_building_can_select(value):
 
 
 func _get_building_can_select():
-	return _Get_ObjectTypeProperty("ObjectsCanSelect")
+	return _Get_ObjectTypeProperty("ObjectCanSelect")
 
 # ===========================
 
