@@ -89,11 +89,11 @@ navmesh = SubResource( 7 )
 
 [node name="Buildings" type="Spatial" parent="World/WorldNavigation"]
 
-[node name="BuildingRoot2" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
-transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00528829, 11.3738, 0, 0 )
-
 [node name="BuildingRoot" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
 transform = Transform( 0.421732, 0, 0.90672, 0, 1, 0, -0.90672, 0, 0.421732, -18.252, 0, 2.181 )
+
+[node name="BuildingRoot2" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
+transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00528829, 11.3738, 0, 0 )
 
 [node name="Units" type="Spatial" parent="World"]
 
