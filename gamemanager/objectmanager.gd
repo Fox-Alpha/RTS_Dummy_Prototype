@@ -46,6 +46,11 @@ func init_signals() -> void:
 	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
 		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+
+	# Ein neues Object instantiieren
+	if not Signalbus.is_connected("instantiatenewobject", self, "_on_instantiate_new_object"):
+		var _sig = Signalbus.connect("instantiatenewobject", self, "_on_instantiate_new_object")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 #	pass
 
 
@@ -116,6 +121,23 @@ func get_selectedobject():
 # ===========================
 
 
-func BuildNewObject(newType:int):
+#func BuildNewObject(newType:int):
+func _on_instantiate_new_object(newType:int):
 	print_debug("OM: Neuen Typ erstellen: ", newType)
+	
+	var objtype = selected_object.get_objecttype()
+	match objtype:
+		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+			print_debug("BuildNewObject(): Object Type is Building")
+			var bm = GM.get_manager_instance("BuildingManager")
+			if is_instance_valid(bm):
+				bm.
+		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
+			print_debug("BuildNewObject(): Object Type is UNIT")
+		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
+			print_debug("BuildNewObject(): Object Type is RESOURCE")
+		Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
+			print_debug("BuildNewObject(): Object Type is GROUND")
+		Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
+			print_debug("BuildNewObject(): Object Type is UNDEFINED")
 	pass
