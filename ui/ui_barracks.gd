@@ -58,11 +58,8 @@ func _on_Timer_timeout():
 	pb.value += 1
 	if pb.value == pb.max_value:
 		.get_node("CooldownTimer").stop()
-		# Objectmanager
-		var om =  GM.get_manager_instance("ObjectManager")
-		if is_instance_valid(om):
-			om.BuildNewObject(selection)
-		# -> Neues Object erstellen
+		# -> SignalNeues Object erstellen
+		emit_signal("Instantiatenewobject", selection)
 		# -> Angabe von Auswahl
 		# -> OM: Ermitteln des selktierten Typs (Building)
 		# -> OM: an selectedobject: Instanziere neus Object von Typ [AUswahl]
