@@ -48,8 +48,8 @@ func init_signals() -> void:
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
 	# Ein neues Object instantiieren
-	if not Signalbus.is_connected("instantiatenewobject", self, "_on_instantiate_new_object"):
-		var _sig = Signalbus.connect("instantiatenewobject", self, "_on_instantiate_new_object")
+	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
+		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 #	pass
 
@@ -86,7 +86,7 @@ func _on_select_object(_selectedobject) -> void:
 	selected_object.select_object(true)
 	selected_object_type = objtype
 	
-	print_debug("MM::_on_select_object() ->  Signal objectselected received")
+	print_debug("OM::_on_select_object() ->  Signal objectselected received")
 	match objtype:
 		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			print_debug("Object Type is BUILDING")
@@ -94,7 +94,7 @@ func _on_select_object(_selectedobject) -> void:
 			var uim = GM.get_manager_instance("UIManager")
 			if is_instance_valid(uim):
 				if _selectedobject.GetObjectHasUI():
-					uim.show_ui_building(_selectedobject.GetObjectUIName(), true)
+					uim.show_ui_instance(_selectedobject.GetObjectUIName(), true, _selectedobject.GetObjectProperties())
 		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 			print_debug("Object Type is UNIT")
 		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
@@ -129,9 +129,9 @@ func _on_instantiate_new_object(newType:int):
 	match objtype:
 		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			print_debug("BuildNewObject(): Object Type is Building")
-			var bm = GM.get_manager_instance("BuildingManager")
-			if is_instance_valid(bm):
-				bm.
+#			var bm = GM.get_manager_instance("BuildingManager")
+#			if is_instance_valid(bm):
+#				bm.
 		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 			print_debug("BuildNewObject(): Object Type is UNIT")
 		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
