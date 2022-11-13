@@ -35,6 +35,6 @@ func set_gamemanager_instance(value):
 	pass
 
 
-func get_gamemanager_instance():
+func get_gamemanager_instance() -> GameManager:
 	return _instance
 	pass
