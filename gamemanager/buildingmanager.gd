@@ -14,8 +14,12 @@ export var Buildings : Dictionary = {}
 # ===========================
 # Build-in Methoden
 # ===========================
-#func _ready():
-#	pass
+func _ready():
+	# Ein neues Object instantiieren
+	if not Signalbus.is_connected("instantiatenewobject", self, "_on_instantiate_new_object"):
+		var _sig = Signalbus.connect("instantiatenewobject", self, "_on_instantiate_new_object")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+	pass
 
 
 #func _init():
@@ -29,7 +33,3 @@ export var Buildings : Dictionary = {}
 # func _exit_tree():
 #	pass
 # ===========================
-
-
-
-
