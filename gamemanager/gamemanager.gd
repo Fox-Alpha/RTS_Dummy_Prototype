@@ -104,7 +104,7 @@ func _navigate_object() -> void:
 						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 							so.SetAgentTarget(getmouseposin3d())
 						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-							so.SetBuildingRallypoint(getmouseposin3d())
+							so.SetBuildingRallyPoint(getmouseposin3d())
 
 				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 #					TODO: Bei Buildings das passende UI einblenden
@@ -129,7 +129,8 @@ func _select_object() -> void:
 		if !collider.has_method("get_objecttype"):
 				collider = collider.get_parent_spatial()
 		if is_instance_valid(collider):
-			if collider.call("can_objectselected"):
+			var cansel = collider.call("can_objectselected")
+			if cansel:
 				print_debug("GM::_select_object() ->  Signal objectselected emitted")
 				Signalbus.emit_signal("objectselected", collider)
 			else:
