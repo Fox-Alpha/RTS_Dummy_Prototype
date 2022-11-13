@@ -13,4 +13,4 @@ signal objectselected
 # warning-ignore:unused_signal
 signal objectunselected
 
-signal instantiatenewobject(newtype)
+signal newobject_instantiated(newtype)
