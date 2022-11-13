@@ -64,7 +64,7 @@ func _on_unselect_object() -> void:
 		if selected_object.has_method("GetObjectHasUI"):
 			if is_instance_valid(uim):
 				if selected_object.call("GetObjectHasUI"):
-					uim.show_ui_building(selected_object.GetObjectUIName(), false)
+					uim.show_ui_instance(selected_object.GetObjectUIName(), false, selected_object.GetObjectProperties())
 					
 		selected_object.select_object(false)
 		selected_object = null
