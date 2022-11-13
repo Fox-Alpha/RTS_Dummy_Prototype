@@ -3,15 +3,16 @@ class_name Barracks
 
 
 #var ObjectTypeProperties:Dictionary = {
-#	"BuildingName": "EmptyName",
-#	"BuildingType": "EmptyType",
 #	"ObjectType": Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING, 
-#	"BuildingHasUI": false,
-#	"BuildingUiName": "EmptyUI",
-#	"BuildingCanSpawnObjects": false,
+#	"ObjectName": "EmptyName",
+#	"ObjectTypeName": "EmptyTypeName",
+#	"ObjectCanSelect": false,
+#	"ObjectHasUI": false,
+#	"ObjectUiName": "EmptyUI",
+#	"ObjectCanSpawnObjects": false,
 #	"ObjectSpawnPos": Vector3(),
-#	"UnitRallyPos": Vector3(),
-#	"ObjectsToSpawn": {}
+#	"ObjectRallyPos": Vector3(),
+#	"ObjectToSpawn": {}
 #}
 
 
@@ -21,13 +22,14 @@ func _ready():
 
 
 func _initobjectproperties():
-	ObjectTypeProperties["BuildingName"] = "Army Barrack"
-	ObjectTypeProperties["BuildingType"] = "BuildingArmyBarrack"
 	ObjectTypeProperties["ObjectType"] = Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING
-	ObjectTypeProperties["BuildingHasUI"] = true
-	ObjectTypeProperties["BuildingUiName"] = "UI_Barracks"
-	ObjectTypeProperties["BuildingCanSpawnObjects"] = true
+	ObjectTypeProperties["ObjectName"] = "Army Barrack"
+	ObjectTypeProperties["ObjectTypeName"] = "BuildingArmyBarrack"
+	ObjectTypeProperties["ObjectCanSelect"] = true
+	ObjectTypeProperties["ObjectHasUI"] = true
+	ObjectTypeProperties["ObjectUiName"] = "UI_Barracks"
+	ObjectTypeProperties["ObjectCanSpawnObjects"] = true
 	ObjectTypeProperties["ObjectSpawnPos"] = UnitSpawnPos
-	ObjectTypeProperties["UnitRallyPos"] = UnitRallyPos
+	ObjectTypeProperties["ObjectRallyPos"] = UnitRallyPos
 	ObjectTypeProperties["ObjectsToSpawn"] = {}
 #	ObjectTypeProperties[""] = ""
