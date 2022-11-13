@@ -75,7 +75,7 @@ func _get_collider_at_mouse_position():
 
 
 func getmouseposin3d():
-	var position2D = get_viewport().get_mouse_position()
+	var position2D = .get_viewport().get_mouse_position()
 	var position3D = GROUND_PLANE.intersects_ray(camera.project_ray_origin(position2D),camera.project_ray_normal(position2D))
 
 	return position3D
