@@ -5,6 +5,7 @@ extends Control
 # Unit erzeugen im Unitmanager
 
 var GM : GameManager
+var selection: int = 0
 
 # ===========================
 # Build-In Methoden
@@ -37,6 +38,7 @@ func _on_TextureButton_pressed(arg_1:int):
 			pass
 	var t: Timer = get_node("CooldownTimer")
 	if t.is_stopped():
+		selection = arg_1
 		get_node("%TextureProgress").value = 0
 		t.start()
 	pass # Replace with function body.
@@ -56,4 +58,12 @@ func _on_Timer_timeout():
 	pb.value += 1
 	if pb.value == pb.max_value:
 		.get_node("CooldownTimer").stop()
+		# Objectmanager
+		var om =  GM.get_manager_instance("ObjectManager")
+		if is_instance_valid(om):
+			om.BuildNewObject(selection)
+		# -> Neues Object erstellen
+		# -> Angabe von Auswahl
+		# -> OM: Ermitteln des selktierten Typs (Building)
+		# -> OM: an selectedobject: Instanziere neus Object von Typ [AUswahl]
 	pass # Replace with functionC body.
