@@ -12,3 +12,5 @@ signal game_manager_is_ready
 signal objectselected
 # warning-ignore:unused_signal
 signal objectunselected
+
+signal instantiatenewobject(newtype)
