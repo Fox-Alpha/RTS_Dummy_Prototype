@@ -1,6 +1,8 @@
 class_name UIManager
 extends ManagerBase
 
+
+var _objectui_properties : Dictionary = {}
 export var UserInterfaces : Dictionary = {}
 
 onready var UINode : Node = get_tree().get_root().get_node_or_null("./Main/UI")
@@ -34,11 +36,12 @@ func _ready():
 # ===========================
 #  public Methoden
 # ===========================
-func show_ui_building(building : String, showui:bool) -> void:
-	if !building.empty():
-		var b = get_ui_instance(building)
-		if (b) != null:
-			b.visible = showui
+func show_ui_instance(uiname:String, showui:bool, properties:Dictionary) -> void:
+	if !uiname.empty():
+		var ui = get_ui_instance(uiname)
+		if (ui) != null:
+			ui.visible = showui
+			_objectui_properties = properties
 #		pass
 
 
