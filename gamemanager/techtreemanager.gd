@@ -1,5 +1,5 @@
 class_name TechTreeManager
-extends Node
+extends ManagerBase
 
 
 # ===========================
