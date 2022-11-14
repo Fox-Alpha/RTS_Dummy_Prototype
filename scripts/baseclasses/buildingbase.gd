@@ -25,7 +25,7 @@ var ObjectTypeProperties:Dictionary = {
 	"ObjectCanSpawnObjects": false,
 	"ObjectSpawnPos": Vector3(),
 	"ObjectRallyPos": Vector3(),
-	"ObjectToSpawn": {}
+	"ObjectsToSpawn": {}
 	# TRYME: Instanz Verweis einfügen
 } setget , _Get_ObjectTypeProperties
 
