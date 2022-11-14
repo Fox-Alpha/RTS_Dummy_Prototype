@@ -31,5 +31,34 @@ func _initobjectproperties():
 	ObjectTypeProperties["ObjectCanSpawnObjects"] = true
 	ObjectTypeProperties["ObjectSpawnPos"] = UnitSpawnPos
 	ObjectTypeProperties["ObjectRallyPos"] = UnitRallyPos
-	ObjectTypeProperties["ObjectsToSpawn"] = {}
+	ObjectTypeProperties["ObjectsToSpawn"] = {
+							"1": {
+								"name": "",
+								"class": "",
+								"color": "",
+								"__EMPTY_1": "",
+								"__EMPTY_2": "",
+							},
+							"2": {
+								"name": "",
+								"class": "",
+								"color": "",
+								"__EMPTY_1": "",
+								"__EMPTY_2": "",
+							},
+							"3": {
+								"name": "",
+								"class": "",
+								"color": "",
+								"__EMPTY_1": "",
+								"__EMPTY_2": "",
+							},
+							"4": {
+								"name": "",
+								"class": "",
+								"color": "",
+								"__EMPTY_1": "",
+								"__EMPTY_2": "",
+							}
+						}
 #	ObjectTypeProperties[""] = ""
