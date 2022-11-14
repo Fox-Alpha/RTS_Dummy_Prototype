@@ -51,8 +51,8 @@ func init_signals() -> void:
 	# newobject_instantiated
 	# TRYME: Signal in Aufrufer connecten
 	# bei unselect, disconnecten
-	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
-		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
+	# if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
+		# var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 #	pass
 
@@ -63,24 +63,15 @@ func init_signals() -> void:
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
 	if is_instance_valid(selected_object):
-		# TRYME: UI Anzeige im Object bei On_Select / On_Unselect ausgführen lassen
-		var uim = GM.get_manager_instance("UIManager")
-		if selected_object.has_method("GetObjectHasUI"):
-			if is_instance_valid(uim):
-				if selected_object.call("GetObjectHasUI"):
-					uim.show_ui_instance(selected_object.GetObjectUIName(), false, selected_object.GetObjectProperties())
-					
 		selected_object.select_object(false)
 		selected_object = null
 		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
-		
-		# TODO: UI Ausblenden falls vorhanden, Building, Unit
 
 
 # Signal ein Objekt selektieren
 func _on_select_object(_selectedobject) -> void:
-	print_debug("Signal selectobject received: ", _selectedobject)
-	var objtype = _selectedobject.get_objecttype()
+	# print_debug("Signal selectobject received: ", _selectedobject)
+	# var objtype = _selectedobject.get_objecttype()
 
 	if is_instance_valid(selected_object):
 		if selected_object != _selectedobject:
@@ -88,26 +79,20 @@ func _on_select_object(_selectedobject) -> void:
 
 	selected_object = _selectedobject
 	selected_object.select_object(true)
-	selected_object_type = objtype
+	# selected_object_type = objtype
 	
-	print_debug("OM::_on_select_object() ->  Signal objectselected received")
-	match objtype:
-		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-			print_debug("Object Type is BUILDING")
-			# DONE: UI Anzeigen
-			# TRYME: UI Anzeige im Object bei On_Select / On_Unselect ausgführen lassen
-			var uim = GM.get_manager_instance("UIManager")
-			if is_instance_valid(uim):
-				if _selectedobject.GetObjectHasUI():
-					uim.show_ui_instance(_selectedobject.GetObjectUIName(), true, _selectedobject.GetObjectProperties())
-		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
-			print_debug("Object Type is UNIT")
-		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
-			print_debug("Object Type is RESOURCE")
-		Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
-			print_debug("Object Type is GROUND")
-		Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
-			print_debug("Object Type is UNDEFINED")
+	# print_debug("OM::_on_select_object() ->  Signal objectselected received")
+	# match objtype:
+		# Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+			# print_debug("Object Type is BUILDING")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
+			# print_debug("Object Type is UNIT")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
+			# print_debug("Object Type is RESOURCE")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
+			# print_debug("Object Type is GROUND")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
+			# print_debug("Object Type is UNDEFINED")
 
 # ===========================
 
@@ -127,22 +112,22 @@ func get_selectedobject():
 
 
 #func BuildNewObject(newType:int):
-func _on_instantiate_new_object(newType:int):
-	print_debug("OM: Neuen Typ erstellen: ", newType)
+# func _on_instantiate_new_object(newType:int):
+	# print_debug("OM: Neuen Typ erstellen: ", newType)
 	
-	var objtype = selected_object.get_objecttype()
-	match objtype:
-		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-			print_debug("BuildNewObject(): Object Type is Building")
-#			var bm = GM.get_manager_instance("BuildingManager")
-#			if is_instance_valid(bm):
-#				bm.
-		Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
-			print_debug("BuildNewObject(): Object Type is UNIT")
-		Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
-			print_debug("BuildNewObject(): Object Type is RESOURCE")
-		Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
-			print_debug("BuildNewObject(): Object Type is GROUND")
-		Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
-			print_debug("BuildNewObject(): Object Type is UNDEFINED")
-	pass
+	# var objtype = selected_object.get_objecttype()
+	# match objtype:
+		# Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+			# print_debug("BuildNewObject(): Object Type is Building")
+			# var bm = GM.get_manager_instance("BuildingManager")
+			# if is_instance_valid(bm):
+				# bm.
+		# Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
+			# print_debug("BuildNewObject(): Object Type is UNIT")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
+			# print_debug("BuildNewObject(): Object Type is RESOURCE")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
+			# print_debug("BuildNewObject(): Object Type is GROUND")
+		# Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
+			# print_debug("BuildNewObject(): Object Type is UNDEFINED")
+	# pass
