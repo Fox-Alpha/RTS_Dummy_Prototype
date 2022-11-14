@@ -200,7 +200,7 @@ margin_bottom = 136.0
 rect_min_size = Vector2( 200, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-max_value = 10.0
+rounded = true
 texture_progress = ExtResource( 1 )
 fill_mode = 4
 tint_under = Color( 0.0666667, 0.701961, 0.898039, 1 )
@@ -229,6 +229,9 @@ margin_bottom = 14.0
 text = "Foo Bar"
 
 [node name="CooldownTimer" type="Timer" parent="."]
+physics_interpolation_mode = 2
+process_mode = 0
+wait_time = 0.1
 
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 2 ]]

@@ -5,7 +5,11 @@ extends Control
 # Unit erzeugen im Unitmanager
 
 var GM : GameManager
-var selection: int = 0
+export var selection: int = 0
+export var buildtime = 5000	# ms
+export var elapsedbuildtime = 0
+
+onready var timernode = get_node("CooldownTimer")
 
 # ===========================
 # Build-In Methoden
@@ -40,6 +44,8 @@ func _on_TextureButton_pressed(arg_1:int):
 	if t.is_stopped():
 		selection = arg_1
 		get_node("%TextureProgress").value = 0
+#		get_node("%TextureProgress").max_value = buildtime
+		elapsedbuildtime = 0
 		t.start()
 	pass # Replace with function body.
 
@@ -55,8 +61,12 @@ func _Set_GameManager_Instance():
 
 func _on_Timer_timeout():
 	var pb = .get_node("%TextureProgress")	#ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/
-	pb.value += 1
-	if pb.value == pb.max_value:
+	elapsedbuildtime += timernode.wait_time *1000
+	var elapsed = elapsedbuildtime * 100 / buildtime
+	pb.value = elapsed
+	var p = pb.value
+	var m = pb.max_value
+	if pb.value >= pb.max_value:
 		.get_node("CooldownTimer").stop()
 		# -> SignalNeues Object erstellen
 		Signalbus.emit_signal("newobject_instantiated", selection)
