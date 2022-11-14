@@ -49,6 +49,8 @@ func init_signals() -> void:
 
 	# Ein neues Object instantiieren
 	# newobject_instantiated
+	# TRYME: Signal in Aufrufer connecten
+	# bei unselect, disconnecten
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
@@ -61,6 +63,7 @@ func init_signals() -> void:
 # Signal ein Objekt deselektieren
 func _on_unselect_object() -> void:
 	if is_instance_valid(selected_object):
+		# TRYME: UI Anzeige im Object bei On_Select / On_Unselect ausgführen lassen
 		var uim = GM.get_manager_instance("UIManager")
 		if selected_object.has_method("GetObjectHasUI"):
 			if is_instance_valid(uim):
@@ -91,7 +94,8 @@ func _on_select_object(_selectedobject) -> void:
 	match objtype:
 		Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			print_debug("Object Type is BUILDING")
-			# TODO: UI Anzeigen
+			# DONE: UI Anzeigen
+			# TRYME: UI Anzeige im Object bei On_Select / On_Unselect ausgführen lassen
 			var uim = GM.get_manager_instance("UIManager")
 			if is_instance_valid(uim):
 				if _selectedobject.GetObjectHasUI():

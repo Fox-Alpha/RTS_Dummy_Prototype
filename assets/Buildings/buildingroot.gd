@@ -39,8 +39,10 @@ func select_object(selected:bool) -> void:
 	_ObjectTypeNode.building_is_selected = selected
 	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
+		# TRYME: UI Anzeigen lassen
 	else:
 		shader.set_shader_param("strenght", 0.0)
+		# TRYME: UI Ausblenden lassen
 
 
 func GetObjectProperties() -> Dictionary:

@@ -29,6 +29,9 @@ func _ready():
 #func _exit_tree():
 #	pass
 # ===========================
+# TODO: Abrufen des Property Dictionary 
+# TRYME: Build Anforderung an aufrufer senden
+# ===========================
 
 func _on_TextureButton_pressed(arg_1:int):
 	match arg_1:

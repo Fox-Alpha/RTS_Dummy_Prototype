@@ -26,6 +26,7 @@ var ObjectTypeProperties:Dictionary = {
 	"ObjectSpawnPos": Vector3(),
 	"ObjectRallyPos": Vector3(),
 	"ObjectToSpawn": {}
+	# TRYME: Instanz Verweis einfügen
 } setget , _Get_ObjectTypeProperties
 
 
@@ -58,6 +59,8 @@ func _ready():
 #func _exit_tree():
 #	pass
 # ===========================
+
+# TODO: Methode zum anzeigen / ausblenden erstellen
 
 # ===========================
 
