@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/buildings/baracks.gd"
 }, {
-"base": "Reference",
+"base": "Barracks",
 "class": "BarracksDummy",
 "language": "GDScript",
 "path": "res://assets/buildings/baracksdummy.gd"
@@ -84,7 +84,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gamemanager/uimanager.gd"
 }, {
-"base": "Reference",
+"base": "UnitBase",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://assets/unit/objecttypeunit.gd"
