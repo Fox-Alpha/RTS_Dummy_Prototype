@@ -33,32 +33,36 @@ func _initobjectproperties():
 	ObjectTypeProperties["ObjectRallyPos"] = UnitRallyPos
 	ObjectTypeProperties["ObjectsToSpawn"] = {
 							"1": {
-								"name": "",
-								"class": "",
-								"color": "",
-								"buildtime": "",
+								"name": "BlueSoldier",
+								"class": "Soldier",
+								"color": Color.aliceblue,
+								"buildtime": 1.5,
 								"resorcescosts": "",
 							},
 							"2": {
-								"name": "",
-								"class": "",
-								"color": "",
-								"buildtime": "",
+								"name": "AzureSoldier",
+								"class": "Tank",
+								"color": Color.azure,
+								"buildtime": 2.5,
 								"resorcescosts": "",
 							},
 							"3": {
-								"name": "",
-								"class": "",
-								"color": "",
-								"buildtime": "",
+								"name": "CadetSoldier",
+								"class": "Archer",
+								"color": Color.cadetblue,
+								"buildtime": 4.0,
 								"resorcescosts": "",
 							},
 							"4": {
-								"name": "",
-								"class": "",
-								"color": "",
-								"buildtime": "",
+								"name": "ChartSoldier",
+								"class": "Medic",
+								"color": Color.chartreuse,
+								"buildtime": 6.0,
 								"resorcescosts": "",
 							}
 						}
+	if _Get_ObjectTypeProperty("ObjectCanSpawnObjects"):
+		if is_instance_valid(_UnitSpawnNode) and is_instance_valid(_UnitRallypointNode):
+			UnitSpawnPos = _UnitSpawnNode.get_global_translation()
+			UnitRallyPos = _UnitRallypointNode.get_global_translation()
 #	ObjectTypeProperties[""] = ""
