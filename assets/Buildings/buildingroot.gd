@@ -24,10 +24,17 @@ func _ready():
 	GM = Globals.get_gamemanager_instance()
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
+	
+	if !Signalbus.is_connected("game_manager_is_ready", self, "on_game_manager_is_ready"):
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
 
 
-#func _enter_tree():
-#	pass
+func _enter_tree():
+#	GM = Globals.get_gamemanager_instance()
+#
+#	if is_instance_valid(GM):
+#		print(name, "::on_game_manager_is_ready() -> ", name)
+	pass
 
 
 #func _exit_tree():
@@ -38,6 +45,13 @@ func _ready():
 #func _process(delta):
 #	pass
 # ===========================
+func on_game_manager_is_ready():
+	GM = Globals.get_gamemanager_instance()
+	
+	if is_instance_valid(GM):
+		print(name, "::on_game_manager_is_ready() -> ", name)
+
+
 func _on_instantiate_new_object(newType:int):
 #	print_debug("OM: Neuen Typ erstellen: ", newType)
 	if not _ObjectTypeNode.building_is_selected:
@@ -45,8 +59,14 @@ func _on_instantiate_new_object(newType:int):
 			
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
+		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
 		print_debug("Buildingroot: Neuen Typ erstellen: ", newType)
-
+		var newunit = unit.instance()
+		GM.UnitsNode.add_child(newunit)
+		newunit.name = unitprops["name"]
+		newunit.set_basecolor(unitprops["color"])
+		newunit.set_global_translation(GetBuildingSpawnPos())
+		newunit.SetAgentTarget(GetBuildingRallyPos())
 
 
 func _manage_ui(showui:bool):
