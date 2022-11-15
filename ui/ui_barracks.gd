@@ -8,7 +8,7 @@ var GM : GameManager
 var is_building = false
 
 export var selection: int = 0
-export var buildtime : float = 5.0	# ms
+export var buildtime : float = 1.0	# ms
 export var elapsedbuildtime = 0
 
 onready var timernode = get_node("CooldownTimer")
@@ -54,19 +54,13 @@ func _on_TextureButton_pressed(arg_1:int):
 			tp, "value", tp.min_value, tp.max_value,
 			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
 			):
+			selection = arg_1
 			tween.start()
-			selection = arg_1	
-			yield(tween, "tween_all_completed")
-			print_debug("Tween beendet")
-			Signalbus.emit_signal("newobject_instantiated", selection)
-#	var t: Timer = get_node("CooldownTimer")
-#	if t.is_stopped():
-#		selection = arg_1
-#		get_node("%TextureProgress").value = 0
-##		get_node("%TextureProgress").max_value = buildtime
-#		elapsedbuildtime = 0
-#		t.start()
-#	pass # Replace with function body.
+
+
+
+
+
 
 
 func _on_TextureButton_color_pressed(_extra_arg_0):
@@ -78,23 +72,6 @@ func _Set_GameManager_Instance():
 	print(name, "::SetGameManagerInstance() -> ", name)
 
 
-func _on_Timer_timeout():
-	var pb = .get_node("%TextureProgress")	#ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/
-	elapsedbuildtime += timernode.wait_time *1000
-	var elapsed = elapsedbuildtime * 100 / buildtime
-	pb.value = elapsed
-	var p = pb.value
-	var m = pb.max_value
-	if pb.value >= pb.max_value:
-		.get_node("CooldownTimer").stop()
-		# -> SignalNeues Object erstellen
-		Signalbus.emit_signal("newobject_instantiated", selection)
-		# -> Angabe von Auswahl
-		# -> OM: Ermitteln des selktierten Typs (Building)
-		# -> OM: an selectedobject: Instanziere neus Object von Typ [AUswahl]
-	pass # Replace with functionC body.
-
-
 func _on_UI_Barracks_visibility_changed() -> void:
 	# TODO: Empfangene Properties auswerten
 	# Buttons dynamisch nach : ObjectsToSpawn erstellen
@@ -102,11 +79,12 @@ func _on_UI_Barracks_visibility_changed() -> void:
 	pass # Replace with function body.
 
 
-func _on_Tween_tween_started(object: Object, key: NodePath) -> void:
+func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	is_building = true
 	pass # Replace with function body.
 
 
 func _on_Tween_tween_all_completed() -> void:
 	is_building = false
+	Signalbus.emit_signal("newobject_instantiated", selection)
 	pass # Replace with function body.
