@@ -78,6 +78,7 @@ rect_min_size = Vector2( 5, 5 )
 rect_pivot_offset = Vector2( 1, 1 )
 size_flags_horizontal = 15
 size_flags_vertical = 15
+action_mode = 0
 texture_normal = ExtResource( 1 )
 expand = true
 stretch_mode = 5
@@ -228,18 +229,9 @@ margin_right = 40.0
 margin_bottom = 14.0
 text = "Foo Bar"
 
-[node name="CooldownTimer" type="Timer" parent="."]
-physics_interpolation_mode = 2
-process_mode = 0
-wait_time = 0.1
-
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="visibility_changed" from="." to="." method="_on_UI_Barracks_visibility_changed"]
-[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 1 ]]
-[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 2 ]]
-[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtYellowUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 3 ]]
-[connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtBlueUnit/TextureButton" to="." method="_on_TextureButton_color_pressed" binds= [ Color( 0.0588235, 0.192157, 0.815686, 1 ) ]]
-[connection signal="timeout" from="CooldownTimer" to="." method="_on_Timer_timeout"]
+[connection signal="button_up" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 1 ]]
 [connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
 [connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
