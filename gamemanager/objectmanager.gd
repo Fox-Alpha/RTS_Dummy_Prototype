@@ -47,15 +47,6 @@ func init_signals() -> void:
 		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
-	# Ein neues Object instantiieren
-	# newobject_instantiated
-	# TRYME: Signal in Aufrufer connecten
-	# bei unselect, disconnecten
-	# if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
-		# var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
-#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
-#	pass
-
 
 # ===========================
 #Signal Methoden
