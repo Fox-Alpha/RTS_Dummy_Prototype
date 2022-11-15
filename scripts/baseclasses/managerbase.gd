@@ -20,6 +20,8 @@ var GM:Node
 func _ready():
 #	print("ManagerBase _ready()")
 	print("Instanz::_ready() -> ", name)
+	if !Signalbus.is_connected("game_manager_is_ready", self, "on_game_manager_is_ready"):
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
 #	pass
 
 
@@ -30,6 +32,11 @@ func _ready():
 #func _exit_tree():
 #	pass
 # ===========================
+
+func on_game_manager_is_ready():
+	GM = Globals.get_gamemanager_instance()
+	if is_instance_valid(GM):
+		print(name, "::on_game_manager_is_ready() -> ", name)
 
 ###################
 func SetGameManagerInstance():
