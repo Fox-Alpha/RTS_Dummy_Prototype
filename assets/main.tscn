@@ -96,16 +96,16 @@ transform = Transform( 0.421732, 0, 0.90672, 0, 1, 0, -0.90672, 0, 0.421732, -18
 [node name="BuildingRoot2" parent="World/WorldNavigation/Buildings" instance=ExtResource( 8 )]
 transform = Transform( 0.00528829, 0, -0.999986, 0, 1, 0, 0.999986, 0, 0.00528829, 11.3738, 0, 0 )
 
+[node name="NavPoints" type="Spatial" parent="World"]
+
 [node name="Units" type="Spatial" parent="World"]
 script = ExtResource( 17 )
 
 [node name="UnitRoot" parent="World/Units" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -15 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0278082, -15 )
 
 [node name="UnitRoot_2" parent="World/Units" instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5896, 0, 0 )
-
-[node name="NavPoints" type="Spatial" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3698, -0.0286522, 5.43741 )
 
 [node name="UI" type="Spatial" parent="."]
 
