@@ -15,19 +15,7 @@ var UnitRallyPos : Vector3 setget _set_building_rallypoint, _get_building_rallyp
 # "ObjectsToSpawn": {}
 
 
-var ObjectTypeProperties:Dictionary = {
-	"ObjectType": Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING, 
-	"ObjectName": "EmptyName",
-	"ObjectTypeName": "EmptyTypeName",
-	"ObjectCanSelect": false,
-	"ObjectHasUI": false,
-	"ObjectUiName": "EmptyUI",
-	"ObjectCanSpawnObjects": false,
-	"ObjectSpawnPos": Vector3(),
-	"ObjectRallyPos": Vector3(),
-	"ObjectsToSpawn": {}
-	# TRYME: Instanz Verweis einfügen
-} setget , _Get_ObjectTypeProperties
+var ObjectTypeProperties : Dictionary setget , _Get_ObjectTypeProperties
 
 
 #onready var GM = Globals.get_gamemanager_instance()
@@ -46,10 +34,31 @@ onready var _UnitRallypointNode = .get_node_or_null("%UnitRallyPosition3D")
 
 
 func _ready():
-	if _Get_ObjectTypeProperty("ObjectsCanSpawnObjects"):
-		if is_instance_valid(_UnitSpawnNode) and is_instance_valid(_UnitRallypointNode):
-			UnitSpawnPos = .get_node("%UnitSpawnPosition3D").get_global_translation()
-			UnitRallyPos = .get_node("%UnitRallyPosition3D").get_global_translation()
+	ObjectTypeProperties = {
+		"ObjectType": Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING, 
+		"ObjectName": "EmptyName",
+		"ObjectTypeName": "EmptyTypeName",
+		"ObjectCanSelect": false,
+		"ObjectHasUI": false,
+		"ObjectUiName": "EmptyUI",
+		"ObjectCanSpawnObjects": false,
+		"ObjectSpawnPos": Vector3(),
+		"ObjectRallyPos": Vector3(),
+		"ObjectsToSpawn": {}
+	# TRYME: Instanz Verweis einfügen
+	}
+	UnitSpawnPos = _UnitSpawnNode.get_global_translation()
+	UnitRallyPos = _UnitRallypointNode.get_global_translation()
+#	pass
+	
+	
+#	if _Get_ObjectTypeProperty("ObjectCanSpawnObjects"):
+#		if is_instance_valid(_UnitSpawnNode) and is_instance_valid(_UnitRallypointNode):
+#			UnitSpawnPos = _UnitSpawnNode.get_global_translation()
+#			UnitRallyPos = _UnitRallypointNode.get_global_translation()
+#_UnitSpawnNode) and is_instance_valid(_UnitRallypointNode):
+#			UnitSpawnPos = .get_node("%UnitSpawnPosition3D").get_global_translation()
+#			UnitRallyPos = .get_node("%UnitRallyPosition3D").get_global_translation()
 
 
 #func _enter_tree():
@@ -85,6 +94,7 @@ func _Get_ObjectTypeProperty(property:String):
 	var prop
 	if ObjectTypeProperties.has(property):
 		prop = ObjectTypeProperties[property]
+		# 
 	return prop
 	
 
@@ -176,6 +186,8 @@ func _set_building_rallypoint(newrallypoint):
 
 
 func _get_building_rallypoint() -> Vector3:
+#	var rp  = _Get_ObjectTypeProperty("ObjectRallyPos")
+#	return rp
 	return _Get_ObjectTypeProperty("ObjectRallyPos")
 
 # ===========================
