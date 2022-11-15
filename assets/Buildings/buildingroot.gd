@@ -1,9 +1,6 @@
 extends Spatial
 
 
-# var _canselectbuilding : bool = true
-# var is_selected:bool = false 
-
 onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var BuildingMesh = $BaracksBody/MeshBuilding
 onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
@@ -27,8 +24,6 @@ func _ready():
 	GM = Globals.get_gamemanager_instance()
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
-	# if is_instance_valid(GM):
-		# ui_manager = GM.get_manager_instance("UIManager")
 
 
 #func _enter_tree():
@@ -67,11 +62,11 @@ func select_object(selected:bool) -> void:
 	_ObjectTypeNode.building_is_selected = selected
 	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
-		# TRYME: UI Anzeigen lassen
+		# DONE: UI Anzeigen lassen
 		_manage_ui(true)
 	else:
 		shader.set_shader_param("strenght", 0.0)
-		# TRYME: UI Ausblenden lassen
+		# DONE: UI Ausblenden lassen
 		_manage_ui(false)
 
 
