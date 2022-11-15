@@ -18,7 +18,7 @@ export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
 const GROUND_PLANE = Plane(Vector3.UP, 0)
-
+onready var UnitsNode = $"../World/Units"
 # ===========================
 # Build-In Methoden
 # ===========================
@@ -39,7 +39,7 @@ func _ready():
 
 				if managerinstance.has_method("init_signals"):
 					managerinstance.init_signals()
-
+#	call_deferred()
 	Signalbus.emit_signal("setgamemanagerinstance", self)
 	# TRYME: In jeder klasse in der eine GM Instanz benötigt wird das Signal Connecten
 
