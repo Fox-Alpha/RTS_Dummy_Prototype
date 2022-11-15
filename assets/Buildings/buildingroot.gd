@@ -46,7 +46,7 @@ func _on_instantiate_new_object(newType:int):
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
 		print_debug("Buildingroot: Neuen Typ erstellen: ", newType)
-		print_stack()
+
 
 
 func _manage_ui(showui:bool):
