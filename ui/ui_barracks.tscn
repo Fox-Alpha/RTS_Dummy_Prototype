@@ -233,6 +233,8 @@ physics_interpolation_mode = 2
 process_mode = 0
 wait_time = 0.1
 
+[node name="Tween" type="Tween" parent="."]
+
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtRedUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtGreenUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 2 ]]
 [connection signal="pressed" from="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridContainer/ButtYellowUnit/TextureButton" to="." method="_on_TextureButton_pressed" binds= [ 3 ]]

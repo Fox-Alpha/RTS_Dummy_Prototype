@@ -6,10 +6,11 @@ extends Control
 
 var GM : GameManager
 export var selection: int = 0
-export var buildtime = 5000	# ms
+export var buildtime : float = 5.0	# ms
 export var elapsedbuildtime = 0
 
 onready var timernode = get_node("CooldownTimer")
+onready var tween = $"Tween"
 
 # ===========================
 # Build-In Methoden
@@ -43,14 +44,25 @@ func _on_TextureButton_pressed(arg_1:int):
 			pass
 		4:	# Unit BLUE
 			pass
-	var t: Timer = get_node("CooldownTimer")
-	if t.is_stopped():
-		selection = arg_1
-		get_node("%TextureProgress").value = 0
-#		get_node("%TextureProgress").max_value = buildtime
-		elapsedbuildtime = 0
-		t.start()
-	pass # Replace with function body.
+			
+	var tp = get_node("%TextureProgress")
+	if is_instance_valid(tp):
+		tween.interpolate_property(
+			tp, "value", tp.min_value, tp.max_value,
+			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
+		)
+	tween.start()
+	
+	yield(tween, "tween_all_completed")
+	print_debug("Tween beendet")
+#	var t: Timer = get_node("CooldownTimer")
+#	if t.is_stopped():
+#		selection = arg_1
+#		get_node("%TextureProgress").value = 0
+##		get_node("%TextureProgress").max_value = buildtime
+#		elapsedbuildtime = 0
+#		t.start()
+#	pass # Replace with function body.
 
 
 func _on_TextureButton_color_pressed(extra_arg_0):
