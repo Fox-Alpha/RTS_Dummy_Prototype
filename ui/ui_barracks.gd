@@ -11,7 +11,6 @@ export var selection: int = 0
 export var buildtime : float = 1.0	# ms
 export var elapsedbuildtime = 0
 
-onready var timernode = get_node("CooldownTimer")
 onready var tween = $"Tween"
 
 
