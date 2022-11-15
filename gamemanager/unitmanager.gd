@@ -24,6 +24,11 @@ export(Array) var Units = []
 # ===========================
 
 
+func register_unitsnode_inManager(_unitNode: Spatial) -> void:
+	# TODO: Node zum Instantiieren neuer Units
+	pass
+
+
 func register_unit_inManager(_unit) -> void:
 	pass
 #	if !Units.has(unit):
