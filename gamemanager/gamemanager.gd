@@ -41,6 +41,7 @@ func _ready():
 					managerinstance.init_signals()
 
 	Signalbus.emit_signal("setgamemanagerinstance", self)
+	# TRYME: In jeder klasse in der eine GM Instanz benötigt wird das Signal Connecten
 
 
 # func _enter_tree():
