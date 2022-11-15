@@ -36,29 +36,29 @@ func _initobjectproperties():
 								"name": "",
 								"class": "",
 								"color": "",
-								"__EMPTY_1": "",
-								"__EMPTY_2": "",
+								"buildtime": "",
+								"resorcescosts": "",
 							},
 							"2": {
 								"name": "",
 								"class": "",
 								"color": "",
-								"__EMPTY_1": "",
-								"__EMPTY_2": "",
+								"buildtime": "",
+								"resorcescosts": "",
 							},
 							"3": {
 								"name": "",
 								"class": "",
 								"color": "",
-								"__EMPTY_1": "",
-								"__EMPTY_2": "",
+								"buildtime": "",
+								"resorcescosts": "",
 							},
 							"4": {
 								"name": "",
 								"class": "",
 								"color": "",
-								"__EMPTY_1": "",
-								"__EMPTY_2": "",
+								"buildtime": "",
+								"resorcescosts": "",
 							}
 						}
 #	ObjectTypeProperties[""] = ""
