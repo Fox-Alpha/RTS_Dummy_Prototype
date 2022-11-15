@@ -5,12 +5,15 @@ extends Control
 # Unit erzeugen im Unitmanager
 
 var GM : GameManager
+var is_building = false
+
 export var selection: int = 0
 export var buildtime : float = 5.0	# ms
 export var elapsedbuildtime = 0
 
 onready var timernode = get_node("CooldownTimer")
 onready var tween = $"Tween"
+
 
 # ===========================
 # Build-In Methoden
@@ -46,15 +49,16 @@ func _on_TextureButton_pressed(arg_1:int):
 			pass
 			
 	var tp = get_node("%TextureProgress")
-	if is_instance_valid(tp):
-		tween.interpolate_property(
+	if is_instance_valid(tp) and not is_building:
+		if tween.interpolate_property(
 			tp, "value", tp.min_value, tp.max_value,
 			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
-		)
-	tween.start()
-	
-	yield(tween, "tween_all_completed")
-	print_debug("Tween beendet")
+			):
+			tween.start()
+			selection = arg_1	
+			yield(tween, "tween_all_completed")
+			print_debug("Tween beendet")
+			Signalbus.emit_signal("newobject_instantiated", selection)
 #	var t: Timer = get_node("CooldownTimer")
 #	if t.is_stopped():
 #		selection = arg_1
@@ -65,7 +69,7 @@ func _on_TextureButton_pressed(arg_1:int):
 #	pass # Replace with function body.
 
 
-func _on_TextureButton_color_pressed(extra_arg_0):
+func _on_TextureButton_color_pressed(_extra_arg_0):
 	pass # Replace with function body.
 
 
@@ -89,3 +93,20 @@ func _on_Timer_timeout():
 		# -> OM: Ermitteln des selktierten Typs (Building)
 		# -> OM: an selectedobject: Instanziere neus Object von Typ [AUswahl]
 	pass # Replace with functionC body.
+
+
+func _on_UI_Barracks_visibility_changed() -> void:
+	# TODO: Empfangene Properties auswerten
+	# Buttons dynamisch nach : ObjectsToSpawn erstellen
+	# Signals mit Parameter verknüpfen
+	pass # Replace with function body.
+
+
+func _on_Tween_tween_started(object: Object, key: NodePath) -> void:
+	is_building = true
+	pass # Replace with function body.
+
+
+func _on_Tween_tween_all_completed() -> void:
+	is_building = false
+	pass # Replace with function body.
