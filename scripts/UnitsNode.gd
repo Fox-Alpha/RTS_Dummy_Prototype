@@ -58,7 +58,7 @@ extends Spatial
 #-------------------------------------------------------------------------------
 # public methods Upper_Pascal_Case
 #-------------------------------------------------------------------------------
-func Example_Method_Name(exampleparam) -> void:
+func Example_Method_Name(_exampleparam) -> void:
 	pass
 #-------------------------------------------------------------------------------
 # private methods, _lower_case
