@@ -143,7 +143,7 @@ func _select_object() -> void:
 # ===========================
 # Von einem bestimmten Manager die aktuelle Instanz abholen
 # TODO: Pascal_Case
-func get_manager_instance(manager : String) -> UnitManager:
+func get_manager_instance(manager : String):	# -> Manager Instanz
 	if Managers.has(manager):
 		return Managers[manager]
 	return null
