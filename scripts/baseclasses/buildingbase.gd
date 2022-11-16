@@ -26,6 +26,10 @@ onready var _UnitSpawnNode = .get_node_or_null("%UnitSpawnPosition3D")
 onready var _UnitRallypointNode = .get_node_or_null("%UnitRallyPosition3D")
 
 
+# TODO: Warteschlange integrieren
+# TODO: Warteschlange von UI abrufen
+# TODO: Warteschlange continuirlich prüfen und abarbeiten, auch wenn nicht mehr selektiert / kein UI
+
 # ===========================
 # Build-In Methoden
 # ===========================

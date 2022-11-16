@@ -8,6 +8,13 @@ enum OBJECT_TYPE_ENUM{
 	TYPE_GROUND
 }
 
+
+# TODO: Add Signal für UnitsRootNode
+# TODO: Add Signal für BuildingRootNode
+# TODO: Add Signal für neue Gebäude
+# TODO: Bei neuen Gebäuden die NavMesh neu berechnen
+
+
 # Globale GameManager Instanz
 var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
