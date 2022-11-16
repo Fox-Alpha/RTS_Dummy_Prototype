@@ -5,6 +5,7 @@ extends Control
 # Unit erzeugen im Unitmanager
 
 var GM : GameManager
+var UIM : UIManager
 var is_building = false
 
 export var selection: int = 0
@@ -12,6 +13,8 @@ export var buildtime : float = 1.0	# ms
 export var elapsedbuildtime = 0
 
 onready var tween = $"Tween"
+onready var button = preload("res://ui/ButtBuildUnit.tscn")
+onready var ButtGrid = $"%GridButtonContainer"
 
 
 # ===========================
@@ -57,11 +60,6 @@ func _on_TextureButton_pressed(arg_1:int):
 			tween.start()
 
 
-
-
-
-
-
 func _on_TextureButton_color_pressed(_extra_arg_0):
 	pass # Replace with function body.
 
@@ -69,10 +67,26 @@ func _on_TextureButton_color_pressed(_extra_arg_0):
 func _Set_GameManager_Instance():
 	GM = Globals.get_gamemanager_instance()
 	print(name, "::SetGameManagerInstance() -> ", name)
+	UIM = GM.get_manager_instance("UIManager")
 
 
 func _on_UI_Barracks_visibility_changed() -> void:
+	if !visible:
+		return
 	# TODO: Empfangene Properties auswerten
+	if UIM._objectui_properties.size() > 0:
+		var UnitsToBuild:Dictionary = UIM._objectui_properties.get("ObjectsToSpawn")
+		if ButtGrid.get_child_count() > 0:
+			for c in ButtGrid.get_children():
+				c.queue_free()
+		if UnitsToBuild.size() > 0:
+			for u in UnitsToBuild.keys():
+				var b:Panel = button.instance()
+				b.get_node("LabelUnitName").text = UnitsToBuild[u].name
+				b.get_node("TextureButtUnitColor").self_modulate = UnitsToBuild[u].color
+				var m = b.get_node("TextureButtUnitColor").modulate
+				b.name = "Build_%s" % UnitsToBuild[u].name
+				ButtGrid.add_child(b)
 	# Buttons dynamisch nach : ObjectsToSpawn erstellen
 	# Signals mit Parameter verknüpfen
 	pass # Replace with function body.
