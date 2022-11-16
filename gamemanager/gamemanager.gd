@@ -18,6 +18,8 @@ export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
 const GROUND_PLANE = Plane(Vector3.UP, 0)
+
+# TODO: Dynamich durch die Node selber registrieren
 onready var UnitsNode = $"../World/Units"
 # ===========================
 # Build-In Methoden
@@ -34,7 +36,7 @@ func _ready():
 	if manager.size() > 0:
 		for m in manager:
 			var managerinstance = m
-			if managerinstance != null:
+			if is_instance_valid(managerinstance):
 				Managers[m.name] = managerinstance
 
 				if managerinstance.has_method("init_signals"):
@@ -107,10 +109,6 @@ func _navigate_object() -> void:
 						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 							so.SetBuildingRallyPoint(getmouseposin3d())
 
-				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-#					TODO: Bei Buildings das passende UI einblenden
-					pass
-
 
 
 # Wenn Collision hat "canSelected", dann per Type an Manager weiterleiten
@@ -142,13 +140,12 @@ func _select_object() -> void:
 # public Methoden
 # ===========================
 # Von einem bestimmten Manager die aktuelle Instanz abholen
-# TODO: Pascal_Case
 func get_manager_instance(manager : String):	# -> Manager Instanz
 	if Managers.has(manager):
 		return Managers[manager]
 	return null
 
-# TODO: Umbenennen und Pascal_Case
+
 func BroadCastGM():
 	if Managers.size() > 0:
 		for m in Managers:

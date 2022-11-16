@@ -1,9 +1,4 @@
 extends Control
-# TODO: Verbinden mit Building Manager
-# Verbinden mit UnitManager
-# Unit Asset abrufen
-# Unit erzeugen im Unitmanager
-
 var GM : GameManager
 var UIM : UIManager
 var is_building = false
@@ -35,8 +30,8 @@ func _ready():
 #func _exit_tree():
 #	pass
 # ===========================
-# TODO: Abrufen des Property Dictionary 
-# TRYME: Build Anforderung an aufrufer senden
+
+
 # ===========================
 
 func _on_TextureButton_pressed(arg_1:int):

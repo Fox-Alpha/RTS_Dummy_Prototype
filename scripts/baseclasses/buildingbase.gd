@@ -45,7 +45,6 @@ func _ready():
 		"ObjectSpawnPos": Vector3(),
 		"ObjectRallyPos": Vector3(),
 		"ObjectsToSpawn": {}
-	# TRYME: Instanz Verweis einfügen
 	}
 	UnitSpawnPos = _UnitSpawnNode.get_global_translation()
 	UnitRallyPos = _UnitRallypointNode.get_global_translation()
@@ -68,8 +67,6 @@ func _ready():
 #func _exit_tree():
 #	pass
 # ===========================
-
-# TODO: Methode zum anzeigen / ausblenden erstellen
 
 # ===========================
 
