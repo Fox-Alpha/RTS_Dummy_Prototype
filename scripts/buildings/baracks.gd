@@ -33,30 +33,30 @@ func _initobjectproperties():
 	ObjectTypeProperties["ObjectRallyPos"] = UnitRallyPos
 	ObjectTypeProperties["ObjectsToSpawn"] = {
 							"1": {
-								"name": "BlueSoldier",
+								"name": "RED",
 								"class": "Soldier",
-								"color": Color.aliceblue,
+								"color": Color.red,
 								"buildtime": 1.5,
 								"resorcescosts": "",
 							},
 							"2": {
-								"name": "AzureSoldier",
+								"name": "BLUE",
 								"class": "Tank",
-								"color": Color.azure,
+								"color": Color.blue,
 								"buildtime": 2.5,
 								"resorcescosts": "",
 							},
 							"3": {
-								"name": "CadetSoldier",
+								"name": "GREEN",
 								"class": "Archer",
-								"color": Color.cadetblue,
+								"color": Color.green,
 								"buildtime": 4.0,
 								"resorcescosts": "",
 							},
 							"4": {
-								"name": "ChartSoldier",
+								"name": "WHITE",
 								"class": "Medic",
-								"color": Color.chartreuse,
+								"color": Color.white,
 								"buildtime": 6.0,
 								"resorcescosts": "",
 							}
