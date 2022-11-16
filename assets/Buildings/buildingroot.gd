@@ -27,6 +27,12 @@ func _ready():
 	
 	if !Signalbus.is_connected("game_manager_is_ready", self, "on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
+		
+	if !Signalbus.is_connected("add_newobject_tobuildqueue", self, "on_newobject_tobuildqueue_added"):
+		var _sig = Signalbus.connect("add_newobject_tobuildqueue", self, "on_newobject_tobuildqueue_added")
+		
+	if !Signalbus.is_connected("newobject_build_has_started", self, "on_newobject_build_has_started"):
+		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
 
 
 func _enter_tree():
@@ -52,13 +58,23 @@ func on_game_manager_is_ready():
 		print(name, "::on_game_manager_is_ready() -> ", name)
 
 
+func on_newobject_build_has_started():
+	_ObjectTypeNode.is_building = true
+
+func on_newobject_tobuildqueue_added(nextType:int):
+	_ObjectTypeNode._ObjectBuildQueue.append(nextType)
+
+
 func _on_instantiate_new_object(newType:int):
 #	print_debug("OM: Neuen Typ erstellen: ", newType)
-	if not _ObjectTypeNode.building_is_selected:
-		return
-			
+	# TODO: Anpassen an Buildqueue
+#	if _ObjectTypeNode.is_building: # or _ObjectTypeNode._ObjectBuildQueue.empty():
+#		return
+
+	# FIXME: Es werden 4 Objecte gespawnt
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
+		
 		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
 		print_debug("Buildingroot: Neuen Typ erstellen: ", newType)
 		var newunit = unit.instance()
@@ -67,10 +83,13 @@ func _on_instantiate_new_object(newType:int):
 		newunit.set_basecolor(unitprops["color"])
 		newunit.set_global_translation(GetBuildingSpawnPos())
 		newunit.SetAgentTarget(GetBuildingRallyPos())
+		
+	_ObjectTypeNode.is_building = false
 
 
 func _manage_ui(showui:bool):
-	ui_manager = GM.get_manager_instance("UIManager")
+	if !is_instance_valid(ui_manager):
+		ui_manager = GM.get_manager_instance("UIManager")
 
 	if is_instance_valid(ui_manager):
 		if GetObjectHasUI():
