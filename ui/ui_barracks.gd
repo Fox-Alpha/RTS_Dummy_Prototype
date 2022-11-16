@@ -40,6 +40,7 @@ func _ready():
 # ===========================
 
 func _on_TextureButton_pressed(arg_1:int):
+	# TODO: Button zur Warteschlange hinzufügen
 	match arg_1:
 		1:	# Unit RED
 			pass
@@ -73,7 +74,7 @@ func _Set_GameManager_Instance():
 func _on_UI_Barracks_visibility_changed() -> void:
 	if !visible:
 		return
-	# TODO: Empfangene Properties auswerten
+	# DONE: Empfangene Properties auswerten
 	if UIM._objectui_properties.size() > 0:
 		var UnitsToBuild:Dictionary = UIM._objectui_properties.get("ObjectsToSpawn")
 		if ButtGrid.get_child_count() > 0:
@@ -82,26 +83,23 @@ func _on_UI_Barracks_visibility_changed() -> void:
 		if UnitsToBuild.size() > 0:
 			for u in UnitsToBuild.keys():
 				var b:Panel = button.instance()
-				b.get_node("LabelUnitName").text = UnitsToBuild[u].name
 				var tbuc:TextureButton = b.get_node("TextureButtUnitColor")
+				b.get_node("LabelUnitName").text = UnitsToBuild[u].name
 				b.get_node("TextureButtUnitColor").self_modulate = UnitsToBuild[u].color
-				var m = b.get_node("TextureButtUnitColor").modulate
 				b.name = "Build_%s" % UnitsToBuild[u].name
-				# TODO: Signal on_click verbinden + Parameter INDEX
+
 				if not tbuc.is_connected("pressed", self, "_on_TextureButton_pressed"): 
 					var _ccn =tbuc.connect("pressed", self, "_on_TextureButton_pressed", [u.to_int()])
+
 				ButtGrid.add_child(b)
-	# Buttons dynamisch nach : ObjectsToSpawn erstellen
-	# Signals mit Parameter verknüpfen
-	pass # Replace with function body.
 
 
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	is_building = true
-	pass # Replace with function body.
+#	pass # Replace with function body.
 
 
 func _on_Tween_tween_all_completed() -> void:
 	is_building = false
 	Signalbus.emit_signal("newobject_instantiated", selection)
-	pass # Replace with function body.
+#	pass # Replace with function body.
