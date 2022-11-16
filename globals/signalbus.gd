@@ -14,5 +14,10 @@ signal objectselected
 signal objectunselected
 
 # warning-ignore:unused_signal
+signal add_newobject_tobuildqueue(newtype)
+# warning-ignore:unused_signal
+signal newobject_build_has_started
+# warning-ignore:unused_signal
 signal newobject_instantiated(newtype)
+# warning-ignore:unused_signal
 
