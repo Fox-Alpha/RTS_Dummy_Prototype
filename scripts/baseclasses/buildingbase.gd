@@ -17,6 +17,9 @@ var UnitRallyPos : Vector3 setget _set_building_rallypoint, _get_building_rallyp
 
 var ObjectTypeProperties : Dictionary setget , _Get_ObjectTypeProperties
 
+var _ObjectBuildQueue : Array = []
+var is_building = false
+
 
 #onready var GM = Globals.get_gamemanager_instance()
 onready var _BuildingRootNode = get_parent()
@@ -46,23 +49,13 @@ func _ready():
 		"ObjectHasUI": false,
 		"ObjectUiName": "EmptyUI",
 		"ObjectCanSpawnObjects": false,
+		"ObjectMaxBuildQueue": 10,
 		"ObjectSpawnPos": Vector3(),
 		"ObjectRallyPos": Vector3(),
 		"ObjectsToSpawn": {}
 	}
 	UnitSpawnPos = _UnitSpawnNode.get_global_translation()
 	UnitRallyPos = _UnitRallypointNode.get_global_translation()
-#	pass
-	
-	
-#	if _Get_ObjectTypeProperty("ObjectCanSpawnObjects"):
-#		if is_instance_valid(_UnitSpawnNode) and is_instance_valid(_UnitRallypointNode):
-#			UnitSpawnPos = _UnitSpawnNode.get_global_translation()
-#			UnitRallyPos = _UnitRallypointNode.get_global_translation()
-#_UnitSpawnNode) and is_instance_valid(_UnitRallypointNode):
-#			UnitSpawnPos = .get_node("%UnitSpawnPosition3D").get_global_translation()
-#			UnitRallyPos = .get_node("%UnitRallyPosition3D").get_global_translation()
-
 
 #func _enter_tree():
 #	pass
@@ -70,6 +63,19 @@ func _ready():
 
 #func _exit_tree():
 #	pass
+
+
+func _process(_delta):
+	# BuildQueue abarbeiten
+	# FIXME: Abfrage zu schnell ???
+	if !_ObjectBuildQueue.empty():
+		var nextUnitType = _ObjectBuildQueue.pop_front()
+		# FIXME: Nur in einer BUILDING instanz herstellen
+		Signalbus.emit_signal("newobject_instantiated", nextUnitType)
+	else: 
+		return
+
+
 # ===========================
 
 # ===========================
