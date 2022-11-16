@@ -36,6 +36,8 @@ func _ready():
 
 func _on_TextureButton_pressed(arg_1:int):
 	# TODO: Button zur Warteschlange hinzufügen
+	# TODO: Warteschlange im UI aktualisieren
+	# Warteschlange aus selectedobject lesen und anzeigen
 	match arg_1:
 		1:	# Unit RED
 			pass
@@ -48,12 +50,19 @@ func _on_TextureButton_pressed(arg_1:int):
 			
 	var tp = get_node("%TextureProgress")
 	if is_instance_valid(tp) and not is_building:
+		selection = arg_1
+		var pop = UIM._objectui_properties
+		buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
+		
 		if tween.interpolate_property(
 			tp, "value", tp.min_value, tp.max_value,
 			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
 			):
-			selection = arg_1
 			tween.start()
+	else:
+		Signalbus.emit_signal("add_newobject_tobuildqueue", selection)
+			
+			# TODO: Add Icon for Queue to second Panel
 
 
 func _on_TextureButton_color_pressed(_extra_arg_0):
@@ -64,6 +73,7 @@ func _Set_GameManager_Instance():
 	GM = Globals.get_gamemanager_instance()
 	print(name, "::SetGameManagerInstance() -> ", name)
 	UIM = GM.get_manager_instance("UIManager")
+
 
 
 func _on_UI_Barracks_visibility_changed() -> void:
@@ -91,10 +101,12 @@ func _on_UI_Barracks_visibility_changed() -> void:
 
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	is_building = true
+	Signalbus.emit_signal("newobject_build_has_started")
 #	pass # Replace with function body.
 
 
 func _on_Tween_tween_all_completed() -> void:
 	is_building = false
-	Signalbus.emit_signal("newobject_instantiated", selection)
+	Signalbus.emit_signal("add_newobject_tobuildqueue", selection)
+#	Signalbus.emit_signal("newobject_instantiated", selection)
 #	pass # Replace with function body.
