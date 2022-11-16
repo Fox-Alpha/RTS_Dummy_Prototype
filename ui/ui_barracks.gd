@@ -83,9 +83,13 @@ func _on_UI_Barracks_visibility_changed() -> void:
 			for u in UnitsToBuild.keys():
 				var b:Panel = button.instance()
 				b.get_node("LabelUnitName").text = UnitsToBuild[u].name
+				var tbuc:TextureButton = b.get_node("TextureButtUnitColor")
 				b.get_node("TextureButtUnitColor").self_modulate = UnitsToBuild[u].color
 				var m = b.get_node("TextureButtUnitColor").modulate
 				b.name = "Build_%s" % UnitsToBuild[u].name
+				# TODO: Signal on_click verbinden + Parameter INDEX
+				if not tbuc.is_connected("pressed", self, "_on_TextureButton_pressed"): 
+					var _ccn =tbuc.connect("pressed", self, "_on_TextureButton_pressed", [u.to_int()])
 				ButtGrid.add_child(b)
 	# Buttons dynamisch nach : ObjectsToSpawn erstellen
 	# Signals mit Parameter verknüpfen
