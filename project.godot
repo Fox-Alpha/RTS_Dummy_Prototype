@@ -12,12 +12,7 @@ _global_script_classes=[ {
 "base": "BuildingBase",
 "class": "Barracks",
 "language": "GDScript",
-"path": "res://scripts/buildings/baracks.gd"
-}, {
-"base": "Barracks",
-"class": "BarracksDummy",
-"language": "GDScript",
-"path": "res://assets/buildings/baracksdummy.gd"
+"path": "res://assets/buildings/objecttypebaracks.gd"
 }, {
 "base": "Node",
 "class": "BuildingBase",
@@ -106,7 +101,6 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Barracks": "",
-"BarracksDummy": "",
 "BuildingBase": "",
 "BuildingManager": "",
 "GameManager": "",

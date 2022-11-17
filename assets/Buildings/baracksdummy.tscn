@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/buildings/buildingroot.gd" type="Script" id=1]
-[ext_resource path="res://scripts/buildings/baracks.gd" type="Script" id=2]
+[ext_resource path="res://assets/buildings/objecttypebaracks.gd" type="Script" id=2]
 [ext_resource path="res://assets/buildings/building_selected.gdshader" type="Shader" id=3]
 [ext_resource path="res://assets/helper/navpoint.tscn" type="PackedScene" id=4]
 
