@@ -20,7 +20,10 @@ onready var ButtGrid = $"%GridButtonContainer"
 
 
 func _ready():
-	_Set_GameManager_Instance()
+#	_Set_GameManager_Instance()
+	if !Signalbus.is_connected("game_manager_is_ready", self, "_Set_GameManager_Instance"):
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "_Set_GameManager_Instance")
+
 
 
 #func _enter_tree():

@@ -45,6 +45,7 @@ func _init() -> void:
 
 
 func _ready() -> void:
+	Signalbus.emit_signal("game_manager_is_ready")
 	print("UnitsNode::_ready() -> ", name)
 	pass
 
