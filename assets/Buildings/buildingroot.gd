@@ -46,6 +46,18 @@ func _enter_tree():
 #func _exit_tree():
 #	pass
 
+
+func _process(_delta):
+	# BuildQueue abarbeiten
+	# FIXME: Abfrage zu schnell ???
+	if !_ObjectTypeNode._ObjectBuildQueue.empty():
+		var nextUnitType = _ObjectTypeNode._ObjectBuildQueue.pop_front()
+		print_debug("Unit in Queue: ", nextUnitType, " / ", name)
+		# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
+		# FIXME: Nur in einer BUILDING instanz herstellen
+#		Signalbus.emit_signal("newobject_instantiated", nextUnitType)
+#	else: 
+#		return
 # ===========================
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -58,10 +70,12 @@ func on_game_manager_is_ready():
 		print(name, "::on_game_manager_is_ready() -> ", name)
 
 
-func on_newobject_build_has_started():
+func on_newobject_build_has_started(): # Node ?
+	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 	_ObjectTypeNode.is_building = true
 
 func on_newobject_tobuildqueue_added(nextType:int):
+	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 	_ObjectTypeNode._ObjectBuildQueue.append(nextType)
 
 
@@ -72,6 +86,7 @@ func _on_instantiate_new_object(newType:int):
 #		return
 
 	# FIXME: Es werden 4 Objecte gespawnt
+	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
 		
