@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/buildings/buildingroot.gd" type="Script" id=1]
-[ext_resource path="res://assets/buildings/objecttypebaracks.gd" type="Script" id=2]
+[ext_resource path="res://assets/buildings/barracks/objecttype_barracks.gd" type="Script" id=2]
 [ext_resource path="res://assets/buildings/building_selected.gdshader" type="Shader" id=3]
-[ext_resource path="res://assets/helper/navpoint.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/buildings/rallypoint.tscn" type="PackedScene" id=4]
 
 [sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
@@ -62,5 +62,4 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.5 )
 unique_name_in_owner = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.5 )
 
-[node name="NavPoint" parent="UnitRallyPosition3D" instance=ExtResource( 4 )]
-transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0, 0, 0 )
+[node name="RallyPoint" parent="UnitRallyPosition3D" instance=ExtResource( 4 )]
