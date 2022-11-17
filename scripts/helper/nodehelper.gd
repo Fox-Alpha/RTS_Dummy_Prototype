@@ -39,27 +39,31 @@ extends Spatial
 #-------------------------------------------------------------------------------
 # optional built-in virtual methods
 #-------------------------------------------------------------------------------
-#func _init() -> void:
-#	pass
+func _init() -> void:
+	print("UnitsNode::_init() -> ", name)
+	pass
 
 
-#func _ready() -> void:
-#	pass
+func _ready() -> void:
+	print("UnitsNode::_ready() -> ", name)
+	pass
 
 
-#func _enter_tree():
-#	pass
+func _enter_tree():
+	print("UnitsNode::_enter_tree() -> ", name)
+	pass
 
 
-#func _exit_tree():
-#	pass
+func _exit_tree():
+	print("UnitsNode::_exit_tree() -> ", name)
+	pass
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
 # public methods Upper_Pascal_Case
 #-------------------------------------------------------------------------------
-func Example_Method_Name(_exampleparam) -> void:
-	pass
+#func Example_Method_Name(_exampleparam) -> void:
+#	pass
 #-------------------------------------------------------------------------------
 # private methods, _lower_case
 #-------------------------------------------------------------------------------
