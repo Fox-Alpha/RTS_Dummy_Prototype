@@ -65,15 +65,16 @@ func _ready():
 #	pass
 
 
-func _process(_delta):
+#func _process(_delta):
 	# BuildQueue abarbeiten
 	# FIXME: Abfrage zu schnell ???
-	if !_ObjectBuildQueue.empty():
-		var nextUnitType = _ObjectBuildQueue.pop_front()
+#	if !_ObjectBuildQueue.empty():
+#		var nextUnitType = _ObjectBuildQueue.pop_front()
+#		print_debug("Unit in Queue: ", nextUnitType, " / ", get_parent().name)
 		# FIXME: Nur in einer BUILDING instanz herstellen
-		Signalbus.emit_signal("newobject_instantiated", nextUnitType)
-	else: 
-		return
+#		Signalbus.emit_signal("newobject_instantiated", nextUnitType)
+#	else: 
+#		return
 
 
 # ===========================
