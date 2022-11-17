@@ -13,6 +13,7 @@ signal objectselected
 # warning-ignore:unused_signal
 signal objectunselected
 
+# Building
 # warning-ignore:unused_signal
 signal add_newobject_tobuildqueue(newtype)
 # warning-ignore:unused_signal
@@ -21,3 +22,6 @@ signal newobject_build_has_started
 signal newobject_instantiated(newtype)
 # warning-ignore:unused_signal
 
+# Helper
+# warning-ignore:unused_signal
+signal scene_end_reached

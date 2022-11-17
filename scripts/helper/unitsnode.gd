@@ -5,7 +5,7 @@
 #-------------------------------------------------------------------------------
 #tool
 #class_name
-extends Node
+extends Spatial
 # Registriert die Units Node im UnitManager
 # TODO: Auf GameManager is Ready reagieren
 #-------------------------------------------------------------------------------
