@@ -24,13 +24,23 @@ Folgende Punkte sind mir am wichtigsten:
   - Nutzung zusätzlicher Tools wie zum Beispiel Github Issues und Projekte.
   - Dokumentation
   - Game Design Dokument
+  - CD / CI, Automatisches ausgeben von Alpha, Beta, Releases
+    - Später auch Deploy auf anderen Plattformen z.B. Itch.io
+    - Impliziert ein Webfähiges Release
 - Kamera Steuerung wie aus den meisten RTS Spielen bekannt
+  - Möglicherweise auch die Übernahme und Steuerung von Einheiten in First- oder Thirdperson
 - Einheiten Steuern per Auswahl und dann Point'n Click zum Steuern
+  - Mehrfachauswahl
 - Einheiten in Gebäuden herstellen und diese Managen
 - Die benötigte Game Logik aufbauen Stichwort Game Manager Scripte
 - Multiplayer Verbinden mit mind. 2 Clients. Vorgehen Spielerhosting aber Server hat Authorität
   - Synchronisieren der Spieler
+- Resourcen Management
+- Techtree Entwicklung
+- RPG Elemente
+  - Fähigkeiten und Boni
 
+---
 
 Bis jetzt habe ich bereits einige Mechaniken umgesetzt, oder ich bin dabei (Stand: 17.11.2022)
 
