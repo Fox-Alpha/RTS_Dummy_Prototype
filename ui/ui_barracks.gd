@@ -56,6 +56,8 @@ func _on_TextureButton_pressed(arg_1:int):
 		selection = arg_1
 		var pop = UIM._objectui_properties
 		buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
+		var buildingname = pop["ObjectParentName"]
+		print_debug("_on_TextureButton_pressed: ", buildingname)
 		
 		if tween.interpolate_property(
 			tp, "value", tp.min_value, tp.max_value,
@@ -104,6 +106,7 @@ func _on_UI_Barracks_visibility_changed() -> void:
 
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	is_building = true
+	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 	Signalbus.emit_signal("newobject_build_has_started")
 #	pass # Replace with function body.
 
