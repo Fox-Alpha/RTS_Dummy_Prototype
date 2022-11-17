@@ -16,7 +16,7 @@
 [ext_resource path="res://gamemanager/networkmanager.gd" type="Script" id=14]
 [ext_resource path="res://gamemanager/gamemanager.gd" type="Script" id=15]
 [ext_resource path="res://gamemanager/unitmanager.gd" type="Script" id=16]
-[ext_resource path="res://scripts/UnitsNode.gd" type="Script" id=17]
+[ext_resource path="res://scripts/helper/unitsnode.gd" type="Script" id=17]
 [ext_resource path="res://ui/ui_barracks.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ProceduralSky" id=1]
@@ -114,6 +114,9 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.3698, -0.0286522, 5.43741 
 
 [node name="UI_Barracks" parent="UI" instance=ExtResource( 18 )]
 visible = false
+
+[node name="SceneEnd" type="Node" parent="."]
+script = ExtResource( 17 )
 
 [editable path="RtsCameraController"]
 [editable path="World/WorldNavigation/Ground"]
