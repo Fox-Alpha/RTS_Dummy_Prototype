@@ -22,8 +22,6 @@ func _ready():
 	shader = BuildingMesh.mesh.material.next_pass
 	
 	# GM = Globals.get_gamemanager_instance()
-
-	# TRYME: Signals in den BuildingManger verlagern
 	
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
@@ -52,15 +50,12 @@ func _enter_tree():
 
 func _process(_delta):
 	# BuildQueue abarbeiten
-	# DONE: Abfrage zu schnell ???
 	if !_ObjectTypeNode._ObjectBuildQueue.empty():
 		var nextUnitType = _ObjectTypeNode._ObjectBuildQueue.pop_front()
 		print_debug("Unit in Queue: ", nextUnitType, " / ", name)
-		# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
-		# FIXME: Nur in einer BUILDING instanz herstellen
 		Signalbus.emit_signal("newobject_instantiated", nextUnitType, get_instance_id())
-#	else: 
-#		return
+
+
 # ===========================
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -76,24 +71,15 @@ func on_game_manager_is_ready():
 func on_newobject_build_has_started(Building_ID:int): # Node ?
 	var thisid = get_instance_id()
 	if thisid == Building_ID:
-	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 		_ObjectTypeNode.is_building = true
 
 func on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
 	var thisid = get_instance_id()
 	if thisid == Building_ID:
-	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 		_ObjectTypeNode._ObjectBuildQueue.append(nextType)
 
 
 func _on_instantiate_new_object(newType:int, Building_ID:int):
-#	print_debug("OM: Neuen Typ erstellen: ", newType)
-	# TODO: Anpassen an Buildqueue
-#	if _ObjectTypeNode.is_building: # or _ObjectTypeNode._ObjectBuildQueue.empty():
-#		return
-
-	# FIXME: Es werden 4 Objecte gespawnt
-	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
 	var thisid = get_instance_id()
 	if thisid != Building_ID:
 		return
@@ -127,19 +113,19 @@ func select_object(selected:bool) -> void:
 	_ObjectTypeNode.building_is_selected = selected
 	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
-		# DONE: UI Anzeigen lassen
 		_manage_ui(true)
 	else:
 		shader.set_shader_param("strenght", 0.0)
-		# DONE: UI Ausblenden lassen
 		_manage_ui(false)
 
 
 func GetObjectProperties() -> Dictionary:
 	return _ObjectTypeNode.ObjectTypeProperties
 
+
 func get_objecttype() -> int:
 	return _ObjectTypeNode.BuildingObjectType
+
 
 func GetObjectName() -> String:
 	return _ObjectTypeNode.BuildingName
@@ -149,7 +135,6 @@ func GetObjectTypeName() -> String:
 	return _ObjectTypeNode.BuildingTypeName
 
 
-# func GetBuildingCanSelect() -> bool:
 func can_objectselected() -> bool:
 	var b = _ObjectTypeNode.BuildingCanSelect
 	return b

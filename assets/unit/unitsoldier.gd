@@ -87,7 +87,6 @@ func select_object(selected:bool) -> void:
 func _on_NavigationAgent_path_changed():
 	var path = _NavAgentNode.get_nav_path()
 
-#	DONE: Dummy für Nav Punkte erstellen
 	if path.size() > 0:
 		if Globals._WorldNavPointNodeParent.get_child_count() > 0:
 			for c in Globals._WorldNavPointNodeParent.get_children():
@@ -103,7 +102,6 @@ func _on_NavigationAgent_target_reached():
 	print_debug("_on_NavigationAgent_target_reached()")
 	var path = _NavAgentNode.get_nav_path()
 
-#	DONE: Dummy für Nav Punkte erstellen
 	if path.size() > 0:
 		if Globals._WorldNavPointNodeParent.get_child_count() > 0:
 			for c in Globals._WorldNavPointNodeParent.get_children():

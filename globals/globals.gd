@@ -27,16 +27,7 @@ func _ready():
 	if !Signalbus.is_connected("scene_end_reached", self, "_on_scene_end_reached"):
 		var _sig = Signalbus.connect("scene_end_reached", self, "_on_scene_end_reached")
 
-#	if !Signalbus.is_connected("game_manager_is_ready", self, "on_game_manager_is_ready"):
-#		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
-#		assert(sig == OK, "GLOBALS::_ready() - > Connect on_game_manager_is_ready fehlgeschlagen")
-#	pass
 
-#func on_game_manager_is_ready():
-#	var gm = get_gamemanager_instance()
-#	if is_instance_valid(gm):
-#		gm.BroadCastGM()
-#	pass
 func _on_scene_end_reached():
 	if is_instance_valid(_instance):
 		Signalbus.emit_signal("game_manager_is_ready")
@@ -45,10 +36,7 @@ func _on_scene_end_reached():
 func set_gamemanager_instance(value):
 	if value != null && _instance == null && value != _instance:
 		_instance = value
-#		Signalbus.emit_signal("game_manager_is_ready")
-	pass
 
 
 func get_gamemanager_instance():
 	return _instance
-	pass

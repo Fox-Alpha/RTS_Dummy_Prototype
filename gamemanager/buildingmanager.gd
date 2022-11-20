@@ -11,7 +11,7 @@ extends ManagerBase
 
 export var Buildings : Dictionary = {}
 
-# TRYME: Buildingquue übere Manager steuern
+# TRYME: Buildingqueue über Manager steuern
 # CHGME: Buildings müssen sich im Manager "Anmelden"
 # var id = get_instance_id()
 # var inst = instance_from_id(id)

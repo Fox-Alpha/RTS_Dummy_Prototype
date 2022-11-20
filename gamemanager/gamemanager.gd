@@ -29,8 +29,6 @@ onready var UnitsNode = $"../World/Units"
 
 
 func _ready():
-#	print("GameManager::_ready() -> Created")
-	# TODO: is_instance_valid
 	var manager = .get_children()
 
 	if manager.size() > 0:
@@ -41,9 +39,8 @@ func _ready():
 
 				if managerinstance.has_method("init_signals"):
 					managerinstance.init_signals()
-#	call_deferred()
+
 	Signalbus.emit_signal("setgamemanagerinstance", self)
-	# TRYME: In jeder klasse in der eine GM Instanz benötigt wird das Signal Connecten
 
 
 # func _enter_tree():
@@ -118,12 +115,6 @@ func _select_object() -> void:
 	if rayArray.has("collider"):
 		printt(rayArray)
 		var collider = rayArray["collider"]
-
-#		DONE: Collider abfrage
-#		Wenn Collider == KinematicBody, dann könnte es eine Unit sein
-#		Wenn es ein StaticBody, dann könnte es der Ground sein
-#		Es könnte aber auch ein Building sein
-#		Ground und Building haben noch eine Spatial Node als Root
 
 		if !collider.has_method("get_objecttype"):
 				collider = collider.get_parent_spatial()

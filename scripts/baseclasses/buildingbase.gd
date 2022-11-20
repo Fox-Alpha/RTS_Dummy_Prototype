@@ -29,10 +29,6 @@ onready var _UnitSpawnNode = .get_node_or_null("%UnitSpawnPosition3D")
 onready var _UnitRallypointNode = .get_node_or_null("%UnitRallyPosition3D")
 
 
-# TODO: Warteschlange integrieren
-# TODO: Warteschlange von UI abrufen
-# TODO: Warteschlange continuirlich prüfen und abarbeiten, auch wenn nicht mehr selektiert / kein UI
-
 # ===========================
 # Build-In Methoden
 # ===========================
@@ -58,7 +54,6 @@ func _ready():
 	UnitSpawnPos = _UnitSpawnNode.get_global_translation()
 	UnitRallyPos = _UnitRallypointNode.get_global_translation()
 
-#	print_debug("_BuildingRootNode: ", name)
 
 #func _enter_tree():
 #	pass
@@ -69,16 +64,7 @@ func _ready():
 
 
 #func _process(_delta):
-	# BuildQueue abarbeiten
-	# FIXME: Abfrage zu schnell ???
-#	if !_ObjectBuildQueue.empty():
-#		var nextUnitType = _ObjectBuildQueue.pop_front()
-#		print_debug("Unit in Queue: ", nextUnitType, " / ", get_parent().name)
-		# FIXME: Nur in einer BUILDING instanz herstellen
-#		Signalbus.emit_signal("newobject_instantiated", nextUnitType)
-#	else: 
-#		return
-
+#	pass
 
 # ===========================
 
