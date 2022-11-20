@@ -79,7 +79,10 @@ func _on_TextureButton_color_pressed(_extra_arg_0):
 func _Set_GameManager_Instance():
 	GM = Globals.get_gamemanager_instance()
 	print(name, "::SetGameManagerInstance() -> ", name)
-	UIM = GM.get_manager_instance("UIManager")
+	var ui_manager_id  = GM.get_manager_instance("UIManager")
+	UIM = instance_from_id(ui_manager_id)
+	# if is_instance_valid(UIM):
+		
 
 
 
