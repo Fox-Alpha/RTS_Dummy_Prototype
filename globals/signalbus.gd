@@ -15,11 +15,11 @@ signal objectunselected
 
 # Building
 # warning-ignore:unused_signal
-signal add_newobject_tobuildqueue(newtype)
+signal add_newobject_tobuildqueue(newtype, Building_ID)
 # warning-ignore:unused_signal
-signal newobject_build_has_started
+signal newobject_build_has_started(Building_ID)
 # warning-ignore:unused_signal
-signal newobject_instantiated(newtype)
+signal newobject_instantiated(newtype, Building_ID)
 # warning-ignore:unused_signal
 
 # Helper
