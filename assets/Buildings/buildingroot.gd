@@ -50,10 +50,12 @@ func _enter_tree():
 
 func _process(_delta):
 	# BuildQueue abarbeiten
+	var id = get_instance_id()
 	if !_ObjectTypeNode._ObjectBuildQueue.empty():
+		_ObjectTypeNode.is_building = true
 		var nextUnitType = _ObjectTypeNode._ObjectBuildQueue.pop_front()
 		print_debug("Unit in Queue: ", nextUnitType, " / ", name)
-		Signalbus.emit_signal("newobject_instantiated", nextUnitType, get_instance_id())
+		Signalbus.emit_signal("newobject_instantiated", nextUnitType, id)
 
 
 # ===========================
@@ -68,10 +70,11 @@ func on_game_manager_is_ready():
 		print(name, "::on_game_manager_is_ready() -> ", name, "( ", get_instance_id(), " )")
 
 
-func on_newobject_build_has_started(Building_ID:int): # Node ?
-	var thisid = get_instance_id()
-	if thisid == Building_ID:
-		_ObjectTypeNode.is_building = true
+func on_newobject_build_has_started(_Building_ID:int): # Node ID
+	pass
+#	var thisid = get_instance_id()
+#	if thisid == Building_ID:
+#		_ObjectTypeNode.is_building = true
 
 func on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
 	var thisid = get_instance_id()
@@ -101,7 +104,9 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 
 func _manage_ui(showui:bool):
 	if !is_instance_valid(ui_manager):
-		ui_manager = GM.get_manager_instance("UIManager")
+		var ui_manager_id = GM.get_manager_instance("UIManager")
+		if ui_manager_id > 0:
+			ui_manager = instance_from_id(ui_manager_id)
 
 	if is_instance_valid(ui_manager):
 		if GetObjectHasUI():
