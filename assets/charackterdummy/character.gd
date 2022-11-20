@@ -15,13 +15,20 @@ export var is_selected:bool = false
 export var _canselectbuilding : bool = true
 onready var _ObjectTypeNode = get_node("%ObjectType")
 
+var unitmanager
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	shader = UnitMesh.mesh.material.next_pass
-	var UN = unitbase.GM.get_manager_instance("UnitManager")
-	if UN != null:
-		UN.register_unit_inManager(self)	# TODO: Registrer der Unit korrigieren
+	
+	var unitmanager_id = unitbase.GM.get_manager_instance("UnitManager")
+	
+	if unitmanager_id > 0:
+		unitmanger = instance_from_id(unitmanger_id)
+		
+	if is_instance_valid(unitmanager):
+		unitmanger.register_unit_inManager(self)	# TODO: Registrer der Unit korrigieren
 	else:
 		print_debug("Charackter -> Unit Registration Failed!")
 
