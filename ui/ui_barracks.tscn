@@ -41,44 +41,45 @@ margin_bottom = 14.0
 text = "Build your Units"
 align = 1
 
-[node name="Panel" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer"]
+[node name="Panel_Build" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer"]
 margin_top = 18.0
 margin_right = 236.0
 margin_bottom = 300.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 0
 
-[node name="GridButtonContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="GridButtonContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer"]
 unique_name_in_owner = true
-margin_left = 93.0
-margin_right = 143.0
+margin_right = 236.0
 margin_bottom = 50.0
 grow_horizontal = 2
 rect_min_size = Vector2( 5, 5 )
-size_flags_horizontal = 4
+size_flags_horizontal = 5
 size_flags_vertical = 4
 columns = 4
 
-[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer/GridButtonContainer" instance=ExtResource( 3 )]
+[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer/GridButtonContainer" instance=ExtResource( 3 )]
+margin_right = 59.0
 
-[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer"]
+visible = false
 margin_top = 54.0
 margin_right = 236.0
 margin_bottom = 68.0
 text = "Test Test 123"
 align = 1
 
-[node name="TextureProgress" type="TextureProgress" parent="ColorRect/PanelContainer/VBoxContainer/Panel/VBoxContainer"]
+[node name="TextureProgress" type="TextureProgress" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer"]
 unique_name_in_owner = true
 margin_left = 18.0
-margin_top = 72.0
+margin_top = 54.0
 margin_right = 218.0
-margin_bottom = 136.0
+margin_bottom = 118.0
 rect_min_size = Vector2( 200, 64 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -97,18 +98,28 @@ stretch_margin_top = 3
 stretch_margin_right = 3
 stretch_margin_bottom = 3
 
-[node name="Panel2" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer"]
+[node name="Panel_Queue" type="Panel" parent="ColorRect/PanelContainer/VBoxContainer"]
 margin_top = 304.0
 margin_right = 236.0
 margin_bottom = 586.0
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel2"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Foo Bar"
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 0
+
+[node name="GridButtonContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue/VBoxContainer"]
+margin_right = 236.0
+margin_bottom = 50.0
+grow_horizontal = 2
+rect_min_size = Vector2( 5, 5 )
+size_flags_horizontal = 5
+size_flags_vertical = 4
+columns = 4
+
+[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue/VBoxContainer/GridButtonContainer" instance=ExtResource( 3 )]
+margin_right = 59.0
 
 [node name="Tween" type="Tween" parent="."]
 
