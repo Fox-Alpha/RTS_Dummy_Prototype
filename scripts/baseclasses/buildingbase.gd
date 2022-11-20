@@ -43,6 +43,7 @@ onready var _UnitRallypointNode = .get_node_or_null("%UnitRallyPosition3D")
 func _ready():
 	ObjectTypeProperties = {
 		"ObjectType": Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING, 
+		"ObjectInstanceID": -1,
 		"ObjectName": "EmptyName",
 		"ObjectTypeName": "EmptyTypeName",
 		"ObjectCanSelect": false,
@@ -56,6 +57,8 @@ func _ready():
 	}
 	UnitSpawnPos = _UnitSpawnNode.get_global_translation()
 	UnitRallyPos = _UnitRallypointNode.get_global_translation()
+
+#	print_debug("_BuildingRootNode: ", name)
 
 #func _enter_tree():
 #	pass
