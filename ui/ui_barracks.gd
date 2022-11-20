@@ -114,9 +114,14 @@ func _on_UI_Barracks_visibility_changed() -> void:
 
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	is_building = true
+	Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
 	Signalbus.emit_signal("newobject_build_has_started", active_Building_ID)
 
 
 func _on_Tween_tween_all_completed() -> void:
 	is_building = false
-	Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
+	# tween.tell()
+
+
+func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
+	pass # Replace with function body.
