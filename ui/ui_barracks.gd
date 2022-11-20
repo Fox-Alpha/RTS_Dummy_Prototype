@@ -88,6 +88,7 @@ func _Set_GameManager_Instance():
 
 func _on_UI_Barracks_visibility_changed() -> void:
 	if !visible:
+		# queue_free()
 		return
 
 	if UIM._objectui_properties.size() > 0:
