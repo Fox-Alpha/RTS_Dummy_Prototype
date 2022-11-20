@@ -29,6 +29,7 @@ func _initobjectproperties():
 	ObjectTypeProperties["ObjectTypeName"] = "BuildingArmyBarrack"
 	ObjectTypeProperties["ObjectCanSelect"] = true
 	ObjectTypeProperties["ObjectHasUI"] = true
+	ObjectTypeProperties["ObjectUI_ID"] = -1
 	ObjectTypeProperties["ObjectUiName"] = "UI_Barracks"
 	ObjectTypeProperties["ObjectCanSpawnObjects"] = true
 	ObjectTypeProperties["ObjectSpawnPos"] = UnitSpawnPos
