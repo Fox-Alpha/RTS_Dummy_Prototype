@@ -110,7 +110,7 @@ func get_selectedobject():
 	# match objtype:
 		# Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
 			# print_debug("BuildNewObject(): Object Type is Building")
-			# var bm = GM.get_manager_instance("BuildingManager")
+			# var bm = GM.get_manager_instance("BuildingManager") <- Return Instance ID !!!
 			# if is_instance_valid(bm):
 				# bm.
 		# Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
