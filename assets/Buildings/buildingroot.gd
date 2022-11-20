@@ -51,11 +51,14 @@ func _enter_tree():
 func _process(_delta):
 	# BuildQueue abarbeiten
 	var id = get_instance_id()
-	if !_ObjectTypeNode._ObjectBuildQueue.empty():
-		_ObjectTypeNode.is_building = true
+	if !_ObjectTypeNode._ObjectBuildQueue.empty(): # and !_ObjectTypeNode.is_building:
+		if _ObjectTypeNode.is_build_pending:
+			return
+
 		var nextUnitType = _ObjectTypeNode._ObjectBuildQueue.pop_front()
 		print_debug("Unit in Queue: ", nextUnitType, " / ", name)
 		Signalbus.emit_signal("newobject_instantiated", nextUnitType, id)
+		_ObjectTypeNode.is_building = true
 
 
 # ===========================
@@ -72,9 +75,10 @@ func on_game_manager_is_ready():
 
 func on_newobject_build_has_started(_Building_ID:int): # Node ID
 	pass
-#	var thisid = get_instance_id()
-#	if thisid == Building_ID:
-#		_ObjectTypeNode.is_building = true
+	# var thisid = get_instance_id()
+	# if thisid == Building_ID:
+	# 	_ObjectTypeNode.is_build_pending = true
+
 
 func on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
 	var thisid = get_instance_id()
@@ -87,11 +91,14 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	if thisid != Building_ID:
 		return
 
+	_ObjectTypeNode.is_build_pending = true
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
 		
 		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
+		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
 		print_debug("Buildingroot: Neuen Typ erstellen: ", newType)
+		yield(get_tree().create_timer(buildtime), "timeout")
 		var newunit = unit.instance()
 		GM.UnitsNode.add_child(newunit)
 		newunit.name = unitprops["name"]
@@ -100,6 +107,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 		newunit.SetAgentTarget(GetBuildingRallyPos())
 		
 	_ObjectTypeNode.is_building = false
+	_ObjectTypeNode.is_build_pending = false
 
 
 func _manage_ui(showui:bool):

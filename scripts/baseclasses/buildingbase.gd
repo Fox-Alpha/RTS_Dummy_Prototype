@@ -19,6 +19,7 @@ var ObjectTypeProperties : Dictionary setget , _Get_ObjectTypeProperties
 
 var _ObjectBuildQueue : Array = []
 var is_building = false
+var is_build_pending = false
 
 
 #onready var GM = Globals.get_gamemanager_instance()
