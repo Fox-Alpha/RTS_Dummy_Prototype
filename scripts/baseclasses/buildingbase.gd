@@ -44,6 +44,7 @@ func _ready():
 		"ObjectTypeName": "EmptyTypeName",
 		"ObjectCanSelect": false,
 		"ObjectHasUI": false,
+		"ObjectUI_ID": -1,
 		"ObjectUiName": "EmptyUI",
 		"ObjectCanSpawnObjects": false,
 		"ObjectMaxBuildQueue": 10,
