@@ -34,8 +34,9 @@ func _ready():
 	if manager.size() > 0:
 		for m in manager:
 			var managerinstance = m
+	
 			if is_instance_valid(managerinstance):
-				Managers[m.name] = managerinstance
+				Managers[m.name] = managerinstance.get_instance_id()
 
 				if managerinstance.has_method("init_signals"):
 					managerinstance.init_signals()
@@ -98,13 +99,16 @@ func _navigate_object() -> void:
 				var objType = colliderparent.call("get_objecttype")
 
 				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
-					var om = get_manager_instance("ObjectManager")
-					if is_instance_valid(om):
-						var so = om.selected_object
-						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
-							so.SetAgentTarget(getmouseposin3d())
-						if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-							so.SetBuildingRallyPoint(getmouseposin3d())
+					var objectmanager_id = get_manager_instance("ObjectManager")
+					if objectmanager_id > 0:
+						var om = instance_from_id(objectmanager_id)
+						
+						if is_instance_valid(om):
+							var so = om.selected_object
+							if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
+								so.SetAgentTarget(getmouseposin3d())
+							if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+								so.SetBuildingRallyPoint(getmouseposin3d())
 
 
 
@@ -131,10 +135,10 @@ func _select_object() -> void:
 # public Methoden
 # ===========================
 # Von einem bestimmten Manager die aktuelle Instanz abholen
-func get_manager_instance(manager : String):	# -> Manager Instanz
+func get_manager_instance(manager : String) -> int:	# -> Manager Instanz ID
 	if Managers.has(manager):
 		return Managers[manager]
-	return null
+	return -1
 
 
 func BroadCastGM():
