@@ -23,6 +23,7 @@ func _ready():
 
 func _initobjectproperties():
 	ObjectTypeProperties["ObjectParentName"] = _BuildingRootNode.name
+	ObjectTypeProperties["ObjectInstanceID"] = get_parent().get_instance_id()
 	ObjectTypeProperties["ObjectType"] = Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING
 	ObjectTypeProperties["ObjectName"] = "Army Barrack"
 	ObjectTypeProperties["ObjectTypeName"] = "BuildingArmyBarrack"
