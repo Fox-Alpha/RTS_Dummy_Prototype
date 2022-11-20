@@ -1,11 +1,13 @@
 extends Control
+
 var GM : GameManager
 var UIM : UIManager
-var is_building = false
 
+export var is_building = false
 export var selection: int = 0
 export var buildtime : float = 1.0	# ms
 export var elapsedbuildtime = 0
+export var active_Building_ID = -1
 
 onready var tween = $"Tween"
 onready var button = preload("res://ui/ButtBuildUnit.tscn")
@@ -65,7 +67,7 @@ func _on_TextureButton_pressed(arg_1:int):
 			):
 			tween.start()
 	else:
-		Signalbus.emit_signal("add_newobject_tobuildqueue", selection)
+		Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
 			
 			# TODO: Add Icon for Queue to second Panel
 
@@ -102,17 +104,19 @@ func _on_UI_Barracks_visibility_changed() -> void:
 					var _ccn =tbuc.connect("pressed", self, "_on_TextureButton_pressed", [u.to_int()])
 
 				ButtGrid.add_child(b)
+		
+		active_Building_ID = UIM._objectui_properties.get("ObjectInstanceID")
 
 
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	is_building = true
 	# CHGME: Erkennungsmerkmal für BUILDING wird benötigt
-	Signalbus.emit_signal("newobject_build_has_started")
+	Signalbus.emit_signal("newobject_build_has_started", active_Building_ID)
 #	pass # Replace with function body.
 
 
 func _on_Tween_tween_all_completed() -> void:
 	is_building = false
-	Signalbus.emit_signal("add_newobject_tobuildqueue", selection)
+	Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
 #	Signalbus.emit_signal("newobject_instantiated", selection)
 #	pass # Replace with function body.
