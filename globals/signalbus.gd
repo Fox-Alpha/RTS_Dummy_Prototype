@@ -28,7 +28,7 @@ signal objectunselected	# (Object_ID)
 signal objectleftclicked(Object_ID)
 
 # warning-ignore:unused_signal
-signal objectrightclicked(Object_ID)
+signal objectrightclicked(Object_ID, clicked_position)
 
 # ===========================
 # Buildqueue
