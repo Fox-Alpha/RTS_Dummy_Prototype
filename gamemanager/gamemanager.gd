@@ -76,7 +76,7 @@ func _input(event) -> void:
 #			_navigate_object()
 			var rayArray = _get_collider_at_mouse_position()
 			if rayArray.has("collider"):
-				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], getmouseposin3d())
+				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], get_mouseposition_3d())
 
 # ===========================
 
@@ -102,7 +102,7 @@ func _get_collider_at_mouse_position():
 	return rayArray
 
 
-func getmouseposin3d():
+func get_mouseposition_3d():
 	var position2D = .get_viewport().get_mouse_position()
 	var position3D = GROUND_PLANE.intersects_ray(camera.project_ray_origin(position2D),camera.project_ray_normal(position2D))
 
@@ -114,7 +114,7 @@ func getmouseposin3d():
 # ===========================
 func _navigate_object() -> void:
 	var rayArray = _get_collider_at_mouse_position()
-	getmouseposin3d()
+	get_mouseposition_3d()
 
 	if rayArray.has("collider"):
 		printt(rayArray)
@@ -133,9 +133,9 @@ func _navigate_object() -> void:
 						if is_instance_valid(om):
 							var so = om.selected_object
 							if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
-								so.SetAgentTarget(getmouseposin3d())
+								so.SetAgentTarget(get_mouseposition_3d())
 							if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-								so.SetBuildingRallyPoint(getmouseposin3d())
+								so.SetBuildingRallyPoint(get_mouseposition_3d())
 
 
 
