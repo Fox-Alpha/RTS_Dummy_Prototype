@@ -20,8 +20,8 @@ var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 #	pass
 
 
-#func _ready():
-#	pass
+func _ready():
+	_init_signals()
 
 
 #func _enter_tree():
@@ -36,7 +36,7 @@ var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 # ===========================
 # Signals
 # ===========================
-func init_signals() -> void:
+func _init_signals() -> void:
 	# Object selektieren
 	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
 		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
