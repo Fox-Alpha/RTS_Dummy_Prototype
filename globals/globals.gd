@@ -16,6 +16,7 @@ enum OBJECT_TYPE_ENUM{
 
 
 # Globale GameManager Instanz
+# CHGME: getter und setter als private
 var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
 
 onready var _WorldNavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
