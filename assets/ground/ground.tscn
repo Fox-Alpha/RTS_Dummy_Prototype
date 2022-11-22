@@ -21,14 +21,14 @@ script = ExtResource( 2 )
 unique_name_in_owner = true
 script = ExtResource( 3 )
 
-[node name="StaticBody" type="StaticBody" parent="."]
+[node name="StaticBodyGround" type="StaticBody" parent="."]
 transform = Transform( 50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0 )
 collision_layer = 5
 collision_mask = 0
 
-[node name="MeshGround" type="MeshInstance" parent="StaticBody"]
+[node name="MeshGround" type="MeshInstance" parent="StaticBodyGround"]
 mesh = SubResource( 3 )
 skeleton = NodePath("")
 
-[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+[node name="CollisionShapeGround" type="CollisionShape" parent="StaticBodyGround"]
 shape = SubResource( 6 )
