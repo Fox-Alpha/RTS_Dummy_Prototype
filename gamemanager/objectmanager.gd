@@ -47,6 +47,16 @@ func init_signals() -> void:
 		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
+	# Objecte left clicked
+	if not Signalbus.is_connected("objectleftclicked", self, "_on_leftclick_object"):
+		var _sig = Signalbus.connect("objectleftclicked", self, "_on_leftclick_object")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+
+	# Objecte right clicked
+	if not Signalbus.is_connected("objectrightclicked", self, "_on_rightclick_object"):
+		var _sig = Signalbus.connect("objectrightclicked", self, "_on_rightclick_object")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+
 
 # ===========================
 #Signal Methoden
@@ -85,6 +95,23 @@ func _on_select_object(_selectedobject) -> void:
 		# Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
 			# print_debug("Object Type is UNDEFINED")
 
+
+func _on_leftclick_object(objectid:int):
+	var collider = instance_from_id(objectid)
+
+	if !collider.has_method("get_objecttype"):
+			collider = collider.get_parent_spatial()
+	if is_instance_valid(collider):
+		var cansel = collider.call("can_objectselected")
+		if cansel:
+			print_debug("GM::_select_object() ->  Signal objectselected emitted")
+			Signalbus.emit_signal("objectselected", collider)
+		else:
+			Signalbus.emit_signal("objectunselected")#	pass
+
+
+func _on_rightclick_object(objectid:int):
+	pass
 # ===========================
 
 # ===========================
