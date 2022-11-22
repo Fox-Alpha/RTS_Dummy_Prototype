@@ -46,9 +46,6 @@ func _ready():
 			if is_instance_valid(managerinstance):
 				Managers[m.name] = managerinstance.get_instance_id()
 
-				if managerinstance.has_method("init_signals"):
-					managerinstance.init_signals()
-
 	Signalbus.emit_signal("setgamemanagerinstance", self)
 
 
