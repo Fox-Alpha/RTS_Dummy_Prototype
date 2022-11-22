@@ -26,6 +26,8 @@ const GROUND_PLANE = Plane(Vector3.UP, 0)
 onready var UnitsNode = $"../World/Units"
 
 var GroundNodeID:int setget _set_groundnode_id, _get_groundnode_id
+var UnitsNodeID:int setget _set_unitsnode_id, _get_unitsnode_id
+
 var _last_mouse_position = Vector2()
 # ===========================
 # Build-In Methoden
@@ -168,6 +170,16 @@ func _set_groundnode_id(value):
 func _get_groundnode_id():
 	return GroundNodeID
 
+
+func _set_unitsnode_id(value):
+	if is_instance_valid(instance_from_id(value)):
+		UnitsNodeID = value
+	else:
+		UnitsNodeID = -1
+
+
+func _get_unitsnode_id():
+	return UnitsNodeID
 # ===========================
 # public Methoden
 # ===========================

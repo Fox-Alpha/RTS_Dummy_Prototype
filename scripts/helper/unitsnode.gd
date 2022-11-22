@@ -44,8 +44,10 @@ extends Spatial
 #	pass
 #
 #
-#func _ready() -> void:
+func _ready() -> void:
 #	print("UnitsNode::_ready() -> ", name)
+	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 #	pass
 #
 #
@@ -67,4 +69,7 @@ extends Spatial
 #-------------------------------------------------------------------------------
 # private methods, _lower_case
 #-------------------------------------------------------------------------------
-
+func _on_game_manager_is_ready():
+	# TODO: Node instance ID im GameManager (?? WorldManager) anmelden
+	# TODO: Eigener Verweis auf GameManager bei bedarf erstellen
+	Globals._instance.UnitsNodeID = get_instance_id()
