@@ -39,7 +39,3 @@ func on_game_manager_is_ready():
 		print(name, "::on_game_manager_is_ready() -> ", name)
 
 ###################
-func SetGameManagerInstance():
-	GM = Globals.get_gamemanager_instance()
-	print(name, "::SetGameManagerInstance() -> ", name)
-###################
