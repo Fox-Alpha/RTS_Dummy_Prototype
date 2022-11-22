@@ -12,6 +12,10 @@ signal game_manager_is_ready
 signal objectselected
 # warning-ignore:unused_signal
 signal objectunselected
+# warning-ignore:unused_signal
+signal objectleftclicked(Object_ID)
+# warning-ignore:unused_signal
+signal objectrightclicked(Object_ID)
 
 # Building
 # warning-ignore:unused_signal
