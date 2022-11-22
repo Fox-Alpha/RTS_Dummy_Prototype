@@ -8,7 +8,7 @@ extends ManagerBase
 # ===========================
 #var GM:Node
 
-var selected_object setget set_selectedobject, get_selectedobject
+var selected_object setget _set_selectedobject, _get_selectedobject
 var selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 # ===========================
 
@@ -127,13 +127,13 @@ func _on_rightclick_object(objectid:int, clicked_position:Vector3):
 # ===========================
 # Getter & Setter Methoden
 # ===========================
-func set_selectedobject(value) -> void:
+func _set_selectedobject(value) -> void:
 #	if value != value.empty():
 	if is_instance_valid(value):
 		selected_object = value
 
 
-func get_selectedobject():
+func _get_selectedobject():
 	return selected_object
 	pass
 # ===========================
