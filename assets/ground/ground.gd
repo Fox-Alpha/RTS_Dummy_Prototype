@@ -9,7 +9,6 @@ func _ready():
 	_ObjectTypeNode._ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_GROUND
 	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
-	pass
 
 
 func can_objectselected() -> bool:
