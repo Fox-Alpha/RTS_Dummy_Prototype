@@ -94,13 +94,18 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	_ObjectTypeNode.is_build_pending = true
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
+		var un = instance_from_id(GM.UnitsNodeID)
+		if is_instance_valid(un):
+			un.add_child(newunit)
+		else: 
+			return
 		
 		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
 		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
 		print_debug("Buildingroot: Neuen Typ erstellen: ", newType)
 		yield(get_tree().create_timer(buildtime), "timeout")
 		var newunit = unit.instance()
-		GM.UnitsNode.add_child(newunit)
+		
 		newunit.name = unitprops["name"]
 		newunit.set_basecolor(unitprops["color"])
 		newunit.set_global_translation(GetBuildingSpawnPos())
