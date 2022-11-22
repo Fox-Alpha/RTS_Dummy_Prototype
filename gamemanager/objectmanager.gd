@@ -115,7 +115,7 @@ func _on_rightclick_object(objectid:int, clicked_position:Vector3):
 
 	if !collider.has_method("get_objecttype"):
 		collider = collider.get_parent_spatial()
-	if collider.get_instance_id() == Globals._instance.GroundNodeID:
+	if collider.get_instance_id() == Globals.GMInstance.GroundNodeID:
 		# CHGME: Aufruf einer Generalisierten Methode
 		if is_instance_valid(selected_object) and selected_object.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
 			selected_object.SetAgentTarget(clicked_position)

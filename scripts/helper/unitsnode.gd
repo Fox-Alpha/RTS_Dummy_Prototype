@@ -72,4 +72,4 @@ func _ready() -> void:
 func _on_game_manager_is_ready():
 	# TODO: Node instance ID im GameManager (?? WorldManager) anmelden
 	# TODO: Eigener Verweis auf GameManager bei bedarf erstellen
-	Globals._instance.UnitsNodeID = get_instance_id()
+	Globals.GMInstance.UnitsNodeID = get_instance_id()

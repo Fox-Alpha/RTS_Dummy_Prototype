@@ -26,5 +26,5 @@ func get_objecttype():
 func _on_game_manager_is_ready():
 	# TODO: Node instance ID im GameManager (?? WorldManager) anmelden
 	# TODO: Eigener Verweis auf GameManager bei bedarf erstellen
-	Globals._instance.GroundNodeID = get_instance_id()
+	Globals.GMInstance.GroundNodeID = get_instance_id()
 	pass

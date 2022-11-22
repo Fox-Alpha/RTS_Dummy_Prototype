@@ -21,13 +21,11 @@ var GM : Node
 func _ready():
 	shader = BuildingMesh.mesh.material.next_pass
 	
-	# GM = Globals.get_gamemanager_instance()
-	
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 	
 	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
-		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 		
 	if !Signalbus.is_connected("add_newobject_tobuildqueue", self, "_on_newobject_tobuildqueue_added"):
 		var _sig = Signalbus.connect("add_newobject_tobuildqueue", self, "on_newobject_tobuildqueue_added")
@@ -36,12 +34,12 @@ func _ready():
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
 
 
-func _enter_tree():
+#func _enter_tree():
 #	GM = Globals.get_gamemanager_instance()
 #
 #	if is_instance_valid(GM):
 #		print(name, "::on_game_manager_is_ready() -> ", name)
-	pass
+#	pass
 
 
 #func _exit_tree():
@@ -67,7 +65,7 @@ func _process(_delta):
 #	pass
 # ===========================
 func _on_game_manager_is_ready():
-	GM = Globals.get_gamemanager_instance()
+	GM = Globals.GMInstance
 	
 	if is_instance_valid(GM):
 		print(name, "::on_game_manager_is_ready() -> ", name, "( ", get_instance_id(), " )")
