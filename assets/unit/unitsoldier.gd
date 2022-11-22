@@ -99,5 +99,5 @@ func _on_NavigationAgent_target_reached():
 				c.queue_free()
 
 
-# func _on_NavigationAgent_navigation_finished():
-#	pass
+func _on_NavigationAgent_navigation_finished():
+	pass
