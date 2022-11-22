@@ -26,13 +26,13 @@ func _ready():
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 	
-	if !Signalbus.is_connected("game_manager_is_ready", self, "on_game_manager_is_ready"):
+	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "on_game_manager_is_ready")
 		
-	if !Signalbus.is_connected("add_newobject_tobuildqueue", self, "on_newobject_tobuildqueue_added"):
+	if !Signalbus.is_connected("add_newobject_tobuildqueue", self, "_on_newobject_tobuildqueue_added"):
 		var _sig = Signalbus.connect("add_newobject_tobuildqueue", self, "on_newobject_tobuildqueue_added")
 		
-	if !Signalbus.is_connected("newobject_build_has_started", self, "on_newobject_build_has_started"):
+	if !Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
 
 
@@ -66,21 +66,21 @@ func _process(_delta):
 #func _process(delta):
 #	pass
 # ===========================
-func on_game_manager_is_ready():
+func _on_game_manager_is_ready():
 	GM = Globals.get_gamemanager_instance()
 	
 	if is_instance_valid(GM):
 		print(name, "::on_game_manager_is_ready() -> ", name, "( ", get_instance_id(), " )")
 
 
-func on_newobject_build_has_started(_Building_ID:int): # Node ID
+func _on_newobject_build_has_started(_Building_ID:int): # Node ID
 	pass
 	# var thisid = get_instance_id()
 	# if thisid == Building_ID:
 	# 	_ObjectTypeNode.is_build_pending = true
 
 
-func on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
+func _on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
 	var thisid = get_instance_id()
 	if thisid == Building_ID:
 		_ObjectTypeNode._ObjectBuildQueue.append(nextType)
@@ -128,6 +128,7 @@ func _manage_ui(showui:bool):
 func select_object(selected:bool) -> void:
 	print_debug("BuildingRoot::select_object() -> Building selected: %s" % selected)
 	_ObjectTypeNode.building_is_selected = selected
+		# TRYME: Farbverlauf mit Tween ??
 	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
 		_manage_ui(true)
