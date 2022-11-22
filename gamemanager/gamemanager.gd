@@ -66,7 +66,7 @@ func _input(event) -> void:
 			Signalbus.emit_signal("objectleftclicked", rayArray["collider_id"])
 
 	if event.is_action_pressed("MouseClickRightButton", true):
-		_last_mouse_position = get_viewport().get_mouse_position()
+		_last_mouse_position = .get_viewport().get_mouse_position()
 	if event.is_action_released("MouseClickRightButton", true):
 		if _get_mouse_speed() == Vector2.ZERO:
 			var rayArray = _get_collider_at_mouse_position()
@@ -77,7 +77,7 @@ func _input(event) -> void:
 
 func _get_mouse_speed() -> Vector2:
 	# calculate speed
-	var current_mouse_pos = get_viewport().get_mouse_position()
+	var current_mouse_pos = .get_viewport().get_mouse_position()
 	var mouse_speed = current_mouse_pos - _last_mouse_position
 	# update last click position
 	_last_mouse_position = current_mouse_pos
