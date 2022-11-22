@@ -39,25 +39,25 @@ extends Node
 #-------------------------------------------------------------------------------
 # optional built-in virtual methods
 #-------------------------------------------------------------------------------
-func _init() -> void:
-	print("UnitsNode::_init() -> ", name)
-	pass
+#func _init() -> void:
+#	print("UnitsNode::_init() -> ", name)
+#	pass
 
 
 func _ready() -> void:
 	Signalbus.emit_signal("game_manager_is_ready")
-	print("UnitsNode::_ready() -> ", name)
-	pass
+	print("SceneEndNode::_ready() -> ", name)
 
 
-func _enter_tree():
-	print("UnitsNode::_enter_tree() -> ", name)
-	pass
-
-
-func _exit_tree():
-	print("UnitsNode::_exit_tree() -> ", name)
-	pass
+#
+#func _enter_tree():
+#	print("UnitsNode::_enter_tree() -> ", name)
+#	pass
+#
+#
+#func _exit_tree():
+#	print("UnitsNode::_exit_tree() -> ", name)
+#	pass
 #-------------------------------------------------------------------------------
 
 #-------------------------------------------------------------------------------
