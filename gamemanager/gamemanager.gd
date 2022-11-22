@@ -15,15 +15,17 @@ class_name GameManager
 #
 # ===========================
 # TODO: Aufräumen Linksklick
+# TODO: Aufräumen Rechtsklick
 # ===========================
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
 const GROUND_PLANE = Plane(Vector3.UP, 0)
 
-# TODO: Dynamich durch die Node selber registrieren
+# TODO: Dynamich durch die Node selber registrieren, siehe Ground
 onready var UnitsNode = $"../World/Units"
 
+var GroundNodeID:int setget _set_groundnode_id, _get_groundnode_id
 var _last_mouse_position = Vector2()
 # ===========================
 # Build-In Methoden
@@ -71,7 +73,10 @@ func _input(event) -> void:
 #		if event.is_action_released("camera_pan"):
 #		var mspeed = _get_mouse_speed()
 		if _get_mouse_speed() == Vector2.ZERO:
-			_navigate_object()
+#			_navigate_object()
+			var rayArray = _get_collider_at_mouse_position()
+			if rayArray.has("collider"):
+				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], getmouseposin3d())
 
 # ===========================
 
@@ -154,6 +159,14 @@ func _select_object() -> void:
 #	else:
 #		print_debug("Object ohne Collider") # z.B. Hintergrund
 
+func _set_groundnode_id(value):
+	if is_instance_valid(instance_from_id(value)):
+		GroundNodeID = value
+	else:
+		GroundNodeID = -1
+
+func _get_groundnode_id():
+	return GroundNodeID
 
 # ===========================
 # public Methoden
