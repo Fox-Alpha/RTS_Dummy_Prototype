@@ -15,17 +15,26 @@ var _ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 onready var UnitRootNode = owner
 
 
-func _ready():
-	pass
+#-------------------------------------------------------------------------------
+# optional built-in virtual methods
+#-------------------------------------------------------------------------------
+#func _init() -> void:
+#	pass
 
 
-func _enter_tree():
-	pass
+# func _ready() -> void:
+# 	pass
+
+#func _enter_tree():
+#	print("UnitsNode::_enter_tree() -> ", name)
+#	pass
 
 
-func _exit_tree():
-	pass
+#func _exit_tree():
+#	print("UnitsNode::_exit_tree() -> ", name)
+#	pass
 
+#-------------------------------------------------------------------------------
 
 func can_selected() -> bool:
 	return _canselectunit
@@ -37,12 +46,10 @@ func can_moved() -> bool:
 
 func _set_objecttype(value):
 	_ObjectType = value
-	pass
 
 
 func get_objecttype():
 	return _ObjectType
-	pass
 
 
 func set_unit_name(value:String) -> void:

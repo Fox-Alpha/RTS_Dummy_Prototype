@@ -39,23 +39,23 @@ extends Spatial
 #-------------------------------------------------------------------------------
 # optional built-in virtual methods
 #-------------------------------------------------------------------------------
+
 #func _init() -> void:
 #	print("UnitsNode::_init() -> ", name)
 #	pass
-#
-#
+
+
 func _ready() -> void:
-#	print("UnitsNode::_ready() -> ", name)
 	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 #	pass
-#
-#
+
+
 #func _enter_tree():
 #	print("UnitsNode::_enter_tree() -> ", name)
 #	pass
-#
-#
+
+
 #func _exit_tree():
 #	print("UnitsNode::_exit_tree() -> ", name)
 #	pass
@@ -72,4 +72,5 @@ func _ready() -> void:
 func _on_game_manager_is_ready():
 	# TODO: Node instance ID im GameManager (?? WorldManager) anmelden
 	# TODO: Eigener Verweis auf GameManager bei bedarf erstellen
+	# GM = Globals.GMInstance
 	Globals.GMInstance.UnitsNodeID = get_instance_id()

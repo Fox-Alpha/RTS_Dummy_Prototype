@@ -22,10 +22,8 @@ onready var ButtGrid = $"%GridButtonContainer"
 
 
 func _ready():
-#	_Set_GameManager_Instance()
-	if !Signalbus.is_connected("game_manager_is_ready", self, "_Set_GameManager_Instance"):
-		var _sig = Signalbus.connect("game_manager_is_ready", self, "_Set_GameManager_Instance")
-
+	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
+		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 
 
 #func _enter_tree():
@@ -34,6 +32,7 @@ func _ready():
 
 #func _exit_tree():
 #	pass
+
 # ===========================
 
 
@@ -43,15 +42,15 @@ func _on_TextureButton_pressed(arg_1:int):
 	# TODO: Button zur Warteschlange hinzufügen
 	# TODO: Warteschlange im UI aktualisieren
 	# Warteschlange aus selectedobject lesen und anzeigen
-	match arg_1:
-		1:	# Unit RED
-			pass
-		2:	# Unit YELLOW
-			pass
-		3:	# Unit GREEN
-			pass
-		4:	# Unit BLUE
-			pass
+#	match arg_1:
+#		1:	# Unit RED
+#			pass
+#		2:	# Unit YELLOW
+#			pass
+#		3:	# Unit GREEN
+#			pass
+#		4:	# Unit BLUE
+#			pass
 			
 	var tp = get_node("%TextureProgress")
 	if is_instance_valid(tp) and not is_building:
@@ -59,7 +58,6 @@ func _on_TextureButton_pressed(arg_1:int):
 		var pop = UIM._objectui_properties
 		buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
 		var buildingname = pop["ObjectParentName"]
-		print_debug("_on_TextureButton_pressed: ", buildingname)
 		
 		if tween.interpolate_property(
 			tp, "value", tp.min_value, tp.max_value,
@@ -72,23 +70,16 @@ func _on_TextureButton_pressed(arg_1:int):
 			# TODO: Add Icon for Queue to second Panel
 
 
-func _on_TextureButton_color_pressed(_extra_arg_0):
-	pass # Replace with function body.
-
-
-func _Set_GameManager_Instance():
+func _on_game_manager_is_ready():
 	GM = Globals.GMInstance
-	print(name, "::SetGameManagerInstance() -> ", name)
 	var ui_manager_id  = GM.get_manager_instance("UIManager")
 	UIM = instance_from_id(ui_manager_id)
-	# if is_instance_valid(UIM):
 		
 
 
 
 func _on_UI_Barracks_visibility_changed() -> void:
 	if !visible:
-		# queue_free()
 		return
 
 	if UIM._objectui_properties.size() > 0:

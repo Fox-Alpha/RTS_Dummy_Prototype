@@ -22,13 +22,13 @@ onready var camera = .get_viewport().get_camera()
 
 const GROUND_PLANE = Plane(Vector3.UP, 0)
 
-# TODO: Dynamich durch die Node selber registrieren, siehe Ground
-onready var UnitsNode = $"../World/Units"
+# onready var UnitsNode = $"../World/Units"
 
 var GroundNodeID:int setget _set_groundnode_id, _get_groundnode_id
 var UnitsNodeID:int setget _set_unitsnode_id, _get_unitsnode_id
 
 var _last_mouse_position = Vector2()
+
 # ===========================
 # Build-In Methoden
 # ===========================
@@ -61,7 +61,6 @@ func _input(event) -> void:
 	# Mousevent Left and Right Button here
 	# ADDME: left_clicked left_released and Drag for Multiselect
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
-#		_select_object()
 		var rayArray = _get_collider_at_mouse_position()
 		if rayArray.has("collider"):
 			Signalbus.emit_signal("objectleftclicked", rayArray["collider_id"])
@@ -69,10 +68,7 @@ func _input(event) -> void:
 	if event.is_action_pressed("MouseClickRightButton", true):
 		_last_mouse_position = get_viewport().get_mouse_position()
 	if event.is_action_released("MouseClickRightButton", true):
-#		if event.is_action_released("camera_pan"):
-#		var mspeed = _get_mouse_speed()
 		if _get_mouse_speed() == Vector2.ZERO:
-#			_navigate_object()
 			var rayArray = _get_collider_at_mouse_position()
 			if rayArray.has("collider"):
 				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], _get_mouseposition_3d())

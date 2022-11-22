@@ -22,7 +22,6 @@ var is_building = false
 var is_build_pending = false
 
 
-#onready var GM = Globals.get_gamemanager_instance()
 onready var _BuildingRootNode = get_parent()
 onready var _ObjectTypeNode = get_node("%ObjectType")
 
@@ -185,8 +184,6 @@ func _set_building_rallypoint(newrallypoint):
 
 
 func _get_building_rallypoint() -> Vector3:
-#	var rp  = _Get_ObjectTypeProperty("ObjectRallyPos")
-#	return rp
 	return _Get_ObjectTypeProperty("ObjectRallyPos")
 
 # ===========================

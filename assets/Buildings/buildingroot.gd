@@ -35,10 +35,6 @@ func _ready():
 
 
 #func _enter_tree():
-#	GM = Globals.get_gamemanager_instance()
-#
-#	if is_instance_valid(GM):
-#		print(name, "::on_game_manager_is_ready() -> ", name)
 #	pass
 
 
@@ -58,21 +54,23 @@ func _process(_delta):
 		Signalbus.emit_signal("newobject_instantiated", nextUnitType, id)
 		_ObjectTypeNode.is_building = true
 
-
 # ===========================
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
 # ===========================
+
 func _on_game_manager_is_ready():
 	GM = Globals.GMInstance
 	
 	if is_instance_valid(GM):
-		print(name, "::on_game_manager_is_ready() -> ", name, "( ", get_instance_id(), " )")
+		print(name, "::on_game_manager_is_ready() -> ", name, " ( ", get_instance_id(), " )")
 
 
-func _on_newobject_build_has_started(_Building_ID:int): # Node ID
-	pass
+# func _on_newobject_build_has_started(_Building_ID:int): # Node ID
+#	pass
 	# var thisid = get_instance_id()
 	# if thisid == Building_ID:
 	# 	_ObjectTypeNode.is_build_pending = true
@@ -94,7 +92,6 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	if props.ObjectsToSpawn.has(String(newType)):
 		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
 		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
-		print_debug("Buildingroot: Neuen Typ erstellen: ", newType)
 		var newunit = unit.instance()
 
 		var un = instance_from_id(GM.UnitsNodeID)

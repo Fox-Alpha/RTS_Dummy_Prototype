@@ -9,7 +9,6 @@ export (Color) var basecolor = Color.blue setget set_basecolor, get_basecolor
 onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var _NavAgentNode = get_node_or_null("%NavigationAgent")
 onready var _NavMapNode = get_tree().get_root().get_node("./Main/World/WorldNavigation")
-#onready var _NavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
 onready var UnitMesh = $MeshBody
 onready var albedocolor:SpatialMaterial = UnitMesh.mesh.material
 onready var shader:ShaderMaterial = UnitMesh.mesh.material.next_pass
@@ -34,9 +33,6 @@ func _physics_process(_delta):
 	var direction = global_transform.origin.direction_to(targetpos)
 	var velocity = direction * movement_speed # _NavAgentNode.max_speed
 
-#	look_at(global_transform.origin, -targetpos)
-	#_from_position
-
 	var lookdir = atan2(velocity.x, velocity.z)
 	rotation.y = lookdir
 
@@ -48,12 +44,10 @@ func _physics_process(_delta):
 
 
 func _on_NavigationAgent_velocity_computed(_safe_velocity: Vector3) -> void:
-# warning-ignore:unused_variable
-	var mas = move_and_slide(_safe_velocity, Vector3.UP)
+	var _mas = move_and_slide(_safe_velocity, Vector3.UP)
 
 
 func SetAgentTarget(newAgentTarget:Vector3)-> void:
-	print_debug("SetAgentTarget: %s" % newAgentTarget)
 	_NavAgentNode.set_target_location(newAgentTarget)
 
 
@@ -68,7 +62,6 @@ func get_objecttype():
 func set_basecolor(value):
 	basecolor = value
 	albedocolor.albedo_color = value
-	pass
 
 
 func get_basecolor():
@@ -76,7 +69,6 @@ func get_basecolor():
 
 
 func select_object(selected:bool) -> void:
-	print_debug("UnitRoot::select_object() -> Unit selected: %s" % selected)
 	is_selected = selected
 	if is_selected:
 		shader.set_shader_param("strenght", 1.0)
@@ -99,7 +91,6 @@ func _on_NavigationAgent_path_changed():
 
 
 func _on_NavigationAgent_target_reached():
-	print_debug("_on_NavigationAgent_target_reached()")
 	var path = _NavAgentNode.get_nav_path()
 
 	if path.size() > 0:
@@ -108,5 +99,5 @@ func _on_NavigationAgent_target_reached():
 				c.queue_free()
 
 
-func _on_NavigationAgent_navigation_finished():
-	print_debug("_on_NavigationAgent_navigation_finished()")
+# func _on_NavigationAgent_navigation_finished():
+#	pass

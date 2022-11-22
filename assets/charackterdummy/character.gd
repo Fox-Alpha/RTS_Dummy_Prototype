@@ -33,23 +33,22 @@ func _ready():
 		print_debug("Charackter -> Unit Registration Failed!")
 
 
-func _enter_tree():
-	pass
+# func _enter_tree():
+#	pass
 
 
-func _input(_event):
-	if Input.is_action_just_pressed("MouseClickLeftButton", true):
-#		if is_selected:
-		pass
+# func _input(_event):
+#	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
 func can_selected() -> bool:
 	return _canselectbuilding
 
 func select_object(selected:bool) -> void:
-	print_debug("UNit selected")
 	is_selected = selected
 	if is_selected:
 		shader.set_shader_param("strenght", 0.5)
@@ -58,7 +57,6 @@ func select_object(selected:bool) -> void:
 
 
 func SetAgentTarget(newAgentTarget:Vector3)-> void:
-	print_debug("SetAgentTarget: %s" % newAgentTarget)
 	navagent.set_target_location(newAgentTarget)
 
 
@@ -74,7 +72,7 @@ func get_objecttype():
 	return _ObjectTypeNode._ObjectType
 
 
-func _set_objecttype(_value):
-	pass
+# func _set_objecttype(_value):
+#	pass
 
 

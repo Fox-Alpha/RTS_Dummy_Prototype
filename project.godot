@@ -79,7 +79,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gamemanager/uimanager.gd"
 }, {
-"base": "Reference",
+"base": "UnitBase",
 "class": "Unit",
 "language": "GDScript",
 "path": "res://assets/unit/objecttypeunit.gd"
@@ -218,6 +218,10 @@ camera_rotate={
 3d_physics/layer_3="Buildings"
 3d_physics/layer_4="Resource"
 3d_physics/layer_5="Enviroment"
+
+[network]
+
+limits/debugger_stdout/max_chars_per_second=4096
 
 [node]
 

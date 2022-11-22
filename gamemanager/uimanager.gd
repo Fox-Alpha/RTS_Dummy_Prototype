@@ -10,6 +10,7 @@ onready var UINode : Node = get_tree().get_root().get_node_or_null("./Main/UI")
 # ===========================
 # Build-In Methoden
 # ===========================
+
 #func _init():
 #	pass
 
@@ -19,14 +20,6 @@ func _ready():
 		"ui_root": UINode.get_instance_id(),
 		"ui_barracks": "res://ui/ui_barracks.tscn"
 	}
-	pass
-	# if is_instance_valid(UINode):
-	# 	var uinodes = UINode.get_children()
-	
-	# 	if uinodes.size() > 0:
-	# 		for ui in uinodes:
-	# 			if is_instance_valid(ui):
-	# 				UserInterfaces[ui.name] = ui
 
 
 #func _enter_tree():
@@ -35,6 +28,7 @@ func _ready():
 
 #func _exit_tree():
 #	pass
+
 # ===========================
 
 
@@ -56,7 +50,6 @@ func show_ui_instance(uiname:String, showui:bool, properties:Dictionary) -> void
 				UINode.add_child(ui)
 				Signalbus.emit_signal("game_manager_is_ready")
 			ui.visible = showui
-#		pass
 
 
 func get_ui_instance(ui : String) -> Control:
@@ -69,12 +62,11 @@ func get_ui_instance(ui : String) -> Control:
 			return load(UserInterfaces[ui]).instance()
 	return null
 # ===========================
+
 func _set_objectui_properties(value:Dictionary):
 	if _objectui_properties.hash() != value.hash():
 		_objectui_properties = value
-#	pass
 
 
 func  _get_objectui_properties():
 	return _objectui_properties
-#	pass
