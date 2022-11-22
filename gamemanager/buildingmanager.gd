@@ -20,8 +20,8 @@ export var Buildings : Dictionary = {}
 # ===========================
 # Build-in Methoden
 # ===========================
-func _ready():
-	pass
+#func _ready():
+#	pass
 
 
 #func _init():
