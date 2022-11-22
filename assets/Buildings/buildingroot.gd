@@ -28,7 +28,7 @@ func _ready():
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 		
 	if !Signalbus.is_connected("add_newobject_tobuildqueue", self, "_on_newobject_tobuildqueue_added"):
-		var _sig = Signalbus.connect("add_newobject_tobuildqueue", self, "on_newobject_tobuildqueue_added")
+		var _sig = Signalbus.connect("add_newobject_tobuildqueue", self, "_on_newobject_tobuildqueue_added")
 		
 	if !Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
@@ -69,8 +69,8 @@ func _on_game_manager_is_ready():
 		print(name, "::on_game_manager_is_ready() -> ", name, " ( ", get_instance_id(), " )")
 
 
-# func _on_newobject_build_has_started(_Building_ID:int): # Node ID
-#	pass
+func _on_newobject_build_has_started(_Building_ID:int): # Node ID
+	pass
 	# var thisid = get_instance_id()
 	# if thisid == Building_ID:
 	# 	_ObjectTypeNode.is_build_pending = true
