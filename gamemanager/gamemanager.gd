@@ -78,7 +78,7 @@ func _input(event) -> void:
 #			_navigate_object()
 			var rayArray = _get_collider_at_mouse_position()
 			if rayArray.has("collider"):
-				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], get_mouseposition_3d())
+				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], _get_mouseposition_3d())
 
 # ===========================
 
@@ -94,7 +94,7 @@ func _get_mouse_speed() -> Vector2:
 # ===========================
 # Helper Methoden
 # ===========================
-func _get_collider_at_mouse_position():
+func _get_collider_at_mouse_position() -> Array:
 	var spaceSTate = .get_tree().get_root().get_world().direct_space_state
 	var mousePos = .get_viewport().get_mouse_position()
 	var rayOrigin = camera.project_ray_origin(mousePos)
@@ -104,7 +104,7 @@ func _get_collider_at_mouse_position():
 	return rayArray
 
 
-func get_mouseposition_3d():
+func _get_mouseposition_3d() -> Vector3:
 	var position2D = .get_viewport().get_mouse_position()
 	var position3D = GROUND_PLANE.intersects_ray(camera.project_ray_origin(position2D),camera.project_ray_normal(position2D))
 
@@ -114,52 +114,6 @@ func get_mouseposition_3d():
 # ===========================
 # Lokale Methoden
 # ===========================
-func _navigate_object() -> void:
-	var rayArray = _get_collider_at_mouse_position()
-	get_mouseposition_3d()
-
-	if rayArray.has("collider"):
-		printt(rayArray)
-		var collider = rayArray["collider"]
-		var colliderparent:Spatial = collider.get_parent_spatial()
-
-		if is_instance_valid(colliderparent):
-			if colliderparent.has_method("get_objecttype"):
-				var objType = colliderparent.call("get_objecttype")
-
-				if objType == Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
-					var objectmanager_id = get_manager_instance("ObjectManager")
-					if objectmanager_id > 0:
-						var om = instance_from_id(objectmanager_id)
-						
-						if is_instance_valid(om):
-							var so = om.selected_object
-							if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
-								so.SetAgentTarget(get_mouseposition_3d())
-							if is_instance_valid(so) and so.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-								so.SetBuildingRallyPoint(get_mouseposition_3d())
-
-
-
-# Wenn Collision hat "canSelected", dann per Type an Manager weiterleiten
-func _select_object() -> void:
-	var rayArray = _get_collider_at_mouse_position()
-
-	if rayArray.has("collider"):
-		printt(rayArray)
-		var collider = rayArray["collider"]
-
-		if !collider.has_method("get_objecttype"):
-				collider = collider.get_parent_spatial()
-		if is_instance_valid(collider):
-			var cansel = collider.call("can_objectselected")
-			if cansel:
-				print_debug("GM::_select_object() ->  Signal objectselected emitted")
-				Signalbus.emit_signal("objectselected", collider)
-			else:
-				Signalbus.emit_signal("objectunselected")
-#	else:
-#		print_debug("Object ohne Collider") # z.B. Hintergrund
 
 func _set_groundnode_id(value):
 	if is_instance_valid(instance_from_id(value)):
@@ -180,18 +134,13 @@ func _set_unitsnode_id(value):
 
 func _get_unitsnode_id():
 	return UnitsNodeID
+	
 # ===========================
 # public Methoden
 # ===========================
+
 # Von einem bestimmten Manager die aktuelle Instanz abholen
 func get_manager_instance(manager : String) -> int:	# -> Manager Instanz ID
 	if Managers.has(manager):
 		return Managers[manager]
 	return -1
-
-
-func BroadCastGM():
-	if Managers.size() > 0:
-		for m in Managers:
-			if Managers[m].has_method("SetGameManagerInstance"):
-				Managers[m].SetGameManagerInstance()
