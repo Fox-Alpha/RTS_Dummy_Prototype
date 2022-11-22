@@ -6,7 +6,7 @@ class_name ManagerBase
 #
 # Nur gemeinsame Eigenschaften und Methoden
 # ===========================
-var GM:Node
+var GM
 
 # ===========================
 # Build-In Methoden
