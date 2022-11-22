@@ -110,8 +110,18 @@ func _on_leftclick_object(objectid:int):
 			Signalbus.emit_signal("objectunselected")#	pass
 
 
-func _on_rightclick_object(objectid:int):
-	pass
+func _on_rightclick_object(objectid:int, clicked_position:Vector3):
+	var collider = instance_from_id(objectid)
+
+	if !collider.has_method("get_objecttype"):
+		collider = collider.get_parent_spatial()
+	if collider.get_instance_id() == Globals._instance.GroundNodeID:
+		# CHGME: Aufruf einer Generalisierten Methode
+		if is_instance_valid(selected_object) and selected_object.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
+			selected_object.SetAgentTarget(clicked_position)
+		if is_instance_valid(selected_object) and selected_object.call("get_objecttype") == Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
+			selected_object.SetBuildingRallyPoint(clicked_position)
+
 # ===========================
 
 # ===========================
