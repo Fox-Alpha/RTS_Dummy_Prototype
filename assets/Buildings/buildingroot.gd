@@ -90,6 +90,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	_ObjectTypeNode.is_build_pending = true
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
+		
 		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
 		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
 		var newunit = unit.instance()
