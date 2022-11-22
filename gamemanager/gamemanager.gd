@@ -14,6 +14,8 @@ class_name GameManager
 # Starten und Managen des Netzwerkmodus
 #
 # ===========================
+# TODO: Aufräumen Linksklick
+# ===========================
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
 
@@ -56,9 +58,13 @@ func _ready():
 
 func _input(event) -> void:
 	# Mousevent Left and Right Button here
+	# ADDME: left_clicked left_released and Drag for Multiselect
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
-		_select_object()
-	# TODO: Ignorieren wenn die SHIFT Taste mitgedrückt wird. Soll die Kamera beegen
+#		_select_object()
+		var rayArray = _get_collider_at_mouse_position()
+		if rayArray.has("collider"):
+			Signalbus.emit_signal("objectleftclicked", rayArray["collider_id"])
+
 	if event.is_action_pressed("MouseClickRightButton", true):
 		_last_mouse_position = get_viewport().get_mouse_position()
 	if event.is_action_released("MouseClickRightButton", true):
@@ -66,6 +72,7 @@ func _input(event) -> void:
 #		var mspeed = _get_mouse_speed()
 		if _get_mouse_speed() == Vector2.ZERO:
 			_navigate_object()
+
 # ===========================
 
 func _get_mouse_speed() -> Vector2:
@@ -144,6 +151,8 @@ func _select_object() -> void:
 				Signalbus.emit_signal("objectselected", collider)
 			else:
 				Signalbus.emit_signal("objectunselected")
+#	else:
+#		print_debug("Object ohne Collider") # z.B. Hintergrund
 
 
 # ===========================
