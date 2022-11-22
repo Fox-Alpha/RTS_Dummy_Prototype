@@ -5,7 +5,7 @@ extends ManagerBase
 var _objectui_properties : Dictionary setget _set_objectui_properties, _get_objectui_properties
 export var UserInterfaces : Dictionary = {}
 
-onready var UINode : Node = get_tree().get_root().get_node_or_null("./Main/UI")
+onready var UINode : Node = .get_tree().get_root().get_node_or_null("./Main/UI")
 
 # ===========================
 # Build-In Methoden
