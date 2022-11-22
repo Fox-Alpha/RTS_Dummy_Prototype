@@ -57,7 +57,6 @@ func _on_TextureButton_pressed(arg_1:int):
 		selection = arg_1
 		var pop = UIM._objectui_properties
 		buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
-		var buildingname = pop["ObjectParentName"]
 		
 		if tween.interpolate_property(
 			tp, "value", tp.min_value, tp.max_value,
