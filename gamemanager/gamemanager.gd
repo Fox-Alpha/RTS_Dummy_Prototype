@@ -21,6 +21,8 @@ const GROUND_PLANE = Plane(Vector3.UP, 0)
 
 # TODO: Dynamich durch die Node selber registrieren
 onready var UnitsNode = $"../World/Units"
+
+var _last_mouse_position = Vector2()
 # ===========================
 # Build-In Methoden
 # ===========================
@@ -52,15 +54,28 @@ func _ready():
 # 	pass
 
 
-func _input(_event) -> void:
+func _input(event) -> void:
 	# Mousevent Left and Right Button here
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
 		_select_object()
 	# TODO: Ignorieren wenn die SHIFT Taste mitgedrückt wird. Soll die Kamera beegen
-	if Input.is_action_just_pressed("MouseClickRightButton", true):
-		_navigate_object()
+	if event.is_action_pressed("MouseClickRightButton", true):
+		_last_mouse_position = get_viewport().get_mouse_position()
+	if event.is_action_released("MouseClickRightButton", true):
+#		if event.is_action_released("camera_pan"):
+#		var mspeed = _get_mouse_speed()
+		if _get_mouse_speed() == Vector2.ZERO:
+			_navigate_object()
 # ===========================
 
+func _get_mouse_speed() -> Vector2:
+	# calculate speed
+	var current_mouse_pos = get_viewport().get_mouse_position()
+	var mouse_speed = current_mouse_pos - _last_mouse_position
+	# update last click position
+	_last_mouse_position = current_mouse_pos
+	# return speed
+	return mouse_speed
 
 # ===========================
 # Helper Methoden
