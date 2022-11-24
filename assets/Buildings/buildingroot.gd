@@ -18,6 +18,8 @@ var GM : Node
 #	pass
 
 
+# ADDME: Auf SIGNAL objectselected & objectunselected in select_object reagieren
+# ADDME: Bei SIGNALEN Registrieren
 func _ready():
 	shader = BuildingMesh.mesh.material.next_pass
 	
@@ -41,7 +43,7 @@ func _ready():
 #func _exit_tree():
 #	pass
 
-
+# MOVE: In den BuildinManager verschieben, Überwachen BuildQueue
 func _process(_delta):
 	# BuildQueue abarbeiten
 	var id = get_instance_id()
@@ -67,8 +69,10 @@ func _on_game_manager_is_ready():
 	
 	if is_instance_valid(GM):
 		print(name, "::on_game_manager_is_ready() -> ", name, " ( ", get_instance_id(), " )")
+	
+	# ADDME: Builöding im BuildinManager anmelden 
 
-
+# MOVE: In den BuildinManager verschieben, Add To Queue
 func _on_newobject_build_has_started(_Building_ID:int): # Node ID
 	pass
 	# var thisid = get_instance_id()
@@ -81,7 +85,8 @@ func _on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
 	if thisid == Building_ID:
 		_ObjectTypeNode._ObjectBuildQueue.append(nextType)
 
-
+# MOVEME: In den BuildingManager auslagern, hier nur Eigenschaften an Type anpassen und Position setzen
+# TRYME: Methode in BaseClass implemetieren
 func _on_instantiate_new_object(newType:int, Building_ID:int):
 	var thisid = get_instance_id()
 	if thisid != Building_ID:
@@ -101,6 +106,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 			yield(get_tree().create_timer(buildtime), "timeout")
 			un.add_child(newunit)
 			newunit.set_basecolor(unitprops["color"])
+			# TRYME: Position und Agnent Target per Signal setzen
 			newunit.set_global_translation(GetBuildingSpawnPos())
 			newunit.SetAgentTarget(GetBuildingRallyPos())
 		else: 
@@ -109,7 +115,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	_ObjectTypeNode.is_building = false
 	_ObjectTypeNode.is_build_pending = false
 
-
+# CHGME: Kann in select_object behandelt werden
 func _manage_ui(showui:bool):
 	if !is_instance_valid(ui_manager):
 		var ui_manager_id = GM.get_manager_instance("UIManager")
@@ -118,6 +124,7 @@ func _manage_ui(showui:bool):
 
 	if is_instance_valid(ui_manager):
 		if GetObjectHasUI():
+		# CHGME: per Signal auslösen
 			ui_manager.show_ui_instance(GetObjectUIName(), showui, GetObjectProperties())
 
 

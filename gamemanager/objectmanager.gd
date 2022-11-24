@@ -70,7 +70,8 @@ func _on_unselect_object() -> void:
 		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
 
-# Signal ein Objekt selektieren
+# Signal ein Objekt selektieren: objectselected
+# CHGME: Kann im leftclick Signal behandelt werden
 func _on_select_object(_selectedobject) -> void:
 	if is_instance_valid(selected_object):
 		if selected_object != _selectedobject:
@@ -99,6 +100,7 @@ func _on_leftclick_object(objectid:int):
 	if !collider.has_method("get_objecttype"):
 			collider = collider.get_parent_spatial()
 	if is_instance_valid(collider):
+		# CHGME: can_objectselected nicht notwendig. Object soll selbst entscheiden
 		var cansel = collider.call("can_objectselected")
 		if cansel:
 			Signalbus.emit_signal("objectselected", collider)
@@ -134,7 +136,7 @@ func _get_selectedobject():
 # ===========================
 
 
-# TODO: Refactor
+# REFACTOR: _on_instantiate_new_object
 # func _on_instantiate_new_object(newType:int):
 	# print_debug("OM: Neuen Typ erstellen: ", newType)
 	
