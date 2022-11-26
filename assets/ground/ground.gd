@@ -4,6 +4,7 @@ extends Spatial
 export var _canselectground : bool = false
 onready var _ObjectTypeNode = get_node("%ObjectType")
 
+var GM
 
 func _ready():
 	_ObjectTypeNode._ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_GROUND
@@ -24,7 +25,6 @@ func get_objecttype():
 
 
 func _on_game_manager_is_ready():
-	# TODO: Node instance ID im GameManager (?? WorldManager) anmelden
-	# TODO: Eigener Verweis auf GameManager bei bedarf erstellen
 	Globals.GMInstance.GroundNodeID = get_instance_id()
-	pass
+
+	GM = Globals.GMInstance

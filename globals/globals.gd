@@ -16,7 +16,6 @@ enum OBJECT_TYPE_ENUM{
 
 
 # Globale GameManager Instanz
-# CHGME: getter und setter als private
 var GMInstance setget _set_gamemanager_instance, _get_gamemanager_instance
 # :GameManager
 

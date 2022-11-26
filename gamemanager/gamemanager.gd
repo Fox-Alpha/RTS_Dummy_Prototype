@@ -14,8 +14,6 @@ class_name GameManager
 # Starten und Managen des Netzwerkmodus
 #
 # ===========================
-# TODO: Aufräumen Linksklick
-# TODO: Aufräumen Rechtsklick
 # ===========================
 export var Managers : Dictionary = {}
 onready var camera = .get_viewport().get_camera()
