@@ -22,15 +22,15 @@ var unitmanager
 func _ready():
 	shader = UnitMesh.mesh.material.next_pass
 	
-	var unitmanager_id = unitbase.GM.get_manager_instance("UnitManager")
+	# var unitmanager_id = unitbase.GM.get_manager_instance("UnitManager")
 	
-	if unitmanager_id > 0:
-		unitmanger = instance_from_id(unitmanger_id)
+	# if unitmanager_id > 0:
+	# 	unitmanager = instance_from_id(unitmanager_id)
 		
-	if is_instance_valid(unitmanager):
-		unitmanger.register_unit_inManager(self)	# TODO: Registrer der Unit korrigieren
-	else:
-		print_debug("Charackter -> Unit Registration Failed!")
+	# if is_instance_valid(unitmanager):
+	# 	unitmanager.register_unit_inManager(self)	# TODO: Registrer der Unit korrigieren
+	# else:
+	# 	print_debug("Charackter -> Unit Registration Failed!")
 
 
 # func _enter_tree():
