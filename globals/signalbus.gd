@@ -16,11 +16,10 @@ signal game_manager_is_ready
 # ===========================
 # ObjectManager
 # ===========================
-# TODO: Registrieren aller selektierbaren Objecte
+
 # warning-ignore:unused_signal
 signal objectselected(Object_ID)
 
-# TODO: Registrieren aller selektierbaren Objecte
 # warning-ignore:unused_signal
 signal objectunselected(Object_ID)
 
@@ -33,6 +32,7 @@ signal objectrightclicked(Object_ID, clicked_position)
 # ===========================
 # Buildqueue
 # ===========================
+
 # TODO: Rename -> 
 # signal buildqueue_newobject_added(newtype, Building_ID)
 # warning-ignore:unused_signal
@@ -51,13 +51,16 @@ signal newobject_instantiated(newtype, Building_ID)
 # ===========================
 # UI_Manager
 # ===========================
+
 # warning-ignore:unused_signal
 signal object_withui_selected(ObjectUIName, ObjectProperties)
 # warning-ignore:unused_signal
 signal object_withui_unselected(ObjectUIName, ObjectProperties)
+
 # ===========================
 
 # Helper
 # ===========================
+
 # warning-ignore:unused_signal
 signal scene_end_reached
