@@ -63,7 +63,7 @@ func _physics_process(_delta):
 			if !bq["is_building"] and bq["queue"].size() > 0:
 				var nextType = bq["queue"].pop_front()
 				Signalbus.emit_signal("newobject_build_has_started", nextType,  bq["buildingid"])
-				bq["is_building"] = true
+				# bq["is_building"] = true
 			# print(queue, " / ", bq.name)
 			# newobject_build_has_started
 
