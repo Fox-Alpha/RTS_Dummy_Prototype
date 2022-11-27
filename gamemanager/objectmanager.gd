@@ -39,13 +39,13 @@ func _ready():
 # ===========================
 func _init_signals() -> void:
 	# Object selektieren
-	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
-		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
+	# if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
+		# var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
 
 	# Objecte Selektion aufheben
-	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
-		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
+	# if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
+		# var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
 	# Objecte left clicked
@@ -99,13 +99,23 @@ func _on_leftclick_object(objectid:int):
 
 	if !collider.has_method("get_objecttype"):
 			collider = collider.get_parent_spatial()
+			objectid = collider.get_instance_id()
+	
 	if is_instance_valid(collider):
 		# CHGME: can_objectselected nicht notwendig. Object soll selbst entscheiden
-		var cansel = collider.call("can_objectselected")
-		if cansel:
-			Signalbus.emit_signal("objectselected", collider)
-		else:
-			Signalbus.emit_signal("objectunselected")#	pass
+		# var cansel = collider.call("can_objectselected")
+		# if cansel:
+		if selected_object != collider:
+			Signalbus.emit_signal("objectunselected", objectid)
+			selected_object = null
+			selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
+
+		selected_object = collider
+		
+		selected_object_type = selected_object.call("get_objecttype")
+		
+		Signalbus.emit_signal("objectselected", objectid)
+		# else:
 
 
 func _on_rightclick_object(objectid:int, clicked_position:Vector3):

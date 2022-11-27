@@ -36,6 +36,17 @@ func _ready():
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
 
 
+	# Object selektieren
+	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
+		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
+
+	# Objecte Selektion aufheben
+	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
+		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
+#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+
+
 #func _enter_tree():
 #	pass
 
@@ -126,6 +137,19 @@ func _manage_ui(showui:bool):
 		if GetObjectHasUI():
 		# CHGME: per Signal auslösen
 			ui_manager.show_ui_instance(GetObjectUIName(), showui, GetObjectProperties())
+
+
+# ===========================
+# Select und Unselect des Buildings
+func _on_select_object(id:int):
+	var thisid = get_instance_id()
+	if id == thisid:
+		select_object(true)
+
+
+func _on_unselect_object(id:int):
+	if id == get_instance_id():
+		select_object(false)
 
 
 func select_object(selected:bool) -> void:

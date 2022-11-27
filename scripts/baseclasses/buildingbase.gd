@@ -12,6 +12,12 @@ var BuildingUiName : String setget _set_building_uiname, _get_building_uiname
 var BuildingCanSpawnUnits : bool setget _set_canspawnunits, _get_canspawnunits
 var UnitSpawnPos : Vector3 setget _set_building_spawnpoint, _get_building_spawnpoint
 var UnitRallyPos : Vector3 setget _set_building_rallypoint, _get_building_rallypoint
+# TODO: liste mit Variablen für den Public Zugriff vervollständigen
+# ObjectParentName
+# ObjectInstanceID
+# ObjectType
+# ObjectUI_ID
+# ObjectsToSpawn
 # "ObjectsToSpawn": {}
 
 
@@ -37,6 +43,17 @@ onready var _UnitRallypointNode = .get_node_or_null("%UnitRallyPosition3D")
 
 
 func _ready():
+
+# 	# Object selektieren
+# 	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
+# 		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
+# #		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
+
+# 	# Objecte Selektion aufheben
+# 	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
+# 		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
+# #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+	
 	ObjectTypeProperties = {
 		"ObjectType": Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING, 
 		"ObjectInstanceID": -1,
@@ -95,17 +112,17 @@ func _Get_ObjectTypeProperty(property:String):
 		# 
 	return prop
 	
+# ===========================
 
-
-# Abfrage des gesamten Property Dictionary
+# Abfrage und setzen des gesamten Property Dictionary
 func _Get_ObjectTypeProperties() -> Dictionary:
 	return ObjectTypeProperties
 
-# ===========================
 
 func _set_objecttype(value:int):
 	_Set_ObjectTypeProperty("ObjectType", value)
 
+# ===========================
 
 func _get_objecttype() -> int:
 	return _Get_ObjectTypeProperty("ObjectType")
