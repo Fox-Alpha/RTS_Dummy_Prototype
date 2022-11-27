@@ -13,7 +13,10 @@ export var Buildings : Dictionary = {}
 
 #Changed
 export var BuildingQueueList : Dictionary = {
-		"Building_[ID]": []	# Array mit ObjectTypeID's
+		#"Building_[ID]": {
+			# "queue": []	# Array mit ObjectTypeID's
+			# "is_building": false
+			# "buildingid": -1
 	}
 
 
@@ -32,8 +35,10 @@ export var BuildingQueueList : Dictionary = {
 # ===========================
 # Build-in Methoden
 # ===========================
-#func _ready():
-#	pass
+func _ready():
+	#newobject_tobuildqueue_added
+	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
+		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
 
 
 #func _init():
@@ -50,4 +55,35 @@ export var BuildingQueueList : Dictionary = {
 
 # func _process(_delta):
 # 	pass
+
+
+func _physics_process(_delta):
+	for bq in BuildingQueueList.values():
+		if bq.size() > 0:
+			if !bq["is_building"] and bq["queue"].size() > 0:
+				var nextType = bq["queue"].pop_front()
+				Signalbus.emit_signal("newobject_build_has_started", nextType,  bq["buildingid"])
+				bq["is_building"] = true
+			# print(queue, " / ", bq.name)
+			# newobject_build_has_started
+
 # ===========================
+
+func add_building_to_manager(building_id:int):
+	BuildingQueueList["building_" + str(building_id)] = {
+		"queue": [],
+		"buildingid": building_id,
+		"is_building": false
+	}
+
+
+func _on_newobject_tobuildqueue_added(newtype, Building_ID):
+	if BuildingQueueList.has("building_" + str(Building_ID)):
+		BuildingQueueList["building_" + str(Building_ID)]["queue"].append(newtype)
+
+
+func _on_newobject_buildqueue_buildended(Building_ID):
+	if BuildingQueueList.has("building_" + str(Building_ID)):
+		BuildingQueueList["building_" + str(Building_ID)]["is_building"] = false
+
+	
