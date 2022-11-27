@@ -45,6 +45,9 @@ signal newobject_tobuildqueue_added(newtype, Building_ID)
 # warning-ignore:unused_signal
 signal newobject_build_has_started(Building_ID)
 
+# warning-ignore:unused_signal
+signal newobject_build_has_endeded(newtype, Building_ID)
+
 # TODO: Rename ?? -> 
 # signal buildqueue_newobject_instantiated(newtype, Building_ID)
 # warning-ignore:unused_signal
