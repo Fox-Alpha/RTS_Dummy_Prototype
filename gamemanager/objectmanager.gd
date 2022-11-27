@@ -38,16 +38,6 @@ func _ready():
 # Signals
 # ===========================
 func _init_signals() -> void:
-	# Object selektieren
-	# if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
-		# var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
-#		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
-
-	# Objecte Selektion aufheben
-	# if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
-		# var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
-#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
-
 	# Objecte left clicked
 	if not Signalbus.is_connected("objectleftclicked", self, "_on_leftclick_object"):
 		var _sig = Signalbus.connect("objectleftclicked", self, "_on_leftclick_object")
@@ -62,37 +52,6 @@ func _init_signals() -> void:
 # ===========================
 #Signal Methoden
 # ===========================
-# Signal ein Objekt deselektieren
-func _on_unselect_object() -> void:
-	if is_instance_valid(selected_object):
-		selected_object.select_object(false)
-		selected_object = null
-		selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
-
-
-# Signal ein Objekt selektieren: objectselected
-# CHGME: Kann im leftclick Signal behandelt werden
-func _on_select_object(_selectedobject) -> void:
-	if is_instance_valid(selected_object):
-		if selected_object != _selectedobject:
-			Signalbus.emit_signal("objectunselected")
-
-	selected_object = _selectedobject
-	selected_object.select_object(true)
-	# selected_object_type = objtype
-	
-	# match selected_object_type:
-		# Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING:
-			# print_debug("Object Type is BUILDING")
-		# Globals.OBJECT_TYPE_ENUM.TYPE_UNIT:
-			# print_debug("Object Type is UNIT")
-		# Globals.OBJECT_TYPE_ENUM.TYPE_RESOURCE:
-			# print_debug("Object Type is RESOURCE")
-		# Globals.OBJECT_TYPE_ENUM.TYPE_GROUND:
-			# print_debug("Object Type is GROUND")
-		# Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED:
-			# print_debug("Object Type is UNDEFINED")
-
 
 func _on_leftclick_object(objectid:int):
 	var collider = instance_from_id(objectid)
@@ -102,9 +61,6 @@ func _on_leftclick_object(objectid:int):
 			objectid = collider.get_instance_id()
 	
 	if is_instance_valid(collider):
-		# CHGME: can_objectselected nicht notwendig. Object soll selbst entscheiden
-		# var cansel = collider.call("can_objectselected")
-		# if cansel:
 		if selected_object != collider and selected_object != null:
 			Signalbus.emit_signal("objectunselected", selected_object.get_instance_id())
 			selected_object = null
@@ -115,7 +71,6 @@ func _on_leftclick_object(objectid:int):
 		selected_object_type = selected_object.call("get_objecttype")
 		
 		Signalbus.emit_signal("objectselected", objectid)
-		# else:
 
 
 func _on_rightclick_object(objectid:int, clicked_position:Vector3):

@@ -18,8 +18,6 @@ var GM : Node
 #	pass
 
 
-# ADDME: Auf SIGNAL objectselected & objectunselected in select_object reagieren
-# ADDME: Bei SIGNALEN Registrieren
 func _ready():
 	shader = BuildingMesh.mesh.material.next_pass
 	
@@ -126,18 +124,6 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	_ObjectTypeNode.is_building = false
 	_ObjectTypeNode.is_build_pending = false
 
-# CHGME: Kann in select_object behandelt werden
-func _manage_ui(showui:bool):
-	if !is_instance_valid(ui_manager):
-		var ui_manager_id = GM.get_manager_instance("UIManager")
-		if ui_manager_id > 0:
-			ui_manager = instance_from_id(ui_manager_id)
-
-	if is_instance_valid(ui_manager):
-		if GetObjectHasUI():
-		# CHGME: per Signal auslösen
-			ui_manager.show_ui_instance(GetObjectUIName(), showui, GetObjectProperties())
-
 
 # ===========================
 # Select und Unselect des Buildings
@@ -158,18 +144,13 @@ func select_object(selected:bool) -> void:
 		# TRYME: Farbverlauf mit Tween ??
 	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
-		# _manage_ui(true)
+
 		if GetObjectHasUI():
-			# CHGME: per Signal auslösen
-			# ui_manager.show_ui_instance(GetObjectUIName(), true, GetObjectProperties())
 			Signalbus.emit_signal("object_withui_selected", GetObjectUIName(), GetObjectProperties())
 	else:
 		shader.set_shader_param("strenght", 0.0)
 		if GetObjectHasUI():
-		# CHGME: per Signal auslösen
-		# ui_manager.show_ui_instance(GetObjectUIName(), false, GetObjectProperties())
 			Signalbus.emit_signal("object_withui_unselected", GetObjectUIName(), GetObjectUIId())
-		# _manage_ui(false)
 
 
 func GetObjectProperties() -> Dictionary:
