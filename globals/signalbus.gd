@@ -48,8 +48,13 @@ signal newobject_build_has_started(Building_ID)
 # warning-ignore:unused_signal
 signal newobject_instantiated(newtype, Building_ID)
 
-
 # ===========================
+# UI_Manager
+# ===========================
+signal object_withui_selected(ObjectUIName:string, ObjectProperties)
+signal object_withui_unselected(ObjectUIName:string, ObjectProperties)
+# ===========================
+
 # Helper
 # ===========================
 # warning-ignore:unused_signal
