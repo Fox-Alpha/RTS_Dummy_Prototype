@@ -7,7 +7,10 @@ onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
 
 onready var unit = preload("res://assets/unit/unit.tscn")
 
+onready var tween:Tween = Tween.new()
+
 var ui_manager
+var building_manager
 var GM : Node
 
 
@@ -34,10 +37,6 @@ func _ready():
 		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 	#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
-
-	#newobject_tobuildqueue_added
-	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
-		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
 		
 	if !Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
@@ -46,7 +45,23 @@ func _ready():
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 
 
+		# _on_Tween_tween_started			tween_started
+		# _on_Tween_tween_step				tween_step
+		# _on_Tween_tween_completed			tween_completed
+		# _on_Tween_tween_all_completed		tween_all_completed
+		
+	if not tween.is_connected("tween_started", self, "_on_Tween_tween_started"):
+		var _sig = tween.connect("tween_started", self, "_on_Tween_tween_started")
 
+	if not tween.is_connected("tween_step", self, "_on_Tween_tween_step"):
+		var _sig = tween.connect("tween_step", self, "_on_Tween_tween_step")
+
+	if not tween.is_connected("tween_completed", self, "_on_Tween_tween_completed"):
+		var _sig = tween.connect("tween_completed", self, "_on_Tween_tween_completed")
+
+	if not tween.is_connected("tween_all_completed", self, "_on_Tween_tween_all_completed"):
+		var _sig = tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
+				
 
 #func _enter_tree():
 #	pass
@@ -56,17 +71,18 @@ func _ready():
 #	pass
 
 # MOVE: In den BuildinManager verschieben, Überwachen BuildQueue
-func _process(_delta):
+# func _process(_delta):
+# 	pass
 	# BuildQueue abarbeiten
-	var id = get_instance_id()
-	if !_ObjectTypeNode._ObjectBuildQueue.empty(): # and !_ObjectTypeNode.is_building:
-		if _ObjectTypeNode.is_build_pending:
-			return
+	# var id = get_instance_id()
+	# if !_ObjectTypeNode._ObjectBuildQueue.empty(): # and !_ObjectTypeNode.is_building:
+	# 	if _ObjectTypeNode.is_build_pending:
+	# 		return
 
-		var nextUnitType = _ObjectTypeNode._ObjectBuildQueue.pop_front()
-		print_debug("Unit in Queue: ", nextUnitType, " / ", name)
-		Signalbus.emit_signal("newobject_instantiated", nextUnitType, id)
-		_ObjectTypeNode.is_building = true
+	# 	var nextUnitType = _ObjectTypeNode._ObjectBuildQueue.pop_front()
+	# 	print_debug("Unit in Queue: ", nextUnitType, " / ", name)
+	# 	Signalbus.emit_signal("newobject_instantiated", nextUnitType, id)
+	# 	_ObjectTypeNode.is_building = true
 
 # ===========================
 
@@ -83,22 +99,30 @@ func _on_game_manager_is_ready():
 		print(name, "::on_game_manager_is_ready() -> ", name, " ( ", get_instance_id(), " )")
 	
 	# ADDME: Builöding im BuildinManager anmelden 
+	building_manager = instance_from_id(GM.get_manager_instance("BuildingManager"))
+	if is_instance_valid(building_manager):
+		building_manager.add_building_to_manager(get_instance_id())
+
 
 # MOVE: In den BuildinManager verschieben, Add To Queue
-func _on_newobject_build_has_started(_Building_ID:int): # Node ID
-	pass
-	# var thisid = get_instance_id()
+# func _on_newobject_build_has_started(_Building_ID:int): # Node ID
+# 	pass
+	# var thisid = get_instance_id()	# Vergleich der Instanz ID 
 	# if thisid == Building_ID:
-	# 	_ObjectTypeNode.is_build_pending = true
+
+	#	einen Timer mit Buildtime starten
+	# 	Während Timer den Fortschritt an das UI senden
+	# 	Nach Timer beendigung Unit instanziieren
 
 
-func _on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
-	var thisid = get_instance_id()
-	if thisid == Building_ID:
-		_ObjectTypeNode._ObjectBuildQueue.append(nextType)
+# func _on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
+# 	var thisid = get_instance_id()
+# 	if thisid == Building_ID:
+# 		_ObjectTypeNode._ObjectBuildQueue.append(nextType)
 
 # MOVEME: In den BuildingManager auslagern, hier nur Eigenschaften an Type anpassen und Position setzen
 # TRYME: Methode in BaseClass implemetieren
+# _on_newobject_build_has_started
 func _on_instantiate_new_object(newType:int, Building_ID:int):
 	var thisid = get_instance_id()
 	if thisid != Building_ID:
@@ -155,6 +179,30 @@ func select_object(selected:bool) -> void:
 		if GetObjectHasUI():
 			Signalbus.emit_signal("object_withui_unselected", GetObjectUIName(), GetObjectUIId())
 
+
+# ===========================
+# _on_Tween_tween_started			tween_started
+# _on_Tween_tween_step				tween_step
+# _on_Tween_tween_completed			tween_completed
+# _on_Tween_tween_all_completed		tween_all_completed
+
+func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
+	pass
+
+func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
+	# Update an UI senden
+	pass
+
+func _on_Tween_tween_completed() -> void:
+	pass
+
+func _on_Tween_tween_all_completed() -> void:
+	pass
+
+# 	is_building = false
+	# tween.tell()
+
+# ===========================
 
 func GetObjectProperties() -> Dictionary:
 	return _ObjectTypeNode.ObjectTypeProperties
