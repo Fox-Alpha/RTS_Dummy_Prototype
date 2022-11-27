@@ -33,10 +33,12 @@ signal objectrightclicked(Object_ID, clicked_position)
 # Buildqueue
 # ===========================
 
-# TODO: Rename -> 
-# signal buildqueue_newobject_added(newtype, Building_ID)
+# TODO: Rename => 
 # warning-ignore:unused_signal
 signal add_newobject_tobuildqueue(newtype, Building_ID)
+# Rename To =>
+# warning-ignore:unused_signal
+signal newobject_tobuildqueue_added(newtype, Building_ID)
 
 # TODO: Rename -> 
 # signal buildqueue_nextbuild_started(Building_ID)
