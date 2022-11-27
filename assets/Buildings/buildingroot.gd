@@ -158,10 +158,18 @@ func select_object(selected:bool) -> void:
 		# TRYME: Farbverlauf mit Tween ??
 	if _ObjectTypeNode.building_is_selected:
 		shader.set_shader_param("strenght", 1.0)
-		_manage_ui(true)
+		# _manage_ui(true)
+		if GetObjectHasUI():
+			# CHGME: per Signal auslösen
+			# ui_manager.show_ui_instance(GetObjectUIName(), true, GetObjectProperties())
+			Signals.emit_signal("object_withui_selected", GetObjectUIName(), GetObjectProperties())
 	else:
 		shader.set_shader_param("strenght", 0.0)
-		_manage_ui(false)
+		if GetObjectHasUI():
+		# CHGME: per Signal auslösen
+		# ui_manager.show_ui_instance(GetObjectUIName(), false, GetObjectProperties())
+		Signals.emit_signal("object_withui_unselected", GetObjectUIName(), GetObjectProperties())
+		# _manage_ui(false)
 
 
 func GetObjectProperties() -> Dictionary:
