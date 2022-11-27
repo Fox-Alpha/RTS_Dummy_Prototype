@@ -20,29 +20,32 @@ var GM : Node
 
 func _ready():
 	shader = BuildingMesh.mesh.material.next_pass
-	
-	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
-		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
-	
+		
 	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 		
-	if !Signalbus.is_connected("add_newobject_tobuildqueue", self, "_on_newobject_tobuildqueue_added"):
-		var _sig = Signalbus.connect("add_newobject_tobuildqueue", self, "_on_newobject_tobuildqueue_added")
+	# Object selektieren
+	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
+		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
+	#		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
+	
+	# Objecte Selektion aufheben
+	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
+		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
+	#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+
+
+	#newobject_tobuildqueue_added
+	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
+		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
 		
 	if !Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
 
+	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
+		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
 
-	# Object selektieren
-	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
-		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
-#		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
 
-	# Objecte Selektion aufheben
-	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
-		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
-#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
 
 #func _enter_tree():
