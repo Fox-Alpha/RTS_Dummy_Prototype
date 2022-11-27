@@ -105,8 +105,8 @@ func _on_leftclick_object(objectid:int):
 		# CHGME: can_objectselected nicht notwendig. Object soll selbst entscheiden
 		# var cansel = collider.call("can_objectselected")
 		# if cansel:
-		if selected_object != collider:
-			Signalbus.emit_signal("objectunselected", objectid)
+		if selected_object != collider and selected_object != null:
+			Signalbus.emit_signal("objectunselected", selected_object.get_instance_id())
 			selected_object = null
 			selected_object_type = Globals.OBJECT_TYPE_ENUM.TYPE_UNDEFINED
 
