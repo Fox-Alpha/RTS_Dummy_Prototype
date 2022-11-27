@@ -67,10 +67,6 @@ func _on_object_withui_unselected(_uiname:String, ui_id:int):
 	var ui = instance_from_id(ui_id)
 	if is_instance_valid(ui):
 		ui.visible = false
-	
-	#get_ui_instance(uiname.to_lower())
-
-	pass
 
 
 func show_ui_instance(uiname:String, showui:bool, properties:Dictionary) -> void:
