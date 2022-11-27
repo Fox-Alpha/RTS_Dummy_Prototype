@@ -13,7 +13,8 @@ var ui_manager
 var building_manager
 var GM : Node
 
-
+var progress
+#: float = 0.0
 # ===========================
 # Build-In Methoden
 # ===========================
@@ -24,7 +25,7 @@ var GM : Node
 func _ready():
 	shader = BuildingMesh.mesh.material.next_pass
 		
-	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
+	if not Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 		
 	# Object selektieren
@@ -38,8 +39,8 @@ func _ready():
 	#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 
 		
-	if !Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
-		var _sig = Signalbus.connect("newobject_build_has_started", self, "on_newobject_build_has_started")
+	if not Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
+		var _sig = Signalbus.connect("newobject_build_has_started", self, "_on_newobject_build_has_started")
 
 	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
 		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
@@ -105,10 +106,28 @@ func _on_game_manager_is_ready():
 
 
 # MOVE: In den BuildinManager verschieben, Add To Queue
-# func _on_newobject_build_has_started(_Building_ID:int): # Node ID
+func _on_newobject_build_has_started(_newtype:int, Building_ID:int): # Node ID
+	if get_instance_id() == Building_ID:
+		var node_path = NodePath("progress")
+		var property_path = node_path.get_as_property_path()
+		print(property_path)
+
+		if tween.interpolate_method(
+		#if tween.interpolate_property(
+			self, "tween_method", 0, 100,
+			# var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
+			# buildtime aus properties
+			5, Tween.TRANS_SINE, Tween.EASE_OUT
+			):
+			var _t = tween.start()
+
+
+func tween_method():
+	print("irgendwas")
+
+	# pass
 # 	pass
 	# var thisid = get_instance_id()	# Vergleich der Instanz ID 
-	# if thisid == Building_ID:
 
 	#	einen Timer mit Buildtime starten
 	# 	Während Timer den Fortschritt an das UI senden
@@ -128,7 +147,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	if thisid != Building_ID:
 		return
 
-	_ObjectTypeNode.is_build_pending = true
+	# _ObjectTypeNode.is_build_pending = true
 	var props = _ObjectTypeNode.ObjectTypeProperties
 	if props.ObjectsToSpawn.has(String(newType)):
 		
@@ -139,7 +158,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 		var un = instance_from_id(GM.UnitsNodeID)
 		if is_instance_valid(un):
 			newunit.name = unitprops["name"]
-			yield(get_tree().create_timer(buildtime), "timeout")
+			# yield(get_tree().create_timer(buildtime), "timeout")
 			un.add_child(newunit)
 			newunit.set_basecolor(unitprops["color"])
 			# TRYME: Position und Agnent Target per Signal setzen
@@ -148,8 +167,8 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 		else: 
 			newunit.queue_free()
 
-	_ObjectTypeNode.is_building = false
-	_ObjectTypeNode.is_build_pending = false
+	# _ObjectTypeNode.is_building = false
+	# _ObjectTypeNode.is_build_pending = false
 
 
 # ===========================
