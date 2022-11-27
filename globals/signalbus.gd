@@ -18,11 +18,11 @@ signal game_manager_is_ready
 # ===========================
 # TODO: Registrieren aller selektierbaren Objecte
 # warning-ignore:unused_signal
-signal objectselected	# (Object_ID)
+signal objectselected(Object_ID)
 
 # TODO: Registrieren aller selektierbaren Objecte
 # warning-ignore:unused_signal
-signal objectunselected	# (Object_ID)
+signal objectunselected(Object_ID)
 
 # warning-ignore:unused_signal
 signal objectleftclicked(Object_ID)
