@@ -142,8 +142,8 @@ func _manage_ui(showui:bool):
 # ===========================
 # Select und Unselect des Buildings
 func _on_select_object(id:int):
-	var thisid = get_instance_id()
-	if id == thisid:
+	# var thisid = get_instance_id()
+	if id == get_instance_id():
 		select_object(true)
 
 
@@ -162,13 +162,13 @@ func select_object(selected:bool) -> void:
 		if GetObjectHasUI():
 			# CHGME: per Signal auslösen
 			# ui_manager.show_ui_instance(GetObjectUIName(), true, GetObjectProperties())
-			Signals.emit_signal("object_withui_selected", GetObjectUIName(), GetObjectProperties())
+			Signalbus.emit_signal("object_withui_selected", GetObjectUIName(), GetObjectProperties())
 	else:
 		shader.set_shader_param("strenght", 0.0)
 		if GetObjectHasUI():
 		# CHGME: per Signal auslösen
 		# ui_manager.show_ui_instance(GetObjectUIName(), false, GetObjectProperties())
-		Signals.emit_signal("object_withui_unselected", GetObjectUIName(), GetObjectProperties())
+			Signalbus.emit_signal("object_withui_unselected", GetObjectUIName(), GetObjectUIId())
 		# _manage_ui(false)
 
 
@@ -199,6 +199,10 @@ func GetObjectHasUI() -> bool:
 
 func GetObjectUIName() -> String:
 	return _ObjectTypeNode.BuildingUiName
+
+
+func GetObjectUIId() -> int:
+	return _ObjectTypeNode.BuildingUI_ID
 
 
 func GetObjectCanSpawnUnits() -> bool:
