@@ -9,7 +9,7 @@ export var buildtime : float = 1.0	# ms
 export var elapsedbuildtime = 0
 export var active_Building_ID = -1
 
-onready var tween = $"Tween"
+
 onready var button = preload("res://ui/ButtBuildUnit.tscn")
 onready var ButtGrid = $"%GridButtonContainer"
 
@@ -48,6 +48,9 @@ func _ready():
 
 func _on_TextureButton_pressed(arg_1:int):
 	# TODO: Button zur Warteschlange hinzufügen
+	Signalbus.emit_signal("newobject_tobuildqueue_added", arg_1, active_Building_ID)
+
+
 	# TODO: Warteschlange im UI aktualisieren
 	# Warteschlange aus selectedobject lesen und anzeigen
 #	match arg_1:
@@ -72,11 +75,14 @@ func _on_TextureButton_pressed(arg_1:int):
 	# 		):
 	# 		tween.start()
 	# else:
-	Signalbus.emit_signal("newobject_tobuildqueue_added", arg_1, active_Building_ID)
 			
-	
-	
-func _on_newobject_tobuildqueue_added(unittype:int, buildingid:int):
+func _on_newobject_buildqueue_progressed(progress):
+	var tp = get_node("%TextureProgress")
+	if is_instance_valid(tp):
+		tp.value = progress
+
+
+func _on_newobject_tobuildqueue_added(_unittype:int, _buildingid:int):
 	# TODO: Add Icon for Queue to second Panel
 	pass
 
@@ -85,8 +91,6 @@ func _on_game_manager_is_ready():
 	var ui_manager_id  = GM.get_manager_instance("UIManager")
 	UIM = instance_from_id(ui_manager_id)
 		
-
-
 
 func _on_UI_Barracks_visibility_changed() -> void:
 	if !visible:
@@ -113,16 +117,16 @@ func _on_UI_Barracks_visibility_changed() -> void:
 		active_Building_ID = UIM._objectui_properties.get("ObjectInstanceID")
 
 
-func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
-	is_building = true
-	Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
-	Signalbus.emit_signal("newobject_build_has_started", active_Building_ID)
+# func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
+# 	is_building = true
+# 	Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
+# 	Signalbus.emit_signal("newobject_build_has_started", active_Building_ID)
 
 
-func _on_Tween_tween_all_completed() -> void:
-	is_building = false
+# func _on_Tween_tween_all_completed() -> void:
+# 	is_building = false
 	# tween.tell()
 
 
-func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
-	pass # Replace with function body.
+# func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
+# 	pass # Replace with function body.
