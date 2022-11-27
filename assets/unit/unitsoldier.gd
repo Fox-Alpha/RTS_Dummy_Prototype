@@ -23,6 +23,17 @@ func _ready():
 	if is_instance_valid(_NavAgentNode):
 		_ObjectTypeNode._canmoveunit = false
 		_NavAgentNode.set_target_location(global_transform.origin)
+	
+	# Object selektieren
+	if not Signalbus.is_connected("objectselected", self, "_on_select_object"):
+		var _sig = Signalbus.connect("objectselected", self, "_on_select_object")
+	#		assert(sig == OK, "ObjectManager::init_signals() -> connect objectselected failed")
+
+	# Objecte Selektion aufheben
+	if not Signalbus.is_connected("objectunselected", self, "_on_unselect_object"):
+		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
+	#		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
+
 
 
 func _physics_process(_delta):
@@ -41,6 +52,20 @@ func _physics_process(_delta):
 	else:
 		var _mas = move_and_slide(velocity, Vector3.UP)
 	
+
+
+# ===========================
+# Select und Unselect des Buildings
+func _on_select_object(id:int):
+	# var thisid = get_instance_id()
+	if id == get_instance_id():
+		select_object(true)
+
+
+func _on_unselect_object(id:int):
+	if id == get_instance_id():
+		select_object(false)
+
 
 
 func _on_NavigationAgent_velocity_computed(_safe_velocity: Vector3) -> void:
