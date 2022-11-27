@@ -25,6 +25,14 @@ func _ready():
 	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 
+	# Signal um das UI zu aktualisieren, Fortschritt der aktuellen Herstellung
+	# if !Signalbus.is_connected("", self, ""):
+	# 	var _sig = Signalbus.connect("", self, "")
+
+	# # Signal um das UI zu aktualisieren, ICON für Warteschlange
+	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
+		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
+
 
 #func _enter_tree():
 #	pass
@@ -52,22 +60,25 @@ func _on_TextureButton_pressed(arg_1:int):
 #		4:	# Unit BLUE
 #			pass
 			
-	var tp = get_node("%TextureProgress")
-	if is_instance_valid(tp) and not is_building:
-		selection = arg_1
-		var pop = UIM._objectui_properties
-		buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
+	# var tp = get_node("%TextureProgress")
+	# if is_instance_valid(tp) and not is_building:
+	# 	selection = arg_1
+	# 	var pop = UIM._objectui_properties
+	# 	buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
 		
-		if tween.interpolate_property(
-			tp, "value", tp.min_value, tp.max_value,
-			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
-			):
-			tween.start()
-	else:
-		Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
+	# 	if tween.interpolate_property(
+	# 		tp, "value", tp.min_value, tp.max_value,
+	# 		buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
+	# 		):
+	# 		tween.start()
+	# else:
+	Signalbus.emit_signal("newobject_tobuildqueue_added", arg_1, active_Building_ID)
 			
-			# TODO: Add Icon for Queue to second Panel
-
+	
+	
+func _on_newobject_tobuildqueue_added(unittype:int, buildingid:int):
+	# TODO: Add Icon for Queue to second Panel
+	pass
 
 func _on_game_manager_is_ready():
 	GM = Globals.GMInstance
