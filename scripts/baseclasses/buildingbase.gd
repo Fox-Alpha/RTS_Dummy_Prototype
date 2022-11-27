@@ -12,6 +12,7 @@ var BuildingUiName : String setget _set_building_uiname, _get_building_uiname
 var BuildingCanSpawnUnits : bool setget _set_canspawnunits, _get_canspawnunits
 var UnitSpawnPos : Vector3 setget _set_building_spawnpoint, _get_building_spawnpoint
 var UnitRallyPos : Vector3 setget _set_building_rallypoint, _get_building_rallypoint
+var BuildingUI_ID : int setget _set_building_ui_id, _get_building_ui_id
 # TODO: liste mit Variablen für den Public Zugriff vervollständigen
 # ObjectParentName
 # ObjectInstanceID
@@ -155,6 +156,15 @@ func _set_building_can_select(value):
 
 func _get_building_can_select():
 	return _Get_ObjectTypeProperty("ObjectCanSelect")
+
+# ===========================
+
+func _set_building_ui_id(value:int) -> void:
+	_Set_ObjectTypeProperty("ObjectUI_ID", value)
+
+
+func _get_building_ui_id() -> int:
+	return _Get_ObjectTypeProperty("ObjectUI_ID")
 
 # ===========================
 
