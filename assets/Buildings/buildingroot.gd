@@ -13,6 +13,7 @@ onready var tween:Tween = $"Tween"
 var ui_manager
 var building_manager
 var GM : Node
+var NextUnitToBuild = -1
 
 var progress: float = 0.0
 # ===========================
@@ -42,8 +43,8 @@ func _ready():
 	if not Signalbus.is_connected("newobject_build_has_started", self, "_on_newobject_build_has_started"):
 		var _sig = Signalbus.connect("newobject_build_has_started", self, "_on_newobject_build_has_started")
 
-	if not Signalbus.is_connected("newobject_instantiated", self, "_on_instantiate_new_object"):
-		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_instantiate_new_object")
+	if not Signalbus.is_connected("newobject_instantiated", self, "_on_newobject_instantiate"):
+		var _sig = Signalbus.connect("newobject_instantiated", self, "_on_newobject_instantiate") # _on_instantiate_new_object
 
 
 		# _on_Tween_tween_started			tween_started
@@ -109,6 +110,7 @@ func _on_game_manager_is_ready():
 func _on_newobject_build_has_started(newType:int, Building_ID:int): # Node ID
 	if get_instance_id() == Building_ID:
 		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
+		NextUnitToBuild = newType
 		if tween.interpolate_property(
 			self, ":progress", 0, 100,
 			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
@@ -124,7 +126,7 @@ func _on_newobject_build_has_started(newType:int, Building_ID:int): # Node ID
 
 # TRYME: Methode in BaseClass implemetieren
 # _on_newobject_build_has_started
-func _on_instantiate_new_object(newType:int, Building_ID:int):
+func _on_newobject_instantiate(newType:int, Building_ID:int):
 	var thisid = get_instance_id()
 	if thisid != Building_ID:
 		return
@@ -148,7 +150,7 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 			newunit.queue_free()
 			
 		# Signal an UI Progress wieder auf 0 setzen
-		Signalbus.emit_signal("newobject_build_has_endeded", get_instance_id(), 0)
+		Signalbus.emit_signal("newobject_build_has_endeded", newType, get_instance_id())
 
 # ===========================
 # Select und Unselect des Buildings
@@ -187,7 +189,7 @@ func select_object(selected:bool) -> void:
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
 	# ADDME: Visuelle Anzeige des Fortschritt mit einer Progressbar am Gebäude
 	# Kann als eigener Tween eingerichtet werden
-	# pass
+	pass
 
 func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
 	# Update an UI senden
@@ -198,8 +200,8 @@ func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:
 #	pass
 
 func _on_Tween_tween_completed(_object:Object, _key:NodePath) -> void:
-	if _object.get_instance_id() == get_instance_id():
-		Signalbus.emit_signal("newobject_instantiated", get_instance_id())
+	if _object.get_instance_id() == get_instance_id() and NextUnitToBuild > 0:
+		Signalbus.emit_signal("newobject_instantiated", NextUnitToBuild, get_instance_id())
 #		Signalbus.emit_signal("newobject_build_advanced", GetObjectUIId(), 0)
 #	pass
 
