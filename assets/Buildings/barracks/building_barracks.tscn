@@ -63,3 +63,5 @@ unique_name_in_owner = true
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.5 )
 
 [node name="RallyPoint" parent="UnitRallyPosition3D" instance=ExtResource( 4 )]
+
+[node name="Tween" type="Tween" parent="."]
