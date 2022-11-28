@@ -55,6 +55,7 @@ func _ready():
 # 		var _sig = Signalbus.connect("objectunselected", self, "_on_unselect_object")
 # #		assert(sig == OK, "ObjectManager::init_signals() -> connect objunectselected failed")
 	
+# TODO: Abgleichen der Eigenschaften mit objecttype
 	ObjectTypeProperties = {
 		"ObjectType": Globals.OBJECT_TYPE_ENUM.TYPE_BUILDING, 
 		"ObjectInstanceID": -1,
