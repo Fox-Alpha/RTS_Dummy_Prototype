@@ -34,7 +34,7 @@ Folgende Punkte sind mir am wichtigsten:
   - Synchronisieren der Spieler
 
 
-##Staging Developement Progress v0.0.1-alpha.1 28.11.2022
+## 28.11.2022 - Staging Developement Progress v0.0.1-alpha.1
 Kleiner Meilenstein in der Entwicklung des Prototypen
 Viele Funktionen sind nun Signal basiert.
 U.a. Selection, Steuerung, UI Anzeige, Build Auswahl, Build Fortschritt, Instantierung neuer Einheiten.
