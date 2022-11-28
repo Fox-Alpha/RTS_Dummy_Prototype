@@ -25,14 +25,17 @@ func _ready():
 	if !Signalbus.is_connected("game_manager_is_ready", self, "_on_game_manager_is_ready"):
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 
-	# Signal um das UI zu aktualisieren, Fortschritt der aktuellen Herstellung
-	# if !Signalbus.is_connected("", self, ""):
-	# 	var _sig = Signalbus.connect("", self, "")
-
 	# # Signal um das UI zu aktualisieren, ICON für Warteschlange
 	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
 		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
 
+	# Signal um das UI zu aktualisieren, Fortschritt der aktuellen Herstellung
+	if !Signalbus.is_connected("newobject_build_advanced", self, "_on_newobject_build_advanced"):
+		var _sig = Signalbus.connect("newobject_build_advanced", self, "_on_newobject_build_advanced")
+
+	# Signal um das UI zu aktualisieren, Build beendet
+	if !Signalbus.is_connected("newobject_build_has_endeded", self, "_on_newobject_build_has_endeded"):
+		var _sig = Signalbus.connect("newobject_build_has_endeded", self, "_on_newobject_build_has_endeded")
 
 #func _enter_tree():
 #	pass
@@ -117,16 +120,16 @@ func _on_UI_Barracks_visibility_changed() -> void:
 		active_Building_ID = UIM._objectui_properties.get("ObjectInstanceID")
 
 
-# func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
-# 	is_building = true
-# 	Signalbus.emit_signal("add_newobject_tobuildqueue", selection, active_Building_ID)
-# 	Signalbus.emit_signal("newobject_build_has_started", active_Building_ID)
+func _on_newobject_build_advanced(ui_id:int, progress:float):
+	if ui_id == get_instance_id() and visible == true:
+		var tp = get_node("%TextureProgress")
+		if is_instance_valid(tp):
+			tp.value = progress
 
 
-# func _on_Tween_tween_all_completed() -> void:
-# 	is_building = false
-	# tween.tell()
-
-
-# func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
-# 	pass # Replace with function body.
+func _on_newobject_build_has_endeded(buildingid:int, progress:float):
+	if buildingid == active_Building_ID:
+		var tp = get_node("%TextureProgress")
+		if is_instance_valid(tp):
+			tp.value = progress
+		# ADDME: Visuelle Warteschlange aktualisieren
