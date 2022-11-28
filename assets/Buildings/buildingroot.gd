@@ -7,14 +7,14 @@ onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
 
 onready var unit = preload("res://assets/unit/unit.tscn")
 
-onready var tween:Tween = Tween.new()
+onready var tween:Tween = $"Tween"
+#Tween.new()
 
 var ui_manager
 var building_manager
 var GM : Node
 
-var progress
-#: float = 0.0
+var progress: float = 0.0
 # ===========================
 # Build-In Methoden
 # ===========================
@@ -106,32 +106,14 @@ func _on_game_manager_is_ready():
 
 
 # MOVE: In den BuildinManager verschieben, Add To Queue
-func _on_newobject_build_has_started(_newtype:int, Building_ID:int): # Node ID
+func _on_newobject_build_has_started(newType:int, Building_ID:int): # Node ID
 	if get_instance_id() == Building_ID:
-		var node_path = NodePath("progress")
-		var property_path = node_path.get_as_property_path()
-		print(property_path)
-
-		if tween.interpolate_method(
-		#if tween.interpolate_property(
-			self, "tween_method", 0, 100,
-			# var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
-			# buildtime aus properties
-			5, Tween.TRANS_SINE, Tween.EASE_OUT
+		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
+		if tween.interpolate_property(
+			self, ":progress", 0, 100,
+			buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
 			):
 			var _t = tween.start()
-
-
-func tween_method():
-	print("irgendwas")
-
-	# pass
-# 	pass
-	# var thisid = get_instance_id()	# Vergleich der Instanz ID 
-
-	#	einen Timer mit Buildtime starten
-	# 	Während Timer den Fortschritt an das UI senden
-	# 	Nach Timer beendigung Unit instanziieren
 
 
 # func _on_newobject_tobuildqueue_added(nextType:int, Building_ID:int):
@@ -139,7 +121,7 @@ func tween_method():
 # 	if thisid == Building_ID:
 # 		_ObjectTypeNode._ObjectBuildQueue.append(nextType)
 
-# MOVEME: In den BuildingManager auslagern, hier nur Eigenschaften an Type anpassen und Position setzen
+
 # TRYME: Methode in BaseClass implemetieren
 # _on_newobject_build_has_started
 func _on_instantiate_new_object(newType:int, Building_ID:int):
@@ -152,13 +134,11 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 	if props.ObjectsToSpawn.has(String(newType)):
 		
 		var unitprops : Dictionary = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]
-		var buildtime = _ObjectTypeNode.ObjectTypeProperties["ObjectsToSpawn"][String(newType)]["buildtime"]
 		var newunit = unit.instance()
 
 		var un = instance_from_id(GM.UnitsNodeID)
 		if is_instance_valid(un):
 			newunit.name = unitprops["name"]
-			# yield(get_tree().create_timer(buildtime), "timeout")
 			un.add_child(newunit)
 			newunit.set_basecolor(unitprops["color"])
 			# TRYME: Position und Agnent Target per Signal setzen
@@ -166,10 +146,9 @@ func _on_instantiate_new_object(newType:int, Building_ID:int):
 			newunit.SetAgentTarget(GetBuildingRallyPos())
 		else: 
 			newunit.queue_free()
-
-	# _ObjectTypeNode.is_building = false
-	# _ObjectTypeNode.is_build_pending = false
-
+			
+		# Signal an UI Progress wieder auf 0 setzen
+		Signalbus.emit_signal("newobject_build_has_endeded", get_instance_id(), 0)
 
 # ===========================
 # Select und Unselect des Buildings
@@ -206,14 +185,23 @@ func select_object(selected:bool) -> void:
 # _on_Tween_tween_all_completed		tween_all_completed
 
 func _on_Tween_tween_started(_object: Object, _key: NodePath) -> void:
-	pass
+	# ADDME: Visuelle Anzeige des Fortschritt mit einer Progressbar am Gebäude
+	# Kann als eigener Tween eingerichtet werden
+	# pass
 
 func _on_Tween_tween_step(_object:Object, _key:NodePath, _elapsed:float, _value:Object):
 	# Update an UI senden
-	pass
+	if _object.get_instance_id() == get_instance_id():
+		progress += _elapsed
+		var ui_id = GetObjectUIId()
+		Signalbus.emit_signal("newobject_build_advanced", ui_id, progress)
+#	pass
 
-func _on_Tween_tween_completed() -> void:
-	pass
+func _on_Tween_tween_completed(_object:Object, _key:NodePath) -> void:
+	if _object.get_instance_id() == get_instance_id():
+		Signalbus.emit_signal("newobject_instantiated", get_instance_id())
+#		Signalbus.emit_signal("newobject_build_advanced", GetObjectUIId(), 0)
+#	pass
 
 func _on_Tween_tween_all_completed() -> void:
 	pass
