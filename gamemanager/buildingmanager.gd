@@ -40,6 +40,8 @@ func _ready():
 	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
 		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
 
+	if !Signalbus.is_connected("newobject_build_has_endeded", self, "_on_newobject_buildqueue_buildended"):
+		var _sig = Signalbus.connect("newobject_build_has_endeded", self, "_on_newobject_buildqueue_buildended")
 
 #func _init():
 #	pass
@@ -63,7 +65,7 @@ func _physics_process(_delta):
 			if !bq["is_building"] and bq["queue"].size() > 0:
 				var nextType = bq["queue"].pop_front()
 				Signalbus.emit_signal("newobject_build_has_started", nextType,  bq["buildingid"])
-				# bq["is_building"] = true
+				bq["is_building"] = true
 			# print(queue, " / ", bq.name)
 			# newobject_build_has_started
 
@@ -82,7 +84,7 @@ func _on_newobject_tobuildqueue_added(newtype, Building_ID):
 		BuildingQueueList["building_" + str(Building_ID)]["queue"].append(newtype)
 
 
-func _on_newobject_buildqueue_buildended(Building_ID):
+func _on_newobject_buildqueue_buildended(newtype, Building_ID):
 	if BuildingQueueList.has("building_" + str(Building_ID)):
 		BuildingQueueList["building_" + str(Building_ID)]["is_building"] = false
 
