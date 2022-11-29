@@ -82,10 +82,13 @@ func add_building_to_manager(building_id:int):
 func _on_newobject_tobuildqueue_added(newtype, Building_ID):
 	if BuildingQueueList.has("building_" + str(Building_ID)):
 		BuildingQueueList["building_" + str(Building_ID)]["queue"].append(newtype)
+		Signalbus.emit_signal("newobject_buildqueue_updated", BuildingQueueList["building_" + str(Building_ID)]["queue"], Building_ID)
 
 
-func _on_newobject_buildqueue_buildended(newtype, Building_ID):
+func _on_newobject_buildqueue_buildended(_newtype, Building_ID):
 	if BuildingQueueList.has("building_" + str(Building_ID)):
 		BuildingQueueList["building_" + str(Building_ID)]["is_building"] = false
+		Signalbus.emit_signal("newobject_buildqueue_updated", BuildingQueueList["building_" + str(Building_ID)]["queue"], Building_ID)
 
 	
+# ADDME: Methoden zum abfragen der Queue mit BuildingID
