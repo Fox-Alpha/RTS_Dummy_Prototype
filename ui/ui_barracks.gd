@@ -11,7 +11,8 @@ export var active_Building_ID = -1
 
 
 onready var button = preload("res://ui/ButtBuildUnit.tscn")
-onready var ButtGrid = $"%GridButtonContainer"
+onready var ButtGrid = $"%GridButtonUnitContainer"
+onready var ButtQueue = $"%GridButtonQueueContainer"
 
 
 # ===========================
@@ -26,8 +27,8 @@ func _ready():
 		var _sig = Signalbus.connect("game_manager_is_ready", self, "_on_game_manager_is_ready")
 
 	# # Signal um das UI zu aktualisieren, ICON für Warteschlange
-	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
-		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
+#	if !Signalbus.is_connected("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added"):
+#		var _sig = Signalbus.connect("newobject_tobuildqueue_added", self, "_on_newobject_tobuildqueue_added")
 
 	# Signal um das UI zu aktualisieren, Fortschritt der aktuellen Herstellung
 	if !Signalbus.is_connected("newobject_build_advanced", self, "_on_newobject_build_advanced"):
@@ -36,6 +37,10 @@ func _ready():
 	# Signal um das UI zu aktualisieren, Build beendet
 	if !Signalbus.is_connected("newobject_build_has_endeded", self, "_on_newobject_build_has_endeded"):
 		var _sig = Signalbus.connect("newobject_build_has_endeded", self, "_on_newobject_build_has_endeded")
+
+	#signal newobject_buildqueue_updatet(Building_ID, queue)
+	if !Signalbus.is_connected("newobject_buildqueue_updated", self, "_on_newobject_buildqueue_updated"):
+		var _sig = Signalbus.connect("newobject_buildqueue_updated", self, "_on_newobject_buildqueue_updated")
 
 #func _enter_tree():
 #	pass
@@ -50,44 +55,31 @@ func _ready():
 # ===========================
 
 func _on_TextureButton_pressed(arg_1:int):
-	# TODO: Button zur Warteschlange hinzufügen
 	Signalbus.emit_signal("newobject_tobuildqueue_added", arg_1, active_Building_ID)
 
 
-	# TODO: Warteschlange im UI aktualisieren
-	# Warteschlange aus selectedobject lesen und anzeigen
-#	match arg_1:
-#		1:	# Unit RED
-#			pass
-#		2:	# Unit YELLOW
-#			pass
-#		3:	# Unit GREEN
-#			pass
-#		4:	# Unit BLUE
-#			pass
-			
-	# var tp = get_node("%TextureProgress")
-	# if is_instance_valid(tp) and not is_building:
-	# 	selection = arg_1
-	# 	var pop = UIM._objectui_properties
-	# 	buildtime = pop["ObjectsToSpawn"][String(selection)]["buildtime"]
-		
-	# 	if tween.interpolate_property(
-	# 		tp, "value", tp.min_value, tp.max_value,
-	# 		buildtime, Tween.TRANS_SINE, Tween.EASE_OUT
-	# 		):
-	# 		tween.start()
-	# else:
-			
-func _on_newobject_buildqueue_progressed(progress):
-	var tp = get_node("%TextureProgress")
-	if is_instance_valid(tp):
-		tp.value = progress
-
-
-func _on_newobject_tobuildqueue_added(_unittype:int, _buildingid:int):
-	# TODO: Add Icon for Queue to second Panel
-	pass
+func _on_newobject_buildqueue_updated(queue:Array, buildingid:int):
+	# DONE: Add Icon (Button) for Queue to second Panel
+	if buildingid == active_Building_ID:
+		if UIM._objectui_properties.size() > 0 :
+			if ButtQueue.get_child_count() > 0:
+				for q in ButtQueue.get_children():
+					q.queue_free()
+			if queue.size() > 0:
+				var UnitsToBuild:Dictionary = UIM._objectui_properties.get("ObjectsToSpawn")
+				for unittype in queue:
+					if UnitsToBuild.has(str(unittype)):
+						var b:Panel = button.instance(1)
+						# var tbuc:TextureButton = b.get_node("TextureButtUnitColor")
+						b.get_node("LabelUnitName").text = UnitsToBuild[str(unittype)].name
+						b.get_node("TextureButtUnitColor").self_modulate = UnitsToBuild[str(unittype)].color
+						b.name = "BuildQueue_%s" % UnitsToBuild[str(unittype)].name
+						
+						# TODO: Cancel Event erstellen
+		#					if not tbuc.is_connected("pressed", self, "_on_TextureButton_pressed"): 
+		#						var _ccn =tbuc.connect("pressed", self, "_on_TextureButton_pressed", [u.to_int()])
+						
+						ButtQueue.add_child(b)
 
 func _on_game_manager_is_ready():
 	GM = Globals.GMInstance
