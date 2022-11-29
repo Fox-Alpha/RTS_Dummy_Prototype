@@ -64,7 +64,8 @@ signal newobject_instantiated(newtype, Building_ID)
 signal object_withui_selected(ObjectUIName, ObjectProperties)
 # warning-ignore:unused_signal
 signal object_withui_unselected(ObjectUIName, ObjectProperties)
-
+# warning-ignore:unused_signal
+signal newobject_buildqueue_updated(Building_ID, queue)
 # ===========================
 
 # Helper
