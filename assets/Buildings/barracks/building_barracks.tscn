@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://assets/buildings/buildingroot.gd" type="Script" id=1]
+[ext_resource path="res://assets/buildings/barracks/objecttype_barracks.gd" type="Script" id=2]
+[ext_resource path="res://assets/buildings/building_selected.gdshader" type="Shader" id=3]
+[ext_resource path="res://assets/buildings/rallypoint.tscn" type="PackedScene" id=4]
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/strenght = null
+
+[sub_resource type="SpatialMaterial" id=7]
+resource_local_to_scene = true
+next_pass = SubResource( 6 )
+albedo_color = Color( 0.6, 0.611765, 0.203922, 1 )
+
+[sub_resource type="CubeMesh" id=8]
+resource_local_to_scene = true
+material = SubResource( 7 )
+size = Vector3( 8, 4, 4 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.454902, 0.0745098, 0.0745098, 1 )
+
+[sub_resource type="CubeMesh" id=3]
+material = SubResource( 5 )
+size = Vector3( 2, 2, 0.2 )
+
+[sub_resource type="ConvexPolygonShape" id=9]
+points = PoolVector3Array( 4, 2, 2, 4, 2, -2, -4, 2, 2, 4, -2, 2, 4, -2, -2, -4, 2, -2, -4, -2, 2, -4, -2, -2 )
+
+[node name="BuildingRoot" type="Spatial"]
+script = ExtResource( 1 )
+
+[node name="ObjectType" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 2 )
+
+[node name="BaracksBody" type="StaticBody" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="MeshBuilding" type="MeshInstance" parent="BaracksBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+mesh = SubResource( 8 )
+skeleton = NodePath("")
+
+[node name="MeshExit" type="MeshInstance" parent="BaracksBody/MeshBuilding"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2.1 )
+mesh = SubResource( 3 )
+
+[node name="CollisionShape" type="CollisionShape" parent="BaracksBody"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0 )
+shape = SubResource( 9 )
+
+[node name="UnitSpawnPosition3D" type="Position3D" parent="."]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.5 )
+
+[node name="UnitRallyPosition3D" type="Position3D" parent="."]
+unique_name_in_owner = true
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.5 )
+
+[node name="RallyPoint" parent="UnitRallyPosition3D" instance=ExtResource( 4 )]
+
+[node name="Tween" type="Tween" parent="."]

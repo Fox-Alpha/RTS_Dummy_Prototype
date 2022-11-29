@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://addons/kenney_prototype_textures/green/texture_01.png" type="Texture" id=1]
+[ext_resource path="res://assets/ground/ground.gd" type="Script" id=2]
+[ext_resource path="res://assets/ground/objecttypeground.gd" type="Script" id=3]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="PlaneMesh" id=3]
+material = SubResource( 5 )
+size = Vector2( 1, 1 )
+
+[sub_resource type="ConvexPolygonShape" id=6]
+points = PoolVector3Array( -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, 0.5, 0, 0.5 )
+
+[node name="Ground" type="Spatial"]
+script = ExtResource( 2 )
+
+[node name="ObjectType" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource( 3 )
+
+[node name="StaticBodyGround" type="StaticBody" parent="."]
+transform = Transform( 50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0 )
+collision_layer = 5
+collision_mask = 0
+
+[node name="MeshGround" type="MeshInstance" parent="StaticBodyGround"]
+mesh = SubResource( 3 )
+skeleton = NodePath("")
+
+[node name="CollisionShapeGround" type="CollisionShape" parent="StaticBodyGround"]
+shape = SubResource( 6 )

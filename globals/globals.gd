@@ -8,24 +8,36 @@ enum OBJECT_TYPE_ENUM{
 	TYPE_GROUND
 }
 
+
+# TODO: Add Signal für UnitsRootNode
+# TODO: Add Signal für BuildingRootNode
+# TODO: Add Signal für neue Gebäude
+# TODO: Bei neuen Gebäuden die NavMesh neu berechnen
+
+
 # Globale GameManager Instanz
-var _instance:GameManager setget set_gamemanager_instance, get_gamemanager_instance
+var GMInstance setget _set_gamemanager_instance, _get_gamemanager_instance
+# :GameManager
 
 onready var _WorldNavPointNodeParent = get_tree().get_root().get_node("./Main/World/NavPoints")
 
 func _ready():
-	if !Signalbus.is_connected("setgamemanagerinstance", self, "set_gamemanager_instance"):
-		var sig = Signalbus.connect("setgamemanagerinstance", self, "set_gamemanager_instance")
-#		assert(sig == OK, "GLOBALS::_ready() - > Connect con set_gamemanager_instance fehlgeschlagen")
-#	pass
+	if !Signalbus.is_connected("setgamemanagerinstance", self, "_set_gamemanager_instance"):
+		var _sig = Signalbus.connect("setgamemanagerinstance", self, "_set_gamemanager_instance")
+
+	if !Signalbus.is_connected("scene_end_reached", self, "_on_scene_end_reached"):
+		var _sig = Signalbus.connect("scene_end_reached", self, "_on_scene_end_reached")
 
 
-func set_gamemanager_instance(value):
-	if value != null && _instance == null && value != _instance:
-		_instance = value
-	pass
+func _on_scene_end_reached():
+	if is_instance_valid(GMInstance):
+		Signalbus.emit_signal("game_manager_is_ready")
 
 
-func get_gamemanager_instance():
-	return _instance
-	pass
+func _set_gamemanager_instance(value):
+	if value != null && GMInstance == null && value != GMInstance:
+		GMInstance = value
+
+
+func _get_gamemanager_instance():
+	return GMInstance
