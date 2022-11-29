@@ -55,22 +55,35 @@ func _ready():
 # 	pass
 
 
-func _input(event) -> void:
-	# Mousevent Left and Right Button here
+func _input(event:InputEvent) -> void:
+	if event is InputEventMouseButton and event.doubleclick:
+#		print("Its doubleclicked")
+#		get_tree().set_input_as_handled()
+#		return
+		pass
+		
 	# ADDME: left_clicked left_released and Drag for Multiselect
+	if event is InputEventMouseMotion:
+		if event.button_mask == BUTTON_MASK_LEFT and event.pressure and event.shift:
+			print_debug("MausMove + LeftButton + pressed")
+			# TODO:  _draw recatnagle für Selekt
+			
+	# Mousevent Left and Right Button here
 	if Input.is_action_just_pressed("MouseClickLeftButton", true):
+#		print("Its simpleclicked")
 		var rayArray = _get_collider_at_mouse_position()
 		if rayArray.has("collider"):
 			Signalbus.emit_signal("objectleftclicked", rayArray["collider_id"])
 
 	if event.is_action_pressed("MouseClickRightButton", true):
 		_last_mouse_position = .get_viewport().get_mouse_position()
+
 	if event.is_action_released("MouseClickRightButton", true):
 		if _get_mouse_speed() == Vector2.ZERO:
 			var rayArray = _get_collider_at_mouse_position()
 			if rayArray.has("collider"):
 				Signalbus.emit_signal("objectrightclicked", rayArray["collider_id"], _get_mouseposition_3d())
-
+#	print(event.as_text())
 # ===========================
 
 func _get_mouse_speed() -> Vector2:
