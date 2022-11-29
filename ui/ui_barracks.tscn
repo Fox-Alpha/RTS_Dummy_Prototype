@@ -53,7 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 0
 
-[node name="GridButtonContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer"]
+[node name="GridButtonUnitContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer"]
 unique_name_in_owner = true
 margin_right = 236.0
 margin_bottom = 50.0
@@ -63,7 +63,7 @@ size_flags_horizontal = 5
 size_flags_vertical = 4
 columns = 4
 
-[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer/GridButtonContainer" instance=ExtResource( 3 )]
+[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer/GridButtonUnitContainer" instance=ExtResource( 3 )]
 margin_right = 59.0
 
 [node name="Label" type="Label" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Build/VBoxContainer"]
@@ -109,7 +109,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 0
 
-[node name="GridButtonContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue/VBoxContainer"]
+[node name="GridButtonQueueContainer" type="GridContainer" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue/VBoxContainer"]
+unique_name_in_owner = true
 margin_right = 236.0
 margin_bottom = 50.0
 grow_horizontal = 2
@@ -118,12 +119,9 @@ size_flags_horizontal = 5
 size_flags_vertical = 4
 columns = 4
 
-[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue/VBoxContainer/GridButtonContainer" instance=ExtResource( 3 )]
+[node name="ButtRedUnit" parent="ColorRect/PanelContainer/VBoxContainer/Panel_Queue/VBoxContainer/GridButtonQueueContainer" instance=ExtResource( 3 )]
 margin_right = 59.0
 
 [node name="Tween" type="Tween" parent="."]
 
 [connection signal="visibility_changed" from="." to="." method="_on_UI_Barracks_visibility_changed"]
-[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]
-[connection signal="tween_started" from="Tween" to="." method="_on_Tween_tween_started"]
-[connection signal="tween_step" from="Tween" to="." method="_on_Tween_tween_step"]
