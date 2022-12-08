@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/ground/ground.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/unit/unit.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/unit/unit_basesoldier.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/camera/rtscameracontroller.tscn" type="PackedScene" id=3]
 [ext_resource path="res://gamemanager/settingsmanager.gd" type="Script" id=4]
 [ext_resource path="res://gamemanager/worldmanager.gd" type="Script" id=5]

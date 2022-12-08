@@ -82,7 +82,7 @@ _global_script_classes=[ {
 "base": "UnitBase",
 "class": "Unit",
 "language": "GDScript",
-"path": "res://assets/unit/objecttypeunit.gd"
+"path": "res://assets/unit/objecttype_unit.gd"
 }, {
 "base": "Node",
 "class": "UnitBase",

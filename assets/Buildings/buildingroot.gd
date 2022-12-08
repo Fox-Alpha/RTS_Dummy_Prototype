@@ -5,7 +5,7 @@ onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var BuildingMesh = $BaracksBody/MeshBuilding
 onready var shader:ShaderMaterial = BuildingMesh.mesh.material.next_pass
 
-onready var unit = preload("res://assets/unit/unit.tscn")
+onready var unit = preload("res://assets/unit/unit_basesoldier.tscn")
 
 onready var tween:Tween = $"Tween"
 #Tween.new()
