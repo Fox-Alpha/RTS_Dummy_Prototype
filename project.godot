@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "BuildingBase",
 "class": "Barracks",
 "language": "GDScript",
-"path": "res://assets/Buildings/barracks/objecttype_barracks.gd"
+"path": "res://assets/buildings/barracks/objecttype_barracks.gd"
 }, {
 "base": "Node",
 "class": "BuildingBase",
