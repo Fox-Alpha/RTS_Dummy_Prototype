@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://gamemanager/networkmanager.gd"
 }, {
+"base": "Node",
+"class": "ObjectBase",
+"language": "GDScript",
+"path": "res://scripts/baseclasses/objectbase.gd"
+}, {
 "base": "ManagerBase",
 "class": "ObjectManager",
 "language": "GDScript",
@@ -106,6 +111,7 @@ _global_script_class_icons={
 "GameManager": "",
 "ManagerBase": "",
 "NetworkManager": "",
+"ObjectBase": "",
 "ObjectManager": "",
 "PlayerManager": "",
 "ResourceManager": "",
