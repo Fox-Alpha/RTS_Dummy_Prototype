@@ -1,8 +1,11 @@
 extends Node
 class_name BuildingBase
 
+# ToDo: Getter und Setter private methoden in lowercase anpassen
+
 var building_is_selected:bool setget _set_building_is_selected, _get_building_is_selected 
 
+## Zugriff auf ObjectTypeProperties
 var BuildingObjectType:int setget _set_objecttype, _get_objecttype # OBJECT_TYPE_ENUM.TYPE_*
 var BuildingName : String setget _set_building_name, _get_building_name
 var BuildingTypeName : String setget _set_building_typename, _get_building_typename
@@ -20,6 +23,7 @@ var BuildingUI_ID : int setget _set_building_ui_id, _get_building_ui_id
 # ObjectUI_ID
 # ObjectsToSpawn
 # "ObjectsToSpawn": {}
+
 
 
 var ObjectTypeProperties : Dictionary setget , _Get_ObjectTypeProperties
@@ -99,9 +103,6 @@ func  _get_building_is_selected():
 
 # ===========================
 
-
-# ===========================
-
 func _Set_ObjectTypeProperty(property, value) -> void:
 	if ObjectTypeProperties.has(property):
 		ObjectTypeProperties[property] = value
@@ -120,11 +121,11 @@ func _Get_ObjectTypeProperty(property:String):
 func _Get_ObjectTypeProperties() -> Dictionary:
 	return ObjectTypeProperties
 
+# ===========================
 
 func _set_objecttype(value:int):
 	_Set_ObjectTypeProperty("ObjectType", value)
 
-# ===========================
 
 func _get_objecttype() -> int:
 	return _Get_ObjectTypeProperty("ObjectType")
