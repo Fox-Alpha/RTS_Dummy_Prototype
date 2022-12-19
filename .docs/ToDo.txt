@@ -1,1 +1,11 @@
-(Z) Weitere Infos unter https://github.com/todotxt/todo.txt
+(U) 2022-12-19 Hauptmenü @UI +RTSDummy
+(U) 2022-12-19 Settingsmenü @UI +RTSDummy
+(V) 2022-12-19 MainUI Anzeige @UI +RTSDummy
+(A) Refactor Unit @Asset +RTSDummy
+(M) 2022-12-19 Multiselect Mausauswahl @Control +RTSDummy
+(M) 2022-12-19 Multiselct Doppelklick (Gleiche Units) @Control +RTSDummy
+2022-12-19 Refactor Gamemap @Gameplay +RTSDummy
+(B) 2022-12-19 Fix Nav Agent Collisions @Gameplay +RTSDummy
+2022-12-19 Multiplayer @Multiplayer +RTSDummy
+2022-12-19 Minimap @UI +RTSDummy
+Weitere Infos unter https://github.com/todotxt/todo.txt
