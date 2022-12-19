@@ -8,7 +8,7 @@ export (Color) var basecolor = Color.blue setget set_basecolor, get_basecolor
 
 onready var _ObjectTypeNode = get_node("%ObjectType")
 onready var _NavAgentNode = get_node_or_null("%NavigationAgent")
-onready var _NavMapNode = get_tree().get_root().get_node("./Main/World/WorldNavigation")
+#onready var _NavMapNode = get_tree().get_root().get_node("./Main/World/WorldNavigation")
 onready var UnitMesh = $MeshBody
 onready var albedocolor:SpatialMaterial = UnitMesh.mesh.material
 onready var shader:ShaderMaterial = UnitMesh.mesh.material.next_pass
@@ -16,12 +16,12 @@ onready var NavPoint = preload("res://assets/helper/navpoint.tscn")
 
 
 func _ready():
-	_ObjectTypeNode._ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNIT
-	_ObjectTypeNode.UnitType = "UnitSoldierBase"
-	_ObjectTypeNode.UnitName = "Basic Soldier"
+#	_ObjectTypeNode._ObjectType = Globals.OBJECT_TYPE_ENUM.TYPE_UNIT
+#	_ObjectTypeNode.UnitType = "UnitSoldierBase"
+#	_ObjectTypeNode.UnitName = "Basic Soldier"
 	albedocolor.albedo_color = Color.blue
 	if is_instance_valid(_NavAgentNode):
-		_ObjectTypeNode._canmoveunit = false
+		_ObjectTypeNode._canmoveunit = true
 		_NavAgentNode.set_target_location(global_transform.origin)
 	
 	# Object selektieren
